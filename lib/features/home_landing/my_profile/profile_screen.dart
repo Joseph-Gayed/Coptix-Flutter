@@ -1,6 +1,10 @@
 import 'package:coptix/shared/widgets/coptix_container.dart';
 import 'package:flutter/material.dart';
 
+import '../../../shared/utils/localization/app_localizations.dart';
+import '../../../shared/utils/localization/localized_content.dart';
+import '../../../shared/utils/navigation_routes.dart';
+
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
@@ -12,11 +16,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     // Your Landing Screen implementation goes here
-    return Scaffold(
-      body: const CoptixContainer(
-        child:
-            Text('This is the Profile Screen', style: TextStyle(fontSize: 24)),
-      ),
-    );
+    return CoptixContainer(
+        child: GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, AppRoutes.changeAppLanguage);
+      },
+      child: Text(
+          AppLocalizations.of(context).translate(LocalizationKey.profile),
+          style: const TextStyle(fontSize: 24)),
+    ));
   }
 }

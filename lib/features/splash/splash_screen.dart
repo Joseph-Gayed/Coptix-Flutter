@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 import '../../shared/theme/styles.dart';
 import '../../shared/utils/constants.dart';
+import '../../shared/utils/localization/app_localizations.dart';
+import '../../shared/utils/localization/localized_content.dart';
 import '../home_landing/home_landing_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -55,8 +57,8 @@ class _SplashScreenState extends State<SplashScreen> {
         )),
         Container(
           padding: const EdgeInsets.only(bottom: SplashDimens.greetingMargin),
-          child: const Text(
-            "Welcome to coptix app",
+          child: Text(
+            AppLocalizations.of(context).translate(LocalizationKey.welcome),
             style: titleTextStyle,
           ),
         ),

@@ -1,6 +1,9 @@
 import 'package:coptix/shared/widgets/coptix_container.dart';
 import 'package:flutter/material.dart';
 
+import '../../../shared/utils/localization/app_localizations.dart';
+import '../../../shared/utils/localization/localized_content.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -13,8 +16,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     // Your Landing Screen implementation goes here
     return Scaffold(
-      body: const CoptixContainer(
-        child: Text('This is the Home Screen', style: TextStyle(fontSize: 24)),
+      body: CoptixContainer(
+        child: Text(
+            AppLocalizations.of(context).translate(LocalizationKey.home),
+            style: const TextStyle(fontSize: 24)),
       ),
     );
   }

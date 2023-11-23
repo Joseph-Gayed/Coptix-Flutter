@@ -13,9 +13,12 @@ class FontSizes {
 }
 
 class Dimens {
-  static const double screenMargin = 20;
+  static const double screenMargin = 16;
+  static const double halfScreenMargin = screenMargin / 2;
+  static const double doubleScreenMargin = screenMargin * 2;
   static const double appBarHeight = 48;
-  static const double bottomBarIconSize = 25;
+  static const double bottomNavBarIconSize = 25;
+  static const double buttonsCornerRadius = 5;
 }
 
 class SplashDimens {

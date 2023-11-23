@@ -1,6 +1,9 @@
 import 'package:coptix/shared/widgets/coptix_container.dart';
 import 'package:flutter/material.dart';
 
+import '../../../shared/utils/localization/app_localizations.dart';
+import '../../../shared/utils/localization/localized_content.dart';
+
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
 
@@ -13,9 +16,10 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     // Your Landing Screen implementation goes here
     return Scaffold(
-      body: const CoptixContainer(
-        child:
-            Text('This is the Search Screen', style: TextStyle(fontSize: 24)),
+      body: CoptixContainer(
+        child: Text(
+            AppLocalizations.of(context).translate(LocalizationKey.search),
+            style: const TextStyle(fontSize: 24)),
       ),
     );
   }
