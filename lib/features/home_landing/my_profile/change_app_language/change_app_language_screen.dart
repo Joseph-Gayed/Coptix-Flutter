@@ -1,4 +1,5 @@
 import 'package:coptix/shared/theme/dimens.dart';
+import 'package:coptix/shared/theme/styles.dart';
 import 'package:coptix/shared/widgets/coptix_container.dart';
 import 'package:coptix/shared/widgets/radio_list.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class ChangeAppLanguageScreen extends StatefulWidget {
 class _ChangeAppLanguageScreenState extends State<ChangeAppLanguageScreen> {
   String _selectedLanguage =
       LocalizationKey.defaultLanguage; // Default language
-  Map<String, String> options = {
+  Map<OptionTitle, OptionValue> options = {
     "English": LocalizationKey.en,
     "العربية": LocalizationKey.ar,
     "Français": LocalizationKey.fr
@@ -45,7 +46,9 @@ class _ChangeAppLanguageScreenState extends State<ChangeAppLanguageScreen> {
             AppLocalizations.of(context).translate(LocalizationKey.language)),
       ),
       body: CoptixContainer(
-        child: screenContent(),
+        child: Container(
+            margin: const EdgeInsets.all(Dimens.halfScreenMargin),
+            child: screenContent()),
       ),
     );
   }
@@ -65,7 +68,9 @@ class _ChangeAppLanguageScreenState extends State<ChangeAppLanguageScreen> {
           child: ElevatedButton(
             onPressed: saveAndBack,
             child: Text(
-                AppLocalizations.of(context).translate(LocalizationKey.save)),
+              AppLocalizations.of(context).translate(LocalizationKey.save),
+              style: buttonTextStyle,
+            ),
           ),
         ),
       ],
@@ -80,8 +85,7 @@ class _ChangeAppLanguageScreenState extends State<ChangeAppLanguageScreen> {
 
   void saveAndBack() {
     SharedPreferencesUtils.saveLanguage(_selectedLanguage);
-    Locale newLocale = Locale(_selectedLanguage);
-    MyApp.setLocale(context, newLocale);
+    MyApp.setAppLanguage(context, _selectedLanguage);
     Navigator.pop(context);
   }
 }

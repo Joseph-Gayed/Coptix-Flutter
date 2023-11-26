@@ -15,9 +15,15 @@ var appTheme = ThemeData(
     radioTheme: RadioThemeData(
       fillColor: MaterialStateProperty.all<Color>(secondaryColor),
     ),
-    elevatedButtonTheme: ElevatedButtonThemeData(style: buttonStyle),
+    elevatedButtonTheme: ElevatedButtonThemeData(style: secondaryButtonStyle),
     textTheme: const TextTheme(labelLarge: buttonTextStyle),
     useMaterial3: true);
+
+const TextStyle headTextStyle = TextStyle(
+    fontSize: FontSizes.h5,
+    fontWeight: FontWeight.bold,
+    color: lightTextColor,
+    fontFamily: appFontFamily);
 
 const TextStyle titleTextStyle = TextStyle(
     fontSize: FontSizes.h6,
@@ -30,13 +36,19 @@ const TextStyle buttonTextStyle = TextStyle(
     fontFamily: appFontFamily,
     fontWeight: FontWeight.w700);
 
-ButtonStyle buttonStyle = ButtonStyle(
-  backgroundColor: MaterialStateProperty.all<Color>(secondaryColor),
-  foregroundColor: MaterialStateProperty.all<Color>(primaryColor),
+ButtonStyle primaryButtonStyle = ButtonStyle(
+  backgroundColor:
+      MaterialStateProperty.all<Color>(primaryButtonBackgroundColor),
+  foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
     RoundedRectangleBorder(
       borderRadius:
           BorderRadius.circular(Dimens.buttonsCornerRadius), // Corner radius
     ),
   ),
+);
+
+ButtonStyle secondaryButtonStyle = primaryButtonStyle.copyWith(
+  backgroundColor: MaterialStateProperty.all<Color>(secondaryColor),
+  foregroundColor: MaterialStateProperty.all<Color>(primaryColor),
 );

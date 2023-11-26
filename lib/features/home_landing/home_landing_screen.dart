@@ -5,7 +5,7 @@ import 'package:coptix/shared/widgets/coptix_container.dart';
 import 'package:flutter/material.dart';
 
 import '../../shared/widgets/coptix_bottom_nav_bar.dart';
-import 'home/home_screen.dart';
+import 'home/presentation/home_screen.dart';
 import 'my_profile/profile_screen.dart';
 
 class HomeLandingScreen extends StatefulWidget {

@@ -2,12 +2,15 @@ import 'package:coptix/shared/theme/colors.dart';
 import 'package:coptix/shared/theme/dimens.dart';
 import 'package:flutter/material.dart';
 
+typedef OptionTitle = String;
+typedef OptionValue = String;
+
 class RadioList extends StatelessWidget {
   //map <option title , option value>
-  final Map<String, String> options;
-  final void Function(String value) onSelectionValueChanged;
+  final Map<OptionTitle, OptionValue> options;
+  final void Function(OptionValue value) onSelectionValueChanged;
 
-  final String selectedOption;
+  final OptionValue selectedOption;
 
   const RadioList(
       {super.key,

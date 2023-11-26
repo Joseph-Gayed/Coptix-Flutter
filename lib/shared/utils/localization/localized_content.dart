@@ -10,6 +10,8 @@ class LocalizationKey {
   static const String profile = "profile";
   static const String save = "save";
   static const String language = "language";
+  static const String playNow = "playNow";
+  static const String addToMyList = "addToMyList";
 }
 
 const Map<String, Map<String, String>> localizedContent = {
@@ -26,6 +28,8 @@ const Map<String, String> englishContent = {
   LocalizationKey.profile: "Profile",
   LocalizationKey.save: "Save",
   LocalizationKey.language: "Language",
+  LocalizationKey.playNow: "Play Now",
+  LocalizationKey.addToMyList: "Watch Later",
 };
 const Map<String, String> arabicContent = {
   LocalizationKey.welcome: "أهلاً بك في تطبيق كوبتكس",
@@ -35,6 +39,8 @@ const Map<String, String> arabicContent = {
   LocalizationKey.profile: "الملف الشخصي",
   LocalizationKey.save: "حفظ",
   LocalizationKey.language: "اللغة",
+  LocalizationKey.playNow: "تشغيل الان",
+  LocalizationKey.addToMyList: "اضف لقائمتي",
 };
 const Map<String, String> frenchContent = {
   LocalizationKey.welcome: "Bienvenue dans l'application Coptix",
@@ -44,4 +50,6 @@ const Map<String, String> frenchContent = {
   LocalizationKey.profile: "Profil",
   LocalizationKey.save: "Enregistrer",
   LocalizationKey.language: "la langue",
+  LocalizationKey.playNow: "Joue",
+  LocalizationKey.addToMyList: "Sauvegarder",
 };

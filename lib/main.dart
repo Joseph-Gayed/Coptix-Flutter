@@ -16,14 +16,23 @@ class MyApp extends StatefulWidget {
   @override
   State<MyApp> createState() => _MyAppState();
 
-  static void setLocale(BuildContext context, Locale newLocale) {
+  static void setAppLanguage(BuildContext context, String newLanguage) {
     _MyAppState state = context.findAncestorStateOfType<_MyAppState>()!;
-    state.setLocaleState(newLocale);
+    state.setLanguageState(newLanguage);
+  }
+
+  static bool isRtl(BuildContext context) {
+    return getAppLanguage(context) == LocalizationKey.ar;
+  }
+
+  static String getAppLanguage(BuildContext context) {
+    return context.findAncestorStateOfType<_MyAppState>()!.appLanguage;
   }
 }
 
 class _MyAppState extends State<MyApp> {
   Locale _locale = const Locale(LocalizationKey.defaultLanguage);
+  String appLanguage = LocalizationKey.defaultLanguage;
 
   @override
   void initState() {
@@ -33,13 +42,15 @@ class _MyAppState extends State<MyApp> {
 
   void setupAppLanguage() async {
     Future<String> languageFuture = SharedPreferencesUtils.getLanguage();
-    String appLanguage = await languageFuture;
-    setLocaleState(Locale(appLanguage));
+    String cachedAppLanguage = await languageFuture;
+
+    setLanguageState(cachedAppLanguage);
   }
 
-  void setLocaleState(Locale newLocale) {
+  void setLanguageState(String newLanguage) {
     setState(() {
-      _locale = newLocale;
+      appLanguage = newLanguage;
+      _locale = Locale(newLanguage);
     });
   }
 
