@@ -1,18 +1,18 @@
+import 'package:coptix/features/home_landing/home/presentation/model/ui_clip.dart';
 import 'package:coptix/main.dart';
 import 'package:coptix/shared/theme/colors.dart';
 import 'package:coptix/shared/theme/dimens.dart';
 import 'package:coptix/shared/utils/constants.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../shared/enums/content_type.dart';
 import '../../../../shared/theme/styles.dart';
 import 'item_default_image_card.dart';
 import 'model/ui_collection.dart';
 
 class ItemDefaultCollection extends StatelessWidget {
   final UiCollection uiCollection;
-  final Function(String) onViewMoreClicked;
-  final Function(String, MediaContentType) onCardClicked;
+  final Function(UiCollection uiCollection) onViewMoreClicked;
+  final Function(UiClip) onCardClicked;
 
   const ItemDefaultCollection(
       {super.key,
@@ -57,7 +57,7 @@ class ItemDefaultCollection extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  onViewMoreClicked(uiCollection.title);
+                  onViewMoreClicked(uiCollection);
                   // Navigate to SectionList screen
                 },
                 child: Container(
@@ -82,7 +82,7 @@ class ItemDefaultCollection extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: uiCollection.clips.length,
             itemBuilder: (context, index) {
-              return ImageCard(
+              return ItemDefaultImageCard(
                   onItemClicked: onCardClicked,
                   uiClip: uiCollection.clips[index]);
             },

@@ -5,13 +5,12 @@ import 'package:coptix/shared/utils/localization/app_localizations.dart';
 import 'package:coptix/shared/utils/localization/localized_content.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../shared/enums/content_type.dart';
 import '../../../../shared/theme/dimens.dart';
 
 class ItemFeaturedBanner extends StatelessWidget {
   final UiClip uiClip;
-  final Function(String, MediaContentType) onPlayNowClicked;
-  final Function(String, MediaContentType) onAddToFavoritesClicked;
+  final Function(UiClip) onPlayNowClicked;
+  final Function(UiClip) onAddToFavoritesClicked;
   const ItemFeaturedBanner({
     super.key,
     required this.uiClip,
@@ -71,7 +70,7 @@ class ItemFeaturedBanner extends StatelessWidget {
                     Expanded(
                       child: ElevatedButton.icon(
                           onPressed: () {
-                            onPlayNowClicked(uiClip.id, uiClip.contentType);
+                            onPlayNowClicked(uiClip);
                           },
                           icon: const Icon(Icons.play_arrow),
                           label: Text(
@@ -91,8 +90,7 @@ class ItemFeaturedBanner extends StatelessWidget {
                       child: ElevatedButton.icon(
                         style: primaryButtonStyle,
                         onPressed: () {
-                          onAddToFavoritesClicked(
-                              uiClip.id, uiClip.contentType);
+                          onAddToFavoritesClicked(uiClip);
                         },
                         icon: const Icon(Icons.bookmark),
                         label: Text(

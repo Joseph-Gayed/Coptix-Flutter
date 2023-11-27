@@ -1,3 +1,4 @@
+import 'package:coptix/features/home_landing/home/presentation/collection_screen.dart';
 import 'package:coptix/main.dart';
 import 'package:coptix/shared/enums/section_display_type.dart';
 import 'package:coptix/shared/fake_data.dart';
@@ -5,7 +6,8 @@ import 'package:coptix/shared/widgets/coptix_container.dart';
 import 'package:coptix/features/home_landing/home/presentation/item_default_collection.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../shared/enums/content_type.dart';
+import '../../../../shared/utils/navigation_routes.dart';
+import 'model/ui_clip.dart';
 import 'model/ui_collection.dart';
 import 'item_featured_collection.dart';
 
@@ -65,17 +67,25 @@ class _HomeScreenState extends State<HomeScreen> {
         .toList();
   }
 
-  void openCollection(String collectionId) {
-    print("clicked collection is $collectionId");
+  void openCollection(UiCollection uiCollection) {
+    Navigator.pushNamed(
+      context,
+      AppRoutes.collection,
+      arguments: {
+        CollectionScreen.idKey: uiCollection.id,
+        CollectionScreen.titleKey: uiCollection.title,
+      },
+    );
   }
 
-  void openDetails(String itemId, MediaContentType mediaContentType) {
+  void openDetails(UiClip uiClip) {
+    // String itemId, MediaContentType mediaContentType;
     print(
-        "openDetails: clicked item is $itemId , content type = $mediaContentType");
+        "openDetails: clicked item is ${uiClip.id} , content type = ${uiClip.contentType}");
   }
 
-  void addToFavorites(String bannerItemId, MediaContentType mediaContentType) {
+  void addToFavorites(UiClip uiClip) {
     print(
-        "addToFavorites:clicked item is is $bannerItemId, content type = $mediaContentType");
+        "openDetails: clicked item is ${uiClip.id} , content type = ${uiClip.contentType}");
   }
 }

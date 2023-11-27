@@ -12,6 +12,8 @@ class LocalizationKey {
   static const String language = "language";
   static const String playNow = "playNow";
   static const String addToMyList = "addToMyList";
+
+  static const String badArguments = "badArguments";
 }
 
 const Map<String, Map<String, String>> localizedContent = {
@@ -30,10 +32,12 @@ const Map<String, String> englishContent = {
   LocalizationKey.language: "Language",
   LocalizationKey.playNow: "Play Now",
   LocalizationKey.addToMyList: "Watch Later",
+  LocalizationKey.badArguments:
+      "Can't open the required screen because there are missing data",
 };
 const Map<String, String> arabicContent = {
   LocalizationKey.welcome: "أهلاً بك في تطبيق كوبتكس",
-  LocalizationKey.home: "الصفحة الرئيسية",
+  LocalizationKey.home: "الرئيسية",
   LocalizationKey.newAdditions: "الإضافات الجديدة",
   LocalizationKey.search: "بحث",
   LocalizationKey.profile: "الملف الشخصي",
@@ -41,6 +45,8 @@ const Map<String, String> arabicContent = {
   LocalizationKey.language: "اللغة",
   LocalizationKey.playNow: "تشغيل الان",
   LocalizationKey.addToMyList: "اضف لقائمتي",
+  LocalizationKey.badArguments:
+      "Can't open the required screen because there are missing data",
 };
 const Map<String, String> frenchContent = {
   LocalizationKey.welcome: "Bienvenue dans l'application Coptix",
@@ -52,4 +58,6 @@ const Map<String, String> frenchContent = {
   LocalizationKey.language: "la langue",
   LocalizationKey.playNow: "Joue",
   LocalizationKey.addToMyList: "Sauvegarder",
+  LocalizationKey.badArguments:
+      "Can't open the required screen because there are missing data",
 };

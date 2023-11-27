@@ -62,3 +62,8 @@ class HomeDimens {
 
   static double featuredButtonsFontSize = 13;
 }
+
+class NewAdditionsDimens {
+  static const double cardWidth = designScreenFactor * 190;
+  static const double cardHeight = designScreenFactor * 290;
+}

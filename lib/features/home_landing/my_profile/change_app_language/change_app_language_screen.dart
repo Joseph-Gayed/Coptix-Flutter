@@ -47,7 +47,7 @@ class _ChangeAppLanguageScreenState extends State<ChangeAppLanguageScreen> {
       ),
       body: CoptixContainer(
         child: Container(
-            margin: const EdgeInsets.all(Dimens.halfScreenMargin),
+            margin: const EdgeInsets.all(Dimens.screenMargin),
             child: screenContent()),
       ),
     );

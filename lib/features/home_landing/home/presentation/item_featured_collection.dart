@@ -1,6 +1,5 @@
-import 'dart:ui';
 
-import 'package:coptix/shared/enums/content_type.dart';
+import 'package:coptix/features/home_landing/home/presentation/model/ui_clip.dart';
 import 'package:coptix/shared/theme/dimens.dart';
 import 'package:flutter/material.dart';
 
@@ -10,8 +9,8 @@ import 'model/ui_collection.dart';
 
 class ItemFeaturedCollection extends StatefulWidget {
   final UiCollection uiCollection;
-  final Function(String, MediaContentType) onPlayNowClicked;
-  final Function(String, MediaContentType) onAddToFavoritesClicked;
+  final Function(UiClip) onPlayNowClicked;
+  final Function(UiClip) onAddToFavoritesClicked;
 
   const ItemFeaturedCollection(
       {super.key,

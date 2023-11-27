@@ -1,14 +1,13 @@
 import 'package:coptix/features/home_landing/home/presentation/model/ui_clip.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../shared/enums/content_type.dart';
 import '../../../../shared/theme/dimens.dart';
 import '../../../../shared/utils/constants.dart';
 
-class ImageCard extends StatelessWidget {
-  final Function(String, MediaContentType) onItemClicked;
+class ItemDefaultImageCard extends StatelessWidget {
+  final Function(UiClip) onItemClicked;
   final UiClip uiClip;
-  const ImageCard({
+  const ItemDefaultImageCard({
     super.key,
     required this.onItemClicked,
     required this.uiClip,
@@ -18,7 +17,7 @@ class ImageCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        onItemClicked(uiClip.id, uiClip.contentType);
+        onItemClicked(uiClip);
         // Navigate to MovieDetails screen
       },
       child: Container(
