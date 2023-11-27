@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
   // Add a delay before navigating to the Landing Screen
   void startSplashTimer() {
     /**/
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const HomeLandingScreen()),

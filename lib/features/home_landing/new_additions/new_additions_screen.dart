@@ -1,8 +1,10 @@
+
+import 'package:coptix/shared/fake_data.dart';
+import 'package:coptix/shared/widgets/clips_grid.dart';
 import 'package:coptix/shared/widgets/coptix_container.dart';
 import 'package:flutter/material.dart';
 
-import '../../../shared/utils/localization/app_localizations.dart';
-import '../../../shared/utils/localization/localized_content.dart';
+import '../home/presentation/model/ui_clip.dart';
 
 class NewAdditionsScreen extends StatefulWidget {
   const NewAdditionsScreen({super.key});
@@ -12,16 +14,27 @@ class NewAdditionsScreen extends StatefulWidget {
 }
 
 class _NewAdditionsScreenState extends State<NewAdditionsScreen> {
+  List<UiClip> clips = [];
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
   @override
   Widget build(BuildContext context) {
     // Your Landing Screen implementation goes here
     return Scaffold(
       body: CoptixContainer(
-        child: Text(
-            AppLocalizations.of(context)
-                .translate(LocalizationKey.newAdditions),
-            style: const TextStyle(fontSize: 24)),
+        child: ClipsGrid(clips: clips),
       ),
     );
+  }
+
+  Future<void> getData() async {
+    await Future.delayed(const Duration(seconds: 3));
+    setState(() {
+      clips = FakeData.newAdditions5Clips;
+    });
   }
 }

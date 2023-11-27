@@ -6,7 +6,7 @@ import 'package:coptix/shared/widgets/coptix_container.dart';
 import 'package:coptix/features/home_landing/home/presentation/item_default_collection.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../shared/utils/navigation_routes.dart';
+import '../../../../shared/utils/navigation/shared_navigation.dart';
 import 'model/ui_clip.dart';
 import 'model/ui_collection.dart';
 import 'item_featured_collection.dart';
@@ -58,30 +58,12 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  List<Widget> mapSectionsDataToWidgetsList() {
-    return homeSectionsData
-        .map((sectionData) => ItemDefaultCollection(
-            uiCollection: sectionData,
-            onViewMoreClicked: openCollection,
-            onCardClicked: openDetails))
-        .toList();
-  }
-
   void openCollection(UiCollection uiCollection) {
-    Navigator.pushNamed(
-      context,
-      AppRoutes.collection,
-      arguments: {
-        CollectionScreen.idKey: uiCollection.id,
-        CollectionScreen.titleKey: uiCollection.title,
-      },
-    );
+    CollectionScreen.openScreen(context, uiCollection);
   }
 
   void openDetails(UiClip uiClip) {
-    // String itemId, MediaContentType mediaContentType;
-    print(
-        "openDetails: clicked item is ${uiClip.id} , content type = ${uiClip.contentType}");
+    openDetailsScreen(context, uiClip);
   }
 
   void addToFavorites(UiClip uiClip) {

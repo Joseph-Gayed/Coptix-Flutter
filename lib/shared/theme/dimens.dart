@@ -31,6 +31,7 @@ class Dimens {
   static const double arrowIconSize = 20;
 
   static const double indicatorDotsSize = designScreenFactor * 10;
+  static const double gridSpacing = screenMargin;
 }
 
 class SplashDimens {

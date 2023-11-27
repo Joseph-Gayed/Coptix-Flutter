@@ -13,10 +13,30 @@ List<String> movieNames = [
 ]; // List of movie names
 
 class FakeData {
+  static List<UiClip> newAdditions5Clips = [
+    UiClip("5", CollectionDisplayType.vertical, MediaContentType.showsSeason,
+        "clip name 1", "", "image_v1.png"),
+    UiClip("6", CollectionDisplayType.vertical, MediaContentType.series,
+        "clip name 2", "", "image_v2.png"),
+    UiClip("7", CollectionDisplayType.vertical, MediaContentType.clips,
+        "clip name 3", "", "image_v3.png"),
+    UiClip("8", CollectionDisplayType.vertical, MediaContentType.showsSeason,
+        "clip name 1", "", "image_v1.png"),
+    UiClip("9", CollectionDisplayType.vertical, MediaContentType.series,
+        "clip name 2", "", "image_v2.png"),
+    UiClip("10", CollectionDisplayType.vertical, MediaContentType.clips,
+        "clip name 3", "", "image_v3.png"),
+    UiClip("11", CollectionDisplayType.vertical, MediaContentType.showsSeason,
+        "clip name 1", "", "image_v1.png"),
+    UiClip("12", CollectionDisplayType.vertical, MediaContentType.series,
+        "clip name 2", "", "image_v2.png"),
+    UiClip("13", CollectionDisplayType.vertical, MediaContentType.clips,
+        "clip name 3", "", "image_v3.png"),
+  ];
   static Future<List<UiCollection>> getHomeSectionsData(String lang) async {
     bool isArabic = lang.toLowerCase() == "ar";
 
-    List<UiClip> collection1Clips = [
+    List<UiClip> featuredClips = [
       UiClip(
           "1",
           CollectionDisplayType.banner,
@@ -55,40 +75,32 @@ class FakeData {
           "https://fastly.picsum.photos/id/740/400/700.jpg?hmac=ieDF_njwSlWp_w-x_rLQ9Hrs_Ap954Qy2q20UBX-uII"),
     ];
     List<UiClip> collection2Clips = [
-      UiClip("5", CollectionDisplayType.vertical, MediaContentType.clips, "",
-          "", "image_v1.png"),
-      UiClip("6", CollectionDisplayType.vertical, MediaContentType.clips, "",
-          "", "image_v2.png"),
-      UiClip("7", CollectionDisplayType.vertical, MediaContentType.clips, "",
-          "", "image_v3.png"),
+      UiClip("5", CollectionDisplayType.vertical, MediaContentType.clips,
+          "clip name 1", "", "image_v1.png"),
+      UiClip("6", CollectionDisplayType.vertical, MediaContentType.clips,
+          "clip name 2", "", "image_v2.png"),
+      UiClip("7", CollectionDisplayType.vertical, MediaContentType.clips,
+          "clip name 3", "", "image_v3.png"),
     ];
     List<UiClip> collection3Clips = [
-      UiClip("8", CollectionDisplayType.normal, MediaContentType.clips, "", "",
-          "image_n1.png"),
-      UiClip("9", CollectionDisplayType.normal, MediaContentType.clips, "", "",
-          "image_n2.png"),
-      UiClip("10", CollectionDisplayType.normal, MediaContentType.clips, "", "",
-          "image_n3.png"),
+      UiClip("8", CollectionDisplayType.normal, MediaContentType.clips,
+          "clip name 1", "", "image_n1.png"),
+      UiClip("9", CollectionDisplayType.normal, MediaContentType.clips,
+          "clip name 2", "", "image_n2.png"),
+      UiClip("10", CollectionDisplayType.normal, MediaContentType.clips,
+          "clip name 3", "", "image_n3.png"),
     ];
     List<UiClip> collection4Clips = [
-      UiClip("11", CollectionDisplayType.normal, MediaContentType.clips, "", "",
-          "image_n1.png"),
-      UiClip("12", CollectionDisplayType.normal, MediaContentType.clips, "", "",
-          "image_n2.png"),
-      UiClip("13", CollectionDisplayType.normal, MediaContentType.clips, "", "",
-          "image_n3.png"),
-    ];
-    List<UiClip> collection5Clips = [
-      UiClip("5", CollectionDisplayType.vertical, MediaContentType.clips, "",
-          "", "image_v1.png"),
-      UiClip("6", CollectionDisplayType.vertical, MediaContentType.clips, "",
-          "", "image_v2.png"),
-      UiClip("7", CollectionDisplayType.vertical, MediaContentType.clips, "",
-          "", "image_v3.png")
+      UiClip("11", CollectionDisplayType.normal, MediaContentType.clips,
+          "clip name 1", "", "image_n1.png"),
+      UiClip("12", CollectionDisplayType.normal, MediaContentType.clips,
+          "clip name 2", "", "image_n2.png"),
+      UiClip("13", CollectionDisplayType.normal, MediaContentType.clips,
+          "clip name 3", "", "image_n3.png"),
     ];
 
     List<UiCollection> homeSectionsData = [
-      UiCollection("1", "", collection1Clips, CollectionDisplayType.banner),
+      UiCollection("1", "", featuredClips, CollectionDisplayType.banner),
       UiCollection("2", isArabic ? "القداس الإلهي" : "El Oddas el Elahy",
           collection2Clips, CollectionDisplayType.vertical),
       UiCollection("3", isArabic ? "أحدث الإضافات" : "A7das el edafat",
@@ -100,7 +112,7 @@ class FakeData {
               : "Hekayat Kitr Awy 3an Abona Beshoy el Antony 7lwa mooooot",
           collection4Clips,
           CollectionDisplayType.normal),
-      UiCollection("5", isArabic ? "قريبا" : "Soon", collection5Clips,
+      UiCollection("5", isArabic ? "قريبا" : "Soon", newAdditions5Clips,
           CollectionDisplayType.vertical),
     ];
     return homeSectionsData;

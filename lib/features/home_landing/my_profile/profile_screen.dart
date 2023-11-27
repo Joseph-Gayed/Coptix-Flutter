@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../shared/utils/localization/app_localizations.dart';
 import '../../../shared/utils/localization/localized_content.dart';
-import '../../../shared/utils/navigation_routes.dart';
+import '../../../shared/utils/navigation/navigation_routes.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});

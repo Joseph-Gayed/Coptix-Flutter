@@ -82,9 +82,13 @@ class ItemDefaultCollection extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: uiCollection.clips.length,
             itemBuilder: (context, index) {
-              return ItemDefaultImageCard(
-                  onItemClicked: onCardClicked,
-                  uiClip: uiCollection.clips[index]);
+              return Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: Dimens.halfScreenMargin),
+                child: ItemDefaultImageCard(
+                    onItemClicked: onCardClicked,
+                    uiClip: uiCollection.clips[index]),
+              );
             },
           ),
         ),

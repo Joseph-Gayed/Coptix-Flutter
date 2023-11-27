@@ -20,17 +20,14 @@ class ItemDefaultImageCard extends StatelessWidget {
         onItemClicked(uiClip);
         // Navigate to MovieDetails screen
       },
-      child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: Dimens.halfScreenMargin),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(Dimens.cornerRadius),
-          //ToDO: replace with Image.network
-          child: Image.asset(
-            '$fakeImagesPath${uiClip.imagePath}',
-            width: HomeDimens.collectionWidths[uiClip.displayType],
-            height: HomeDimens.collectionHeights[uiClip.displayType],
-            fit: BoxFit.cover,
-          ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(Dimens.cornerRadius),
+        //ToDO: replace with Image.network
+        child: Image.asset(
+          '$fakeImagesPath${uiClip.imagePath}',
+          width: HomeDimens.collectionWidths[uiClip.displayType],
+          height: HomeDimens.collectionHeights[uiClip.displayType],
+          fit: BoxFit.cover,
         ),
       ),
     );

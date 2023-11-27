@@ -1,6 +1,6 @@
 import 'package:coptix/shared/utils/localization/app_localizations.dart';
 import 'package:coptix/shared/utils/localization/localized_content.dart';
-import 'package:coptix/shared/utils/navigation_routes.dart';
+import 'package:coptix/shared/utils/navigation/navigation_routes.dart';
 import 'package:coptix/shared/theme/styles.dart';
 import 'package:coptix/shared/utils/shared_preferences.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +33,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Locale _locale = const Locale(LocalizationKey.defaultLanguage);
   String appLanguage = LocalizationKey.defaultLanguage;
-
   @override
   void initState() {
     super.initState();
