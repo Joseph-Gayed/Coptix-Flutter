@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../../main.dart';
 import '../../../../shared/fake_data.dart';
 import '../../../../shared/utils/navigation/navigation_args.dart';
-import '../../../../shared/utils/navigation/navigation_routes.dart';
+import '../../../../shared/utils/navigation/app_router.dart';
 import '../../../../shared/widgets/coptix_container.dart';
 import 'model/ui_collection.dart';
 
@@ -20,7 +20,7 @@ class CollectionScreen extends StatefulWidget {
   static void openScreen(BuildContext context, UiCollection uiCollection) {
     Navigator.pushNamed(
       context,
-      AppRoutes.collection,
+      AppRouter.collection,
       arguments: {
         NavArgsKeys.idKey: uiCollection.id,
         NavArgsKeys.titleKey: uiCollection.title,

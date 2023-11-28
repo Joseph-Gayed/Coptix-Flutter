@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../shared/utils/localization/app_localizations.dart';
 import '../../../shared/utils/localization/localized_content.dart';
-import '../../../shared/utils/navigation/navigation_routes.dart';
+import '../../../shared/utils/navigation/app_router.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -19,7 +19,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return CoptixContainer(
         child: GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, AppRoutes.changeAppLanguage);
+        Navigator.pushNamed(context, AppRouter.changeAppLanguage);
       },
       child: Text(
           AppLocalizations.of(context).translate(LocalizationKey.profile),

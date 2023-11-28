@@ -1,6 +1,6 @@
 import 'package:coptix/shared/utils/localization/app_localizations.dart';
 import 'package:coptix/shared/utils/localization/localized_content.dart';
-import 'package:coptix/shared/utils/navigation/navigation_routes.dart';
+import 'package:coptix/shared/utils/navigation/app_router.dart';
 import 'package:coptix/shared/theme/styles.dart';
 import 'package:coptix/shared/utils/shared_preferences.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +59,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Coptix',
       theme: appTheme,
-      initialRoute: AppRoutes.splash,
+      initialRoute: AppRouter.splash,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
@@ -68,7 +68,7 @@ class _MyAppState extends State<MyApp> {
       ],
       locale: _locale,
       supportedLocales: AppLocalizations.locales(),
-      routes: getAppRoutes(context),
+      routes: AppRouter().getAppRoutes(context),
     );
   }
 }
