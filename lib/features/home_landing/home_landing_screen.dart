@@ -1,8 +1,11 @@
+import 'package:coptix/core/di/injection_container.dart';
+import 'package:coptix/features/home_landing/home/presentation/cubit/home_cubit.dart';
 import 'package:coptix/features/home_landing/new_additions/new_additions_screen.dart';
 import 'package:coptix/features/home_landing/search/search_screen.dart';
 import 'package:coptix/shared/widgets/coptix_app_bar.dart';
 import 'package:coptix/shared/widgets/coptix_container.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../shared/widgets/coptix_bottom_nav_bar.dart';
 import 'home/presentation/home_screen.dart';
@@ -18,7 +21,10 @@ class HomeLandingScreen extends StatefulWidget {
 class _HomeLandingScreenState extends State<HomeLandingScreen> {
   int _selectedIndex = 0;
   final List<Widget> _screens = <Widget>[
-    const HomeScreen(),
+    BlocProvider<HomeCubit>(
+      create: (context) => getIt<HomeCubit>(),
+      child: const HomeScreen(),
+    ),
     const NewAdditionsScreen(),
     const SearchScreen(),
     const ProfileScreen(),

@@ -1,11 +1,12 @@
 import 'package:coptix/features/home_landing/home/presentation/model/ui_clip.dart';
+import 'package:coptix/shared/widgets/safe_network_image.dart';
 import 'package:coptix/shared/theme/colors.dart';
 import 'package:coptix/shared/theme/styles.dart';
-import 'package:coptix/shared/utils/localization/app_localizations.dart';
+import 'package:coptix/shared/utils/localization/app_localizations_delegate.dart';
 import 'package:coptix/shared/utils/localization/localized_content.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../shared/theme/dimens.dart';
+import '../../../../../shared/theme/dimens.dart';
 
 class ItemFeaturedBanner extends StatelessWidget {
   final UiClip uiClip;
@@ -23,8 +24,10 @@ class ItemFeaturedBanner extends StatelessWidget {
     return Stack(
       children: [
         // Movie Image
-        Image.network(uiClip.imagePath,
-            width: double.infinity, height: double.infinity, fit: BoxFit.fill),
+        SafeNetworkImage(
+            imagePath: uiClip.getImagePath(),
+            width: double.infinity,
+            height: double.infinity),
 
         //Gradient layer
         Positioned(

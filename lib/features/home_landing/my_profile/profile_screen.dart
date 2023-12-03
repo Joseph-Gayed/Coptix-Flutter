@@ -1,7 +1,7 @@
 import 'package:coptix/shared/widgets/coptix_container.dart';
 import 'package:flutter/material.dart';
 
-import '../../../shared/utils/localization/app_localizations.dart';
+import '../../../shared/utils/localization/app_localizations_delegate.dart';
 import '../../../shared/utils/localization/localized_content.dart';
 import '../../../shared/utils/navigation/app_router.dart';
 

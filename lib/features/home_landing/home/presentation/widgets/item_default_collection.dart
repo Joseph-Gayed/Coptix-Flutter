@@ -1,13 +1,13 @@
 import 'package:coptix/features/home_landing/home/presentation/model/ui_clip.dart';
-import 'package:coptix/main.dart';
 import 'package:coptix/shared/theme/colors.dart';
 import 'package:coptix/shared/theme/dimens.dart';
 import 'package:coptix/shared/utils/constants.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../shared/theme/styles.dart';
+import '../../../../../main.dart';
+import '../../../../../shared/theme/styles.dart';
+import '../model/ui_collection.dart';
 import 'item_default_image_card.dart';
-import 'model/ui_collection.dart';
 
 class ItemDefaultCollection extends StatelessWidget {
   final UiCollection uiCollection;
@@ -51,7 +51,7 @@ class ItemDefaultCollection extends StatelessWidget {
               ),
               Expanded(
                 child: Text(
-                  uiCollection.title,
+                  uiCollection.name,
                   style: titleTextStyle,
                 ),
               ),

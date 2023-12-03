@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../shared/theme/styles.dart';
 import '../../shared/utils/constants.dart';
-import '../../shared/utils/localization/app_localizations.dart';
+import '../../shared/utils/localization/app_localizations_delegate.dart';
 import '../../shared/utils/localization/localized_content.dart';
 import '../home_landing/home_landing_screen.dart';
 

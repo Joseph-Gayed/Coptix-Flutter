@@ -1,4 +1,5 @@
-import 'package:coptix/shared/utils/localization/app_localizations.dart';
+import 'package:coptix/core/di/injection_container.dart';
+import 'package:coptix/shared/utils/localization/app_localizations_delegate.dart';
 import 'package:coptix/shared/utils/localization/localized_content.dart';
 import 'package:coptix/shared/utils/navigation/app_router.dart';
 import 'package:coptix/shared/theme/styles.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
+  initDi();
   runApp(const MyApp());
 }
 

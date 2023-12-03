@@ -2,7 +2,7 @@ import 'package:coptix/shared/enums/content_type.dart';
 
 import '../features/home_landing/home/presentation/model/ui_clip.dart';
 import '../features/home_landing/home/presentation/model/ui_collection.dart';
-import 'enums/section_display_type.dart';
+import 'enums/collection_display_type.dart';
 
 // List of movie images
 List<String> movieNames = [
@@ -14,89 +14,179 @@ List<String> movieNames = [
 
 class FakeData {
   static List<UiClip> newAdditions5Clips = [
-    UiClip("5", CollectionDisplayType.vertical, MediaContentType.showsSeason,
-        "clip name 1", "", "image_v1.png"),
-    UiClip("6", CollectionDisplayType.vertical, MediaContentType.series,
-        "clip name 2", "", "image_v2.png"),
-    UiClip("7", CollectionDisplayType.vertical, MediaContentType.clips,
-        "clip name 3", "", "image_v3.png"),
-    UiClip("8", CollectionDisplayType.vertical, MediaContentType.showsSeason,
-        "clip name 1", "", "image_v1.png"),
-    UiClip("9", CollectionDisplayType.vertical, MediaContentType.series,
-        "clip name 2", "", "image_v2.png"),
-    UiClip("10", CollectionDisplayType.vertical, MediaContentType.clips,
-        "clip name 3", "", "image_v3.png"),
-    UiClip("11", CollectionDisplayType.vertical, MediaContentType.showsSeason,
-        "clip name 1", "", "image_v1.png"),
-    UiClip("12", CollectionDisplayType.vertical, MediaContentType.series,
-        "clip name 2", "", "image_v2.png"),
-    UiClip("13", CollectionDisplayType.vertical, MediaContentType.clips,
-        "clip name 3", "", "image_v3.png"),
+    UiClip(
+        id: "5",
+        displayType: CollectionDisplayType.vertical,
+        contentType: MediaContentType.showsSeason,
+        name: "clip name 1",
+        description: "",
+        clipImages: []),
+    UiClip(
+        id: "6",
+        displayType: CollectionDisplayType.vertical,
+        contentType: MediaContentType.series,
+        name: "clip name 2",
+        description: "",
+        clipImages: []),
+    UiClip(
+        id: "7",
+        displayType: CollectionDisplayType.vertical,
+        contentType: MediaContentType.clips,
+        name: "clip name 3",
+        description: "",
+        clipImages: []),
+    UiClip(
+        id: "8",
+        displayType: CollectionDisplayType.vertical,
+        contentType: MediaContentType.showsSeason,
+        name: "clip name 1",
+        description: "",
+        clipImages: []),
+    UiClip(
+        id: "9",
+        displayType: CollectionDisplayType.vertical,
+        contentType: MediaContentType.series,
+        name: "clip name 2",
+        description: "",
+        clipImages: []),
+    UiClip(
+        id: "10",
+        displayType: CollectionDisplayType.vertical,
+        contentType: MediaContentType.clips,
+        name: "clip name 3",
+        description: "",
+        clipImages: []),
+    UiClip(
+        id: "11",
+        displayType: CollectionDisplayType.vertical,
+        contentType: MediaContentType.showsSeason,
+        name: "clip name 1",
+        description: "",
+        clipImages: []),
+    UiClip(
+        id: "12",
+        displayType: CollectionDisplayType.vertical,
+        contentType: MediaContentType.series,
+        name: "clip name 2",
+        description: "",
+        clipImages: []),
+    UiClip(
+        id: "13",
+        displayType: CollectionDisplayType.vertical,
+        contentType: MediaContentType.clips,
+        name: "clip name 3",
+        description: "",
+        clipImages: []),
   ];
   static Future<List<UiCollection>> getHomeSectionsData(String lang) async {
     bool isArabic = lang.toLowerCase() == "ar";
 
     List<UiClip> featuredClips = [
       UiClip(
-          "1",
-          CollectionDisplayType.banner,
-          MediaContentType.series,
-          isArabic
+          id: "1",
+          displayType: CollectionDisplayType.banner,
+          contentType: MediaContentType.series,
+          name: isArabic
               ? "مسلسل : ما هو  لوريم إيبسوم و ما أصله"
               : "Series: Name  of clip 1",
-          "",
-          "https://fastly.picsum.photos/id/1040/400/700.jpg?hmac=Bz8sK69K6gL-DmRYNhNjJP95wcgdqlx877cZfzo7g9M"),
+          description: "",
+          clipImages: []),
       UiClip(
-          "2",
-          CollectionDisplayType.banner,
-          MediaContentType.clips,
-          isArabic
+          id: "2",
+          displayType: CollectionDisplayType.banner,
+          contentType: MediaContentType.clips,
+          name: isArabic
               ? "كليب :هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص "
               : "Clip : Name  of clip 1",
-          "",
-          "https://fastly.picsum.photos/id/791/400/700.jpg?hmac=1nDhkt0TAPpqFqYbbwfNW5OMjCpOLCmSxymgE7piMn4"),
+          description: "",
+          clipImages: []),
       UiClip(
-          "3",
-          CollectionDisplayType.banner,
-          MediaContentType.clips,
-          isArabic
+          id: "3",
+          displayType: CollectionDisplayType.banner,
+          contentType: MediaContentType.clips,
+          name: isArabic
               ? "كليب :العديد من برامح النشر المكتبي وبرامح تحرير صفحات الويب تستخدم لوريم إيبسوم بشكل إفتراضي "
               : "Clip: Name  of clip 1",
-          "",
-          "https://fastly.picsum.photos/id/982/400/700.jpg?hmac=2n7-7xSyg1hDBdRou90ffE4O1pjUV5tbedphfENS1v0"),
+          description: "",
+          clipImages: []),
       UiClip(
-          "4",
-          CollectionDisplayType.banner,
-          MediaContentType.series,
-          isArabic
+          id: "4",
+          displayType: CollectionDisplayType.banner,
+          contentType: MediaContentType.series,
+          name: isArabic
               ? "مسلسل :هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر أو الكلمات العشوائية إلى النص"
               : "Series: Name  of clip 1",
-          "",
-          "https://fastly.picsum.photos/id/740/400/700.jpg?hmac=ieDF_njwSlWp_w-x_rLQ9Hrs_Ap954Qy2q20UBX-uII"),
+          description: "",
+          clipImages: []),
     ];
     List<UiClip> collection2Clips = [
-      UiClip("5", CollectionDisplayType.vertical, MediaContentType.clips,
-          "clip name 1", "", "image_v1.png"),
-      UiClip("6", CollectionDisplayType.vertical, MediaContentType.clips,
-          "clip name 2", "", "image_v2.png"),
-      UiClip("7", CollectionDisplayType.vertical, MediaContentType.clips,
-          "clip name 3", "", "image_v3.png"),
+      UiClip(
+          id: "5",
+          displayType: CollectionDisplayType.vertical,
+          contentType: MediaContentType.clips,
+          name: "clip name 1",
+          description: "",
+          clipImages: []),
+      UiClip(
+          id: "6",
+          displayType: CollectionDisplayType.vertical,
+          contentType: MediaContentType.clips,
+          name: "clip name 2",
+          description: "",
+          clipImages: []),
+      UiClip(
+          id: "7",
+          displayType: CollectionDisplayType.vertical,
+          contentType: MediaContentType.clips,
+          name: "clip name 3",
+          description: "",
+          clipImages: []),
     ];
     List<UiClip> collection3Clips = [
-      UiClip("8", CollectionDisplayType.normal, MediaContentType.clips,
-          "clip name 1", "", "image_n1.png"),
-      UiClip("9", CollectionDisplayType.normal, MediaContentType.clips,
-          "clip name 2", "", "image_n2.png"),
-      UiClip("10", CollectionDisplayType.normal, MediaContentType.clips,
-          "clip name 3", "", "image_n3.png"),
+      UiClip(
+          id: "8",
+          displayType: CollectionDisplayType.normal,
+          contentType: MediaContentType.clips,
+          name: "clip name 1",
+          description: "",
+          clipImages: []),
+      UiClip(
+          id: "9",
+          displayType: CollectionDisplayType.normal,
+          contentType: MediaContentType.clips,
+          name: "clip name 2",
+          description: "",
+          clipImages: []),
+      UiClip(
+          id: "10",
+          displayType: CollectionDisplayType.normal,
+          contentType: MediaContentType.clips,
+          name: "clip name 3",
+          description: "",
+          clipImages: []),
     ];
     List<UiClip> collection4Clips = [
-      UiClip("11", CollectionDisplayType.normal, MediaContentType.clips,
-          "clip name 1", "", "image_n1.png"),
-      UiClip("12", CollectionDisplayType.normal, MediaContentType.clips,
-          "clip name 2", "", "image_n2.png"),
-      UiClip("13", CollectionDisplayType.normal, MediaContentType.clips,
-          "clip name 3", "", "image_n3.png"),
+      UiClip(
+          id: "11",
+          displayType: CollectionDisplayType.normal,
+          contentType: MediaContentType.clips,
+          name: "clip name 1",
+          description: "",
+          clipImages: []),
+      UiClip(
+          id: "12",
+          displayType: CollectionDisplayType.normal,
+          contentType: MediaContentType.clips,
+          name: "clip name 2",
+          description: "",
+          clipImages: []),
+      UiClip(
+          id: "13",
+          displayType: CollectionDisplayType.normal,
+          contentType: MediaContentType.clips,
+          name: "clip name 3",
+          description: "",
+          clipImages: []),
     ];
 
     List<UiCollection> homeSectionsData = [

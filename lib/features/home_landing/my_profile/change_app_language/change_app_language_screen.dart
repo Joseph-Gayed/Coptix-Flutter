@@ -5,7 +5,7 @@ import 'package:coptix/shared/widgets/radio_list.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../main.dart';
-import '../../../../shared/utils/localization/app_localizations.dart';
+import '../../../../shared/utils/localization/app_localizations_delegate.dart';
 import '../../../../shared/utils/localization/localized_content.dart';
 import '../../../../shared/utils/shared_preferences.dart';
 

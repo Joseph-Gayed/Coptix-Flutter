@@ -23,7 +23,7 @@ class CollectionScreen extends StatefulWidget {
       AppRouter.collection,
       arguments: {
         NavArgsKeys.idKey: uiCollection.id,
-        NavArgsKeys.titleKey: uiCollection.title,
+        NavArgsKeys.titleKey: uiCollection.name,
       },
     );
   }

@@ -1,4 +1,4 @@
-import '../enums/section_display_type.dart';
+import '../enums/collection_display_type.dart';
 
 const designScreenFactor = 0.8;
 
@@ -43,18 +43,17 @@ class HomeDimens {
   static const double collectionsVerticalMargin = designScreenFactor * 53;
   static const double collectionTitleVerticalMargin = designScreenFactor * 16;
   static const double collectionTitleHorizontalMargin = designScreenFactor * 13;
-  static const Map<CollectionDisplayType, double> collectionHeights = {
-    CollectionDisplayType.banner: designScreenFactor * 485,
-    CollectionDisplayType.normal: designScreenFactor * 140,
-    CollectionDisplayType.vertical: designScreenFactor * 290,
-    CollectionDisplayType.special: designScreenFactor * 225,
-  };
-
   static const Map<CollectionDisplayType, double> collectionWidths = {
     CollectionDisplayType.banner: designScreenFactor * 390,
     CollectionDisplayType.normal: designScreenFactor * 250,
     CollectionDisplayType.vertical: designScreenFactor * 165,
     CollectionDisplayType.special: designScreenFactor * 130,
+  };
+  static const Map<CollectionDisplayType, double> collectionHeights = {
+    CollectionDisplayType.banner: designScreenFactor * 485,
+    CollectionDisplayType.normal: designScreenFactor * 140,
+    CollectionDisplayType.vertical: designScreenFactor * 290,
+    CollectionDisplayType.special: designScreenFactor * 225,
   };
 
   static double featuredGradientLayerHeight = designScreenFactor *
@@ -68,3 +67,10 @@ class NewAdditionsDimens {
   static const double cardWidth = designScreenFactor * 190;
   static const double cardHeight = designScreenFactor * 290;
 }
+
+//banner :
+//https://picsum.photos/390/485
+//normal:
+//https://picsum.photos/250/140
+//vertical
+//https://picsum.photos/165/290

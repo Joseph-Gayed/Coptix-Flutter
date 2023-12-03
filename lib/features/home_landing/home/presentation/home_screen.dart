@@ -1,15 +1,17 @@
+import 'package:coptix/features/error_screen/not_found_screen.dart';
 import 'package:coptix/features/home_landing/home/presentation/collection_screen.dart';
-import 'package:coptix/main.dart';
-import 'package:coptix/shared/enums/section_display_type.dart';
-import 'package:coptix/shared/fake_data.dart';
+import 'package:coptix/features/home_landing/home/presentation/cubit/home_cubit.dart';
+import 'package:coptix/features/home_landing/home/presentation/widgets/item_featured_collection.dart';
+import 'package:coptix/shared/enums/collection_display_type.dart';
+import 'package:coptix/shared/theme/colors.dart';
 import 'package:coptix/shared/widgets/coptix_container.dart';
-import 'package:coptix/features/home_landing/home/presentation/item_default_collection.dart';
+import 'package:coptix/features/home_landing/home/presentation/widgets/item_default_collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../shared/utils/navigation/shared_navigation.dart';
 import 'model/ui_clip.dart';
 import 'model/ui_collection.dart';
-import 'item_featured_collection.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -19,7 +21,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<UiCollection> homeSectionsData = [];
+  // List<UiCollection> homeSectionsData = [];
 
   @override
   void initState() {
@@ -28,33 +30,57 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void getData() async {
-    List<UiCollection> data =
-        await FakeData.getHomeSectionsData(MyApp.getAppLanguage(context));
-    setState(() {
-      homeSectionsData = data;
-    });
+    BlocProvider.of<HomeCubit>(context).getHomeCollections();
   }
 
   @override
   Widget build(BuildContext context) {
     return CoptixContainer(
-      child: ListView.builder(
-        itemCount: homeSectionsData.length,
-        itemBuilder: (context, index) {
-          final UiCollection uiCollection = homeSectionsData[index];
-          if (uiCollection.displayType == CollectionDisplayType.banner) {
-            return ItemFeaturedCollection(
-              uiCollection: uiCollection,
-              onPlayNowClicked: openDetails,
-              onAddToFavoritesClicked: addToFavorites,
-            );
-          }
-          return ItemDefaultCollection(
-              uiCollection: uiCollection,
-              onViewMoreClicked: openCollection,
-              onCardClicked: openDetails);
+      child: BlocBuilder<HomeCubit, HomeState>(
+        builder: (context, state) {
+          return screenContent(state);
         },
       ),
+    );
+  }
+
+  Widget screenContent(HomeState state) {
+    if (state is HomeLoadingState) {
+      return const Center(
+        child: CircularProgressIndicator(
+          color: secondaryColor,
+        ),
+      );
+    } else if (state is HomeSuccessState) {
+      return homeListView(state);
+    } else if (state is HomeErrorState) {
+      return NotFoundScreen(
+        inputMessage: (state).message,
+        showAppBar: false,
+      );
+    }
+    return Container();
+  }
+
+  Widget homeListView(HomeSuccessState state) {
+    List<UiCollection> homeSectionsData = state.collections;
+
+    return ListView.builder(
+      itemCount: homeSectionsData.length,
+      itemBuilder: (context, index) {
+        final UiCollection uiCollection = homeSectionsData[index];
+        if (uiCollection.displayType == CollectionDisplayType.banner) {
+          return ItemFeaturedCollection(
+            uiCollection: uiCollection,
+            onPlayNowClicked: openDetails,
+            onAddToFavoritesClicked: addToFavorites,
+          );
+        }
+        return ItemDefaultCollection(
+            uiCollection: uiCollection,
+            onViewMoreClicked: openCollection,
+            onCardClicked: openDetails);
+      },
     );
   }
 
@@ -66,8 +92,5 @@ class _HomeScreenState extends State<HomeScreen> {
     openDetailsScreen(context, uiClip);
   }
 
-  void addToFavorites(UiClip uiClip) {
-    print(
-        "openDetails: clicked item is ${uiClip.id} , content type = ${uiClip.contentType}");
-  }
+  void addToFavorites(UiClip uiClip) {}
 }

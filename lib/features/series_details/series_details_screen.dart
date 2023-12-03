@@ -1,6 +1,6 @@
 import 'package:coptix/features/home_landing/home/presentation/model/ui_clip.dart';
 import 'package:coptix/shared/enums/content_type.dart';
-import 'package:coptix/shared/enums/section_display_type.dart';
+import 'package:coptix/shared/enums/collection_display_type.dart';
 import 'package:coptix/shared/theme/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -37,12 +37,12 @@ class _SeriesDetailsScreenState extends State<SeriesDetailsScreen> {
         child: GestureDetector(
       onTap: () {
         onSeasonItemClicked(UiClip(
-            "id",
-            CollectionDisplayType.normal,
-            MediaContentType.showsSeason,
-            "Season 1",
-            "description",
-            "imagePath"));
+            id: "id",
+            displayType: CollectionDisplayType.normal,
+            contentType: MediaContentType.showsSeason,
+            name: "Season 1",
+            description: "description",
+            clipImages: []));
       },
       child: Text(
         "Series Details \n"

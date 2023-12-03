@@ -1,8 +1,8 @@
 import 'package:coptix/features/home_landing/home/presentation/model/ui_clip.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../shared/theme/dimens.dart';
-import '../../../../shared/utils/constants.dart';
+import '../../../../../shared/theme/dimens.dart';
+import '../../../../../shared/widgets/safe_network_image.dart';
 
 class ItemDefaultImageCard extends StatelessWidget {
   final Function(UiClip) onItemClicked;
@@ -21,15 +21,12 @@ class ItemDefaultImageCard extends StatelessWidget {
         // Navigate to MovieDetails screen
       },
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(Dimens.cornerRadius),
-        //ToDO: replace with Image.network
-        child: Image.asset(
-          '$fakeImagesPath${uiClip.imagePath}',
-          width: HomeDimens.collectionWidths[uiClip.displayType],
-          height: HomeDimens.collectionHeights[uiClip.displayType],
-          fit: BoxFit.cover,
-        ),
-      ),
+          borderRadius: BorderRadius.circular(Dimens.cornerRadius),
+          child: SafeNetworkImage(
+            imagePath: uiClip.getImagePath(),
+            width: HomeDimens.collectionWidths[uiClip.displayType]!,
+            height: HomeDimens.collectionHeights[uiClip.displayType]!,
+          )),
     );
   }
 }

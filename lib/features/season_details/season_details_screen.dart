@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../shared/widgets/coptix_container.dart';
 import '../../shared/enums/content_type.dart';
-import '../../shared/enums/section_display_type.dart';
+import '../../shared/enums/collection_display_type.dart';
 import '../../shared/utils/navigation/shared_navigation.dart';
 
 class SeasonDetailsScreen extends StatefulWidget {
@@ -37,12 +37,12 @@ class _SeasonDetailsScreenState extends State<SeasonDetailsScreen> {
         child: GestureDetector(
       onTap: () {
         onEpisodeClicked(UiClip(
-            "id",
-            CollectionDisplayType.normal,
-            MediaContentType.showsEpisode,
-            "episode 1",
-            "description",
-            "imagePath"));
+            id: "id",
+            displayType: CollectionDisplayType.normal,
+            contentType: MediaContentType.showsEpisode,
+            name: "episode 1",
+            description: "description",
+            clipImages: []));
       },
       child: Text(
         "Season Details \n"

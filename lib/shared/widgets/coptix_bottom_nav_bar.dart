@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../theme/dimens.dart';
 import '../utils/constants.dart';
-import '../utils/localization/app_localizations.dart';
+import '../utils/localization/app_localizations_delegate.dart';
 import '../utils/localization/localized_content.dart';
 
 class CoptixBottomNavBar extends StatelessWidget {

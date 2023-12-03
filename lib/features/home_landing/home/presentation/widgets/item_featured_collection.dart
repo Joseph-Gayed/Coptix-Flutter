@@ -1,11 +1,10 @@
-
 import 'package:coptix/features/home_landing/home/presentation/model/ui_clip.dart';
 import 'package:coptix/shared/theme/dimens.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../shared/theme/colors.dart';
+import '../../../../../shared/theme/colors.dart';
+import '../model/ui_collection.dart';
 import 'item_featured_banner.dart';
-import 'model/ui_collection.dart';
 
 class ItemFeaturedCollection extends StatefulWidget {
   final UiCollection uiCollection;

@@ -10,13 +10,28 @@ enum MediaContentType {
   showsEpisode,
 }
 
-//API response
-/*const CLIPS = 'clips';
-const MOVIES = 'movies';
-const PLAYS = 'plays';
-const SERIES = 'series';
-const SERIES_SEASON = 'series_season';
-const SERIES_EPISODE = 'series_episode';
-const SHOWS = 'shows';
-const SHOWS_SEASON = 'shows_season';
-const SHOWS_EPISODE = 'shows_episode';*/
+MediaContentType jsonValueToMediaContentType(String jsonValue) {
+  switch (jsonValue) {
+    case 'clips':
+      return MediaContentType.clips;
+    case 'movies':
+      return MediaContentType.movies;
+    case 'plays':
+      return MediaContentType.plays;
+    case 'series':
+      return MediaContentType.series;
+    case 'series_season':
+      return MediaContentType.seriesSeason;
+    case 'series_episode':
+      return MediaContentType.seriesEpisode;
+    case 'shows':
+      return MediaContentType.shows;
+    case 'shows_season':
+      return MediaContentType.showsSeason;
+    case 'shows_episode':
+      return MediaContentType.showsEpisode;
+
+    default:
+      return MediaContentType.clips;
+  }
+}
