@@ -14,6 +14,12 @@ dependencies:
   shared_preferences: ^2.2.2
   flutter_localizations:
     sdk: flutter
+  dartz: ^0.10.1 #Either<Error,Success>
+  dio: ^5.4.0 #Calling Apis
+  flutter_bloc: ^8.1.3 #State management
+  get_it: ^7.6.4 #Dependency injection
+  provider: ^6.1.1 #To use ChangeNotifier for Language changes
+  logger: ^2.0.2+1 #Custom Log printer
 
 
 dev_dependencies:
@@ -33,5 +39,3 @@ flutter:
     - asset: assets/fonts/AvenirArabic-Book.otf
     - asset: assets/fonts/AvenirArabic-Heavy.otf
     - asset: assets/fonts/AvenirArabic-Light.otf
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
