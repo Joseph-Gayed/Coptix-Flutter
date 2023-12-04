@@ -9,8 +9,7 @@ void openDetailsScreen(BuildContext context, UiClip uiClip) {
   Navigator.pushNamed(context,
       detailsRouteOfContentType[uiClip.contentType] ?? AppRouter.notFound,
       arguments: {
-        NavArgsKeys.idKey: uiClip.id,
-        NavArgsKeys.titleKey: uiClip.name,
+        NavArgsKeys.clipArgs: uiClip,
       });
 }
 

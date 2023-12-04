@@ -1,18 +1,14 @@
-import 'package:coptix/shared/extentsions/list.dart';
 import 'package:coptix/shared/widgets/clips_grid.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../main.dart';
-import '../../../../shared/fake_data.dart';
 import '../../../../shared/utils/navigation/navigation_args.dart';
 import '../../../../shared/utils/navigation/app_router.dart';
 import '../../../../shared/widgets/coptix_container.dart';
 import 'model/ui_collection.dart';
 
 class CollectionScreen extends StatefulWidget {
-  final String collectionId, collectionTitle;
-  const CollectionScreen(
-      {super.key, required this.collectionId, required this.collectionTitle});
+  final Map<String, dynamic> arguments;
+  const CollectionScreen({super.key, required this.arguments});
 
   @override
   State<CollectionScreen> createState() => _CollectionScreenState();
@@ -21,37 +17,26 @@ class CollectionScreen extends StatefulWidget {
     Navigator.pushNamed(
       context,
       AppRouter.collection,
-      arguments: {
-        NavArgsKeys.idKey: uiCollection.id,
-        NavArgsKeys.titleKey: uiCollection.name,
-      },
+      arguments: {NavArgsKeys.collectionArgs: uiCollection},
     );
   }
 }
 
 class _CollectionScreenState extends State<CollectionScreen> {
-  UiCollection? uiCollection;
+  late UiCollection uiCollection;
+
   @override
   void initState() {
     super.initState();
-    getData();
+    uiCollection = widget.arguments[NavArgsKeys.collectionArgs];
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.collectionTitle),
+          title: Text(uiCollection.name),
         ),
-        body: CoptixContainer(
-            child: ClipsGrid(clips: uiCollection?.clips ?? [])));
-  }
-
-  void getData() async {
-    List<UiCollection> data =
-        await FakeData.getHomeSectionsData(MyApp.getAppLanguage(context));
-    setState(() {
-      uiCollection = data.find((element) => element.id == widget.collectionId);
-    });
+        body: CoptixContainer(child: ClipsGrid(clips: uiCollection.clips)));
   }
 }

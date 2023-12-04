@@ -21,7 +21,7 @@ class AppRouter {
   static const String notFound = "/notFound";
   static const String splash = "/splash";
   static const String homeLanding = "/home_landing";
-  static const String changeAppLanguage = "/change_app_langauge";
+  static const String changeAppLanguage = "/change_app_language";
   static const String collection = "/collection";
   static const String season = "/season";
   static const String series = "/series";
@@ -57,9 +57,7 @@ class AppRouter {
     if (arguments == null) {
       return const NotFoundScreen();
     }
-    return CollectionScreen(
-        collectionId: arguments[NavArgsKeys.idKey],
-        collectionTitle: arguments[NavArgsKeys.titleKey]);
+    return CollectionScreen(arguments: arguments);
   }
 
   Widget _getSeasonDetailsScreen(BuildContext context) {

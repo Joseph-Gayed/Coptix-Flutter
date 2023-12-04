@@ -21,8 +21,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // List<UiCollection> homeSectionsData = [];
-
   @override
   void initState() {
     super.initState();
