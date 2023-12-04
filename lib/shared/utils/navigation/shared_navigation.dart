@@ -16,6 +16,7 @@ void openDetailsScreen(BuildContext context, UiClip uiClip) {
 Map<MediaContentType, String> detailsRouteOfContentType = {
   MediaContentType.clips: AppRouter.clip,
   MediaContentType.movies: AppRouter.movie,
+  MediaContentType.plays: AppRouter.play,
   MediaContentType.seriesEpisode: AppRouter.episode,
   MediaContentType.showsEpisode: AppRouter.episode,
   MediaContentType.shows: AppRouter.show,

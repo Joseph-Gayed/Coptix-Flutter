@@ -5,21 +5,25 @@ import 'package:coptix/shared/theme/styles.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../shared/widgets/coptix_container.dart';
+import '../../shared/utils/navigation/navigation_args.dart';
 import '../../shared/utils/navigation/shared_navigation.dart';
 
 class SeriesDetailsScreen extends StatefulWidget {
-  final String seriesId, seriesTitle;
-  const SeriesDetailsScreen(
-      {super.key, required this.seriesId, required this.seriesTitle});
+  final Map<String, dynamic> arguments;
+
+  const SeriesDetailsScreen({super.key, required this.arguments});
 
   @override
   State<SeriesDetailsScreen> createState() => _SeriesDetailsScreenState();
 }
 
 class _SeriesDetailsScreenState extends State<SeriesDetailsScreen> {
+  late UiClip uiClip;
+
   @override
   void initState() {
     super.initState();
+    uiClip = widget.arguments[NavArgsKeys.clipArgs];
     getData();
   }
 
@@ -27,7 +31,7 @@ class _SeriesDetailsScreenState extends State<SeriesDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Series:${widget.seriesTitle}"),
+          title: Text("Series:${uiClip.name}"),
         ),
         body: CoptixContainer(child: screenContent()));
   }
@@ -46,8 +50,8 @@ class _SeriesDetailsScreenState extends State<SeriesDetailsScreen> {
       },
       child: Text(
         "Series Details \n"
-        "Series ID: ${widget.seriesId} , \n"
-        "Series Title: ${widget.seriesTitle} ",
+        "Series ID: ${uiClip.id} , \n"
+        "Series Title: ${uiClip.name} ",
         style: titleTextStyle,
         textAlign: TextAlign.center,
       ),

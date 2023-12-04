@@ -40,4 +40,18 @@ class UiClip {
             ?.imagePath ??
         "";
   }
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+        "display_type": displayType,
+        "content_type": contentType,
+        "description": description,
+        "image": getImagePath(),
+      };
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
 }
