@@ -4,12 +4,13 @@ import 'package:coptix/shared/utils/localization/localized_content.dart';
 import 'package:coptix/shared/utils/navigation/app_router.dart';
 import 'package:coptix/shared/theme/styles.dart';
 import 'package:coptix/shared/utils/shared_preferences.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   initDi();
-  runApp(const MyApp());
+  runApp(DevicePreview(enabled: false, builder: (context) => const MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -61,6 +62,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Coptix',
       theme: appTheme,
+      debugShowCheckedModeBanner: false,
       initialRoute: AppRouter.splash,
       localizationsDelegates: const [
         AppLocalizations.delegate,

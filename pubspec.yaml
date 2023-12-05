@@ -20,6 +20,7 @@ dependencies:
   get_it: ^7.6.4 #Dependency injection
   provider: ^6.1.1 #To use ChangeNotifier for Language changes
   logger: ^2.0.2+1 #Custom Log printer
+  device_preview: ^1.1.0
 
 
 dev_dependencies:
