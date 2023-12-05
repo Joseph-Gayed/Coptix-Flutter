@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../features/home_landing/home/presentation/model/ui_clip.dart';
+import '../../../presentation/model/ui_clip.dart';
 import '../../enums/content_type.dart';
-import 'navigation_args.dart';
 import 'app_router.dart';
+import 'navigation_args.dart';
 
 void openDetailsScreen(BuildContext context, UiClip uiClip) {
   Navigator.pushNamed(context,
@@ -11,6 +11,12 @@ void openDetailsScreen(BuildContext context, UiClip uiClip) {
       arguments: {
         NavArgsKeys.clipArgs: uiClip,
       });
+}
+
+void openVideoPlayerScreen(BuildContext context, UiClip uiClip) {
+  Navigator.pushNamed(context, AppRouter.videoPlayer, arguments: {
+    NavArgsKeys.clipArgs: uiClip,
+  });
 }
 
 Map<MediaContentType, String> detailsRouteOfContentType = {

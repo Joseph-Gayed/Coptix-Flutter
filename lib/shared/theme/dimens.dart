@@ -23,7 +23,6 @@ class Dimens {
   static const double appBarHeight = 48;
   static const double bottomNavBarIconSize = 25;
   static const double buttonsCornerRadius = 5;
-
   static const double verticalDividerHeight = designScreenFactor * 31;
   static const double verticalDividerWidth = designScreenFactor * 5;
   static const double verticalDividerCornerRadius = designScreenFactor * 2.5;
@@ -74,3 +73,10 @@ class NewAdditionsDimens {
 //https://picsum.photos/250/140
 //vertical
 //https://picsum.photos/165/290
+
+class VideoDetailsDimens {
+  static const double bannerHeight = designScreenFactor * 240;
+  static const double shareIconSize = designScreenFactor * 20;
+  static const double shareButtonSize =
+      shareIconSize + (designScreenFactor * 9);
+}

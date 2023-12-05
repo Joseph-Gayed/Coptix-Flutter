@@ -31,6 +31,16 @@ const TextStyle titleTextStyle = TextStyle(
     color: lightTextColor,
     fontFamily: appFontFamily);
 
+const TextStyle body2TextStyle = TextStyle(
+    fontSize: FontSizes.body2,
+    color: lightTextColor,
+    fontFamily: appFontFamily);
+
+const TextStyle captionTextStyle = TextStyle(
+    fontSize: FontSizes.caption,
+    color: lightTextColor,
+    fontFamily: appFontFamily);
+
 const TextStyle buttonTextStyle = TextStyle(
     fontSize: FontSizes.button,
     fontFamily: appFontFamily,

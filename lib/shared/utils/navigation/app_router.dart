@@ -1,13 +1,14 @@
-import 'package:coptix/features/error_screen/not_found_screen.dart';
-import 'package:coptix/features/home_landing/home/presentation/collection_screen.dart';
-import 'package:coptix/features/home_landing/my_profile/change_app_language/change_app_language_screen.dart';
-import 'package:coptix/features/splash/splash_screen.dart';
-import 'package:coptix/features/movie_details/presentation/video_details_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../../../features/home_landing/home_landing_screen.dart';
-import '../../../features/season_details/season_details_screen.dart';
-import '../../../features/series_details/series_details_screen.dart';
+import '../../../presentation/features/error_screen/not_found_screen.dart';
+import '../../../presentation/features/home_landing/home/collection_screen.dart';
+import '../../../presentation/features/home_landing/home_landing_screen.dart';
+import '../../../presentation/features/home_landing/my_profile/change_app_language/change_app_language_screen.dart';
+import '../../../presentation/features/movie_details/presentation/video_details_screen.dart';
+import '../../../presentation/features/season_details/season_details_screen.dart';
+import '../../../presentation/features/series_details/series_details_screen.dart';
+import '../../../presentation/features/splash/splash_screen.dart';
+import '../../../presentation/features/video_player/video_player_screen.dart';
 
 class AppRouter {
   AppRouter._privateConstructor();
@@ -29,6 +30,7 @@ class AppRouter {
   static const String clip = "/clip";
   static const String movie = "/movie";
   static const String play = "/play";
+  static const String videoPlayer = "/video_player";
 
   Map<String, WidgetBuilder> getAppRoutes(BuildContext context) {
     return {
@@ -40,9 +42,10 @@ class AppRouter {
       season: (context) => _getSeasonDetailsScreen(context),
       series: (context) => _getSeriesDetailsScreen(context),
       clip: (context) => _getVideoDetailsScreen(context),
-      play: (context) => _getVideoDetailsScreen(context),
       movie: (context) => _getVideoDetailsScreen(context),
       episode: (context) => _getVideoDetailsScreen(context),
+      play: (context) => _getVideoDetailsScreen(context),
+      videoPlayer: (context) => _getVideoPlayerScreen(context),
     };
   }
 
@@ -82,5 +85,13 @@ class AppRouter {
       return const NotFoundScreen();
     }
     return VideoDetailsScreen(arguments: arguments);
+  }
+
+  Widget _getVideoPlayerScreen(BuildContext context) {
+    Map<String, dynamic>? arguments = _getNavArgs(context);
+    if (arguments == null) {
+      return const NotFoundScreen();
+    }
+    return VideoPlayerScreen(arguments: arguments);
   }
 }

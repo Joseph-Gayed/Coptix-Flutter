@@ -1,10 +1,10 @@
-import 'package:coptix/features/home_landing/home/presentation/model/ui_clip.dart';
+import 'package:coptix/presentation/model/ui_clip.dart';
 import 'package:coptix/shared/theme/styles.dart';
 import 'package:coptix/shared/utils/localization/app_localizations_delegate.dart';
 import 'package:coptix/shared/utils/localization/localized_content.dart';
 import 'package:flutter/material.dart';
 
-import '../../features/home_landing/home/presentation/widgets/item_default_image_card.dart';
+import '../../presentation/features/home_landing/home/widgets/item_default_image_card.dart';
 import '../theme/dimens.dart';
 import '../utils/navigation/shared_navigation.dart';
 

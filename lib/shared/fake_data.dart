@@ -1,7 +1,7 @@
+import 'package:coptix/presentation/model/ui_clip.dart';
+import 'package:coptix/presentation/model/ui_collection.dart';
 import 'package:coptix/shared/enums/content_type.dart';
 
-import '../features/home_landing/home/presentation/model/ui_clip.dart';
-import '../features/home_landing/home/presentation/model/ui_collection.dart';
 import 'enums/collection_display_type.dart';
 
 // List of movie images

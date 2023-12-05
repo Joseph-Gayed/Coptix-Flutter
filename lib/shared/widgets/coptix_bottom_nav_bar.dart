@@ -1,10 +1,9 @@
 import 'package:coptix/shared/theme/colors.dart';
 import 'package:flutter/material.dart';
 
-import '../theme/dimens.dart';
-import '../utils/constants.dart';
 import '../utils/localization/app_localizations_delegate.dart';
 import '../utils/localization/localized_content.dart';
+import 'common_methods.dart';
 
 class CoptixBottomNavBar extends StatelessWidget {
   final Function(int) onIemSelected;
@@ -44,11 +43,5 @@ class CoptixBottomNavBar extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  Image getBottomBarIcon(String iconName) {
-    return Image.asset("$imagesPath$iconName",
-        width: Dimens.bottomNavBarIconSize,
-        height: Dimens.bottomNavBarIconSize);
   }
 }
