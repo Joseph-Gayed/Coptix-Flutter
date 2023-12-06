@@ -6,12 +6,21 @@ import 'package:coptix/shared/utils/navigation/app_router.dart';
 import 'package:coptix/shared/utils/shared_preferences.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 void main() {
   initDi();
   runApp(DevicePreview(enabled: false, builder: (context) => const MyApp()));
+}
+
+void configureOrientation() {
+  // Set preferred orientations for the entire app
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
 }
 
 class MyApp extends StatefulWidget {
@@ -61,6 +70,10 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // Ensure initialization before calling the orientation configuration
+    WidgetsFlutterBinding.ensureInitialized();
+    configureOrientation();
+
     return MaterialApp(
       title: 'Coptix',
       theme: appTheme,

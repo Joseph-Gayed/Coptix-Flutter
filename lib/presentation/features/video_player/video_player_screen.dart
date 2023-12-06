@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../../shared/widgets/coptix_container.dart';
 import '../../../presentation/model/ui_clip.dart';
@@ -23,6 +24,12 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Force landscape orientation
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
+
     return Scaffold(
         appBar: AppBar(
           title: Text(uiClip.name),
@@ -32,5 +39,15 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   Widget screenContent() {
     return const Placeholder();
+  }
+
+  @override
+  void dispose() {
+    // Reset preferred orientations when the screen is disposed
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+    super.dispose();
   }
 }
