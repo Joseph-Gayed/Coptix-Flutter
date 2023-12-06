@@ -13,6 +13,6 @@ class VideoDetailsErrorState extends VideoDetailsState {
 }
 
 class VideoDetailsSuccessState extends VideoDetailsState {
-  final List<UiCollection> collections;
-  VideoDetailsSuccessState(this.collections);
+  final UiClip uiClip;
+  VideoDetailsSuccessState(this.uiClip);
 }

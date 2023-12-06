@@ -22,7 +22,7 @@ class _HomeLandingScreenState extends State<HomeLandingScreen> {
   int _selectedIndex = 0;
   final List<Widget> _screens = <Widget>[
     BlocProvider<HomeCubit>(
-      create: (context) => getIt<HomeCubit>(),
+      create: (context) => getIt(),
       child: const HomeScreen(),
     ),
     const NewAdditionsScreen(),

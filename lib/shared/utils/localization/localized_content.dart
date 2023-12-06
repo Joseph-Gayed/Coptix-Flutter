@@ -14,7 +14,6 @@ class LocalizationKey {
   static const String addToMyList = "addToMyList";
   static const String notFoundScreenTitle = "notFoundScreenTitle";
   static const String notFoundErrorMessage = "notFoundErrorMessage";
-
   static const String emptyContentMessage = "emptyContentMessage";
 }
 

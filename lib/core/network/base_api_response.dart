@@ -5,7 +5,7 @@ import 'dart:convert';
 import '../../shared/utils/object_print.dart';
 
 class BaseApiResponse {
-  final List<String> message;
+  final String message;
   final dynamic body;
   final Map<String, dynamic>? pagination;
 
@@ -16,10 +16,16 @@ class BaseApiResponse {
   });
 
   factory BaseApiResponse.fromJson(dynamic json) {
+    Map<String, dynamic> jsonAsMap = json as Map<String, dynamic>;
+
+    String jsonMessage =
+        jsonAsMap.containsKey("message") ? json['message'] : "";
+    Map<String, dynamic>? jsonPagination =
+        jsonAsMap.containsKey("pagination") ? json['pagination'] : {};
+    dynamic jsonBody = jsonAsMap.containsKey("body") ? json['body'] : null;
+
     return BaseApiResponse(
-        message: List<String>.from(json['message']),
-        body: json['body'],
-        pagination: json['pagination']);
+        message: jsonMessage, body: jsonBody, pagination: jsonPagination);
   }
 
   Map<String, dynamic> toJson() =>

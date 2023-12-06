@@ -36,13 +36,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return CoptixContainer(
       child: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
-          return screenContent(state);
+          return handleState(state);
         },
       ),
     );
   }
 
-  Widget screenContent(HomeState state) {
+  Widget handleState(HomeState state) {
     if (state is HomeLoadingState) {
       return const Center(
         child: CircularProgressIndicator(

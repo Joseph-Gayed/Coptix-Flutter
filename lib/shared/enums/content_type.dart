@@ -35,3 +35,9 @@ MediaContentType jsonValueToMediaContentType(String jsonValue) {
       return MediaContentType.clips;
   }
 }
+
+extension MediaContentTypeExt on MediaContentType {
+  String valueAsString() {
+    return toString().split('.').last;
+  }
+}

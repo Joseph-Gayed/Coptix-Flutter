@@ -1,6 +1,7 @@
 import 'package:coptix/core/network/interceptors/headers_interceptor.dart';
 import 'package:coptix/core/network/interceptors/logging_interceptor.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 import '../../core/network/api_names.dart';
 
@@ -8,6 +9,7 @@ import '../../core/network/api_names.dart';
 class NetworkDi {
   late Dio dioInstance;
 
+  bool enableLogging = false;
   NetworkDi._privateConstructor() {
     BaseOptions baseOptions = BaseOptions(
       baseUrl: ApiNames.baseUrl,
@@ -17,7 +19,10 @@ class NetworkDi {
     );
     dioInstance = Dio(baseOptions);
     dioInstance.interceptors.add(HeadersInterceptor());
-    dioInstance.interceptors.add(LoggingInterceptor());
+
+    if (enableLogging && !kReleaseMode) {
+      dioInstance.interceptors.add(LoggingInterceptor());
+    }
   }
 
   static final NetworkDi _instance = NetworkDi._privateConstructor();

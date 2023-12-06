@@ -1,12 +1,12 @@
 import 'package:coptix/shared/utils/shared_preferences.dart';
 import 'package:dio/dio.dart';
 
-
 class HeadersInterceptor extends Interceptor {
   @override
   Future<void> onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
     await addLanguage(options);
+    options.headers.addAll({"Accept": "application/json"});
     return handler.next(options);
   }
 

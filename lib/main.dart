@@ -8,6 +8,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 void main() {
   initDi();
   runApp(DevicePreview(enabled: false, builder: (context) => const MyApp()));
@@ -36,6 +37,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Locale _locale = const Locale(LocalizationKey.defaultLanguage);
   String appLanguage = LocalizationKey.defaultLanguage;
+
   @override
   void initState() {
     super.initState();
@@ -62,6 +64,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Coptix',
       theme: appTheme,
+      navigatorKey: rootNavigatorKey,
       debugShowCheckedModeBanner: false,
       initialRoute: AppRouter.splash,
       localizationsDelegates: const [

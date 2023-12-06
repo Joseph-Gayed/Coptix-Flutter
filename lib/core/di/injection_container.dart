@@ -3,8 +3,9 @@ import 'package:coptix/data/remote/remote_data_source.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../data/remote/remote_data_source_impl.dart';
-import '../../data/repository/home_repository.dart';
-import '../../domain/repository/home_repository.dart';
+import '../../data/repository/content_repository.dart';
+import '../../domain/repository/content_repository.dart';
+import '../../presentation/features/clip_details/cubit/video_details_cubit.dart';
 import '../../presentation/features/home_landing/home/cubit/home_cubit.dart';
 
 final getIt = GetIt.instance;
@@ -17,11 +18,12 @@ void initDi() {
       () => RemoteDataSourceImpl(dio: getIt()));
 
   // Repository
-  getIt.registerLazySingleton<HomeRepository>(
-      () => HomeRepositoryImpl(remoteDataSource: getIt()));
+  getIt.registerLazySingleton<ContentRepository>(
+      () => ContentRepositoryImpl(remoteDataSource: getIt()));
 
   // Bloc
   getIt.registerFactory<HomeCubit>(() => HomeCubit(getIt()));
+  getIt.registerFactory<VideoDetailsCubit>(() => VideoDetailsCubit(getIt()));
 
   //Provider<LocalizationManager>
   /*getIt.registerSingleton<LocalizationManager>(LocalizationManager.instance);*/

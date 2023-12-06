@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/di/injection_container.dart';
+import '../../../presentation/features/clip_details/cubit/video_details_cubit.dart';
 import '../../../presentation/features/error_screen/not_found_screen.dart';
 import '../../../presentation/features/home_landing/home/collection_screen.dart';
 import '../../../presentation/features/home_landing/home_landing_screen.dart';
 import '../../../presentation/features/home_landing/my_profile/change_app_language/change_app_language_screen.dart';
-import '../../../presentation/features/movie_details/presentation/video_details_screen.dart';
+import '../../../presentation/features/clip_details/video_details_screen.dart';
 import '../../../presentation/features/season_details/season_details_screen.dart';
 import '../../../presentation/features/series_details/series_details_screen.dart';
 import '../../../presentation/features/splash/splash_screen.dart';
@@ -84,7 +87,10 @@ class AppRouter {
     if (arguments == null) {
       return const NotFoundScreen();
     }
-    return VideoDetailsScreen(arguments: arguments);
+    return BlocProvider<VideoDetailsCubit>(
+      create: (context) => getIt(),
+      child: VideoDetailsScreen(arguments: arguments),
+    );
   }
 
   Widget _getVideoPlayerScreen(BuildContext context) {

@@ -3,13 +3,13 @@ import 'package:coptix/core/network/api_error.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../../../../domain/model/domain_collection.dart';
-import '../../../../../../domain/repository/home_repository.dart';
+import '../../../../../../domain/repository/content_repository.dart';
 import '../../../../../../presentation/model/ui_collection.dart';
 
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  final HomeRepository repository;
+  final ContentRepository repository;
   late Function(ApiException) errorHandler;
   late Function(List<DomainCollection>) successHandler;
 

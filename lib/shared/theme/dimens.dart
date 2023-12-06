@@ -75,8 +75,10 @@ class NewAdditionsDimens {
 //https://picsum.photos/165/290
 
 class VideoDetailsDimens {
-  static const double bannerHeight = designScreenFactor * 240;
+  static const double bannerHeight = designScreenFactor * 250;
   static const double shareIconSize = designScreenFactor * 20;
   static const double shareButtonSize =
       shareIconSize + (designScreenFactor * 9);
+
+  static double gradientLayerHeight = designScreenFactor * bannerHeight * 0.2;
 }
