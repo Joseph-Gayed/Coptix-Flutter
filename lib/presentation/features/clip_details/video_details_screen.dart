@@ -1,7 +1,5 @@
 import 'package:coptix/shared/theme/colors.dart';
 import 'package:coptix/shared/theme/dimens.dart';
-import 'package:coptix/shared/theme/styles.dart';
-import 'package:coptix/shared/widgets/safe_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,9 +7,9 @@ import '../../../../../shared/widgets/coptix_container.dart';
 import '../../../shared/utils/constants.dart';
 import '../../../shared/utils/navigation/navigation_args.dart';
 import '../../../shared/utils/navigation/shared_navigation.dart';
+import '../../../shared/widgets/details_header_mobile.dart';
 import '../../model/ui_clip.dart';
 import '../error_screen/not_found_screen.dart';
-import '../home_landing/home/widgets/play_now_or_later.dart';
 import 'cubit/video_details_cubit.dart';
 
 class VideoDetailsScreen extends StatefulWidget {
@@ -71,78 +69,14 @@ class _VideoDetailsScreenState extends State<VideoDetailsScreen> {
 
   Widget screenContent(VideoDetailsSuccessState state) {
     return SingleChildScrollView(
+        // child: Placeholder()
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Stack(
-          children: [
-            //Movie Image
-            SafeNetworkImage(
-                imagePath: uiClip.getImagePath(),
-                width: double.infinity,
-                height: VideoDetailsDimens.bannerHeight),
-
-            //Crosses layer Mask
-            Opacity(
-              opacity: Dimens.detailsBannerMaskOpacity,
-              child: Image.asset(
-                "${imagesPath}details_banner_mask.png",
-                width: double.infinity,
-                height: VideoDetailsDimens.bannerHeight,
-                fit: BoxFit.fill,
-              ),
-            ),
-
-            //Gradient layer
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                height: VideoDetailsDimens.gradientLayerHeight,
-                decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                  begin: Alignment.bottomCenter,
-                  end: Alignment.topCenter,
-                  colors: [
-                    Colors.black,
-                    Colors.transparent,
-                  ],
-                )),
-              ),
-            ),
-
-            //share button
-            Positioned(
-              left: 0,
-              child: shareButton(),
-            )
-          ],
-        ),
-        const SizedBox(
-          height: Dimens.halfScreenMargin, // <-- SEE HERE
-        ),
-        Text(
-          state.uiClip.name,
-          style: headTextStyle,
-        ),
-        const SizedBox(
-          height: Dimens.halfScreenMargin, // <-- SEE HERE
-        ),
-        Text(
-          state.uiClip.description,
-          style: body2TextStyle,
-        ),
-        const SizedBox(
-          height: Dimens.halfScreenMargin, // <-- SEE HERE
-        ),
-        PlayNowOrLater(
+        DetailsHeaderMobile(
             uiClip: state.uiClip,
             onPlayNowClicked: openVideoPlayer,
             onAddToFavoritesClicked: addToFavorites),
-        const SizedBox(
-          height: Dimens.halfScreenMargin, // <-- SEE HERE
-        ),
       ],
     ));
   }

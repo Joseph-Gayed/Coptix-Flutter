@@ -16,6 +16,8 @@ class UiClip {
   final dynamic duration;
   final List<UiClipImage> clipImages;
   List<UiSeason> seasons;
+
+  UiSeason? currentSeason;
   UiClip({
     required this.id,
     required this.displayType,

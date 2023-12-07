@@ -3,6 +3,7 @@ import 'package:coptix/core/network/api_error.dart';
 import 'package:coptix/domain/model/details_request_params.dart';
 import 'package:coptix/domain/model/domain_clip.dart';
 import 'package:coptix/presentation/model/ui_clip.dart';
+import 'package:coptix/presentation/model/ui_season.dart';
 import 'package:coptix/shared/enums/collection_display_type.dart';
 import 'package:coptix/shared/enums/content_type.dart';
 import 'package:flutter/cupertino.dart';
@@ -35,5 +36,10 @@ class SeriesDetailsCubit extends Cubit<SeriesDetailsState> {
     repository.getClipDetails(detailsRequestParams).then((collectionsEither) {
       return collectionsEither.fold(errorHandler, successHandler);
     });
+  }
+
+  updateCurrentSeason(UiClip uiClip, UiSeason season) {
+    uiClip.currentSeason = season;
+    emit(SeriesDetailsSuccessState(uiClip));
   }
 }

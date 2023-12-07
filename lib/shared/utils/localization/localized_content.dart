@@ -15,6 +15,7 @@ class LocalizationKey {
   static const String notFoundScreenTitle = "notFoundScreenTitle";
   static const String notFoundErrorMessage = "notFoundErrorMessage";
   static const String emptyContentMessage = "emptyContentMessage";
+  static const String season = "season";
 }
 
 const Map<String, Map<String, String>> localizedContent = {
@@ -37,6 +38,7 @@ const Map<String, String> englishContent = {
   LocalizationKey.notFoundErrorMessage:
       "Oops ! , We couldn't open the required screen.",
   LocalizationKey.emptyContentMessage: "We didn't find any thing to show.",
+  LocalizationKey.season: "Season",
 };
 const Map<String, String> arabicContent = {
   LocalizationKey.welcome: "أهلاً بك في تطبيق كوبتكس",
@@ -52,6 +54,7 @@ const Map<String, String> arabicContent = {
   LocalizationKey.notFoundErrorMessage:
       "عفوا, لم نتمكن من فتح الصفحة المطلوبة.",
   LocalizationKey.emptyContentMessage: "لا يوجد محتوي",
+  LocalizationKey.season: "الموسم",
 };
 const Map<String, String> frenchContent = {
   LocalizationKey.welcome: "Bienvenue dans l'application Coptix",
@@ -67,4 +70,5 @@ const Map<String, String> frenchContent = {
   LocalizationKey.notFoundErrorMessage:
       "Désolé! , Nous n'avons pas pu ouvrir l'écran requis.",
   LocalizationKey.emptyContentMessage: "Nous n'avons rien trouvé à afficher",
+  LocalizationKey.season: "Saison",
 };
