@@ -31,6 +31,7 @@ class Dimens {
 
   static const double indicatorDotsSize = designScreenFactor * 10;
   static const double gridSpacing = screenMargin;
+  static const double detailsBannerMaskOpacity = 0.7;
 }
 
 class SplashDimens {

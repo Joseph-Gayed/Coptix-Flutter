@@ -9,4 +9,6 @@ abstract class ContentRepository {
   Future<Either<ApiException, List<DomainCollection>>> getHomeCollections();
   Future<Either<ApiException, DomainClip>> getClipDetails(
       DetailsRequestParams request);
+  Future<Either<ApiException, DomainClip>> getSeriesDetails(
+      DetailsRequestParams request);
 }

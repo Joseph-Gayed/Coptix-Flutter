@@ -20,6 +20,8 @@ class FakeData {
         contentType: MediaContentType.showsSeason,
         name: "clip name 1",
         description: "",
+        assetId: "",
+        duration: "10",
         clipImages: []),
     UiClip(
         id: "6",
@@ -27,6 +29,8 @@ class FakeData {
         contentType: MediaContentType.series,
         name: "clip name 2",
         description: "",
+        assetId: "",
+        duration: "10",
         clipImages: []),
     UiClip(
         id: "7",
@@ -34,6 +38,8 @@ class FakeData {
         contentType: MediaContentType.clips,
         name: "clip name 3",
         description: "",
+        assetId: "",
+        duration: "10",
         clipImages: []),
     UiClip(
         id: "8",
@@ -41,6 +47,8 @@ class FakeData {
         contentType: MediaContentType.showsSeason,
         name: "clip name 1",
         description: "",
+        assetId: "",
+        duration: "10",
         clipImages: []),
     UiClip(
         id: "9",
@@ -48,6 +56,8 @@ class FakeData {
         contentType: MediaContentType.series,
         name: "clip name 2",
         description: "",
+        assetId: "",
+        duration: "10",
         clipImages: []),
     UiClip(
         id: "10",
@@ -55,6 +65,8 @@ class FakeData {
         contentType: MediaContentType.clips,
         name: "clip name 3",
         description: "",
+        assetId: "",
+        duration: "10",
         clipImages: []),
     UiClip(
         id: "11",
@@ -62,6 +74,8 @@ class FakeData {
         contentType: MediaContentType.showsSeason,
         name: "clip name 1",
         description: "",
+        assetId: "",
+        duration: "10",
         clipImages: []),
     UiClip(
         id: "12",
@@ -69,6 +83,8 @@ class FakeData {
         contentType: MediaContentType.series,
         name: "clip name 2",
         description: "",
+        assetId: "",
+        duration: "10",
         clipImages: []),
     UiClip(
         id: "13",
@@ -76,6 +92,8 @@ class FakeData {
         contentType: MediaContentType.clips,
         name: "clip name 3",
         description: "",
+        assetId: "",
+        duration: "10",
         clipImages: []),
   ];
   static Future<List<UiCollection>> getHomeSectionsData(String lang) async {
@@ -90,6 +108,8 @@ class FakeData {
               ? "مسلسل : ما هو  لوريم إيبسوم و ما أصله"
               : "Series: Name  of clip 1",
           description: "",
+          assetId: "",
+          duration: "10",
           clipImages: []),
       UiClip(
           id: "2",
@@ -99,6 +119,8 @@ class FakeData {
               ? "كليب :هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص "
               : "Clip : Name  of clip 1",
           description: "",
+          assetId: "",
+          duration: "10",
           clipImages: []),
       UiClip(
           id: "3",
@@ -108,6 +130,8 @@ class FakeData {
               ? "كليب :العديد من برامح النشر المكتبي وبرامح تحرير صفحات الويب تستخدم لوريم إيبسوم بشكل إفتراضي "
               : "Clip: Name  of clip 1",
           description: "",
+          assetId: "",
+          duration: "10",
           clipImages: []),
       UiClip(
           id: "4",
@@ -117,6 +141,8 @@ class FakeData {
               ? "مسلسل :هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر أو الكلمات العشوائية إلى النص"
               : "Series: Name  of clip 1",
           description: "",
+          assetId: "",
+          duration: "10",
           clipImages: []),
     ];
     List<UiClip> collection2Clips = [
@@ -126,6 +152,8 @@ class FakeData {
           contentType: MediaContentType.clips,
           name: "clip name 1",
           description: "",
+          assetId: "",
+          duration: "10",
           clipImages: []),
       UiClip(
           id: "6",
@@ -133,6 +161,8 @@ class FakeData {
           contentType: MediaContentType.clips,
           name: "clip name 2",
           description: "",
+          assetId: "",
+          duration: "10",
           clipImages: []),
       UiClip(
           id: "7",
@@ -140,6 +170,8 @@ class FakeData {
           contentType: MediaContentType.clips,
           name: "clip name 3",
           description: "",
+          assetId: "",
+          duration: "10",
           clipImages: []),
     ];
     List<UiClip> collection3Clips = [
@@ -149,6 +181,8 @@ class FakeData {
           contentType: MediaContentType.clips,
           name: "clip name 1",
           description: "",
+          assetId: "",
+          duration: "10",
           clipImages: []),
       UiClip(
           id: "9",
@@ -156,6 +190,8 @@ class FakeData {
           contentType: MediaContentType.clips,
           name: "clip name 2",
           description: "",
+          assetId: "",
+          duration: "10",
           clipImages: []),
       UiClip(
           id: "10",
@@ -163,6 +199,8 @@ class FakeData {
           contentType: MediaContentType.clips,
           name: "clip name 3",
           description: "",
+          assetId: "",
+          duration: "10",
           clipImages: []),
     ];
     List<UiClip> collection4Clips = [
@@ -172,6 +210,8 @@ class FakeData {
           contentType: MediaContentType.clips,
           name: "clip name 1",
           description: "",
+          assetId: "",
+          duration: "10",
           clipImages: []),
       UiClip(
           id: "12",
@@ -179,6 +219,8 @@ class FakeData {
           contentType: MediaContentType.clips,
           name: "clip name 2",
           description: "",
+          assetId: "",
+          duration: "10",
           clipImages: []),
       UiClip(
           id: "13",
@@ -186,6 +228,8 @@ class FakeData {
           contentType: MediaContentType.clips,
           name: "clip name 3",
           description: "",
+          assetId: "",
+          duration: "10",
           clipImages: []),
     ];
 

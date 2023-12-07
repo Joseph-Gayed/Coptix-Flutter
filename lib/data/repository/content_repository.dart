@@ -19,9 +19,17 @@ class ContentRepositoryImpl extends ContentRepository {
     return remoteDataSource.getHomeCollections();
   }
 
+  //TODO: Caching
   @override
   Future<Either<ApiException, DomainClip>> getClipDetails(
       DetailsRequestParams request) {
-    return remoteDataSource.getClipDetails(request);
+    return remoteDataSource.getClipOrSeriesDetails(request);
+  }
+
+  //TODO: Caching
+  @override
+  Future<Either<ApiException, DomainClip>> getSeriesDetails(
+      DetailsRequestParams request) {
+    return remoteDataSource.getClipOrSeriesDetails(request);
   }
 }

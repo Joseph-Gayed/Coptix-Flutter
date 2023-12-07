@@ -5,14 +5,18 @@ import 'dart:convert';
 import 'package:coptix/shared/utils/object_print.dart';
 
 import 'domain_clip_image.dart';
+import 'domain_season.dart';
 
 class DomainClip {
-  num? id;
+  int? id;
   String? displayType;
   String? contentType;
   String? name;
   String? description;
+  String? assetId;
+  dynamic duration;
   List<DomainClipImage>? contentImages;
+  List<DomainSeason>? seasons;
 
   DomainClip({
     this.id,
@@ -20,18 +24,28 @@ class DomainClip {
     this.contentType,
     this.name,
     this.description,
+    this.assetId,
+    this.duration,
     this.contentImages,
+    this.seasons,
   });
 
-  DomainClip.fromJson(dynamic json) {
-    Map<String, dynamic> jsonAsMap = json as Map<String, dynamic>;
-    id = jsonAsMap.containsKey("id") ? jsonAsMap['id'] : "";
+  DomainClip.fromJson(Map<String, dynamic> jsonAsMap) {
+    id = jsonAsMap.containsKey("id") ? jsonAsMap['id'] : 0;
+
     contentType = jsonAsMap.containsKey("content_type")
         ? (jsonAsMap['content_type']?['key'] ?? "")
         : "";
     name = jsonAsMap.containsKey("name") ? jsonAsMap['name'] : "";
     description =
         jsonAsMap.containsKey("description") ? jsonAsMap['description'] : "";
+    assetId = jsonAsMap.containsKey("asset_id") ? jsonAsMap['asset_id'] : "";
+
+    duration = jsonAsMap.containsKey('duration')
+        ? jsonAsMap['duration']
+        : jsonAsMap.containsKey('clip_duration')
+            ? jsonAsMap['clip_duration']
+            : 0;
 
     if (jsonAsMap.containsKey("content_images")) {
       List list = jsonAsMap["content_images"] as List;
@@ -41,6 +55,14 @@ class DomainClip {
     } else {
       contentImages = [];
     }
+
+    if (jsonAsMap.containsKey("seasons")) {
+      List list = jsonAsMap["seasons"] as List;
+
+      seasons = list.map((season) => DomainSeason.fromJson(season)).toList();
+    } else {
+      seasons = null;
+    }
   }
 
   Map<String, dynamic> toJson() => {
@@ -49,7 +71,10 @@ class DomainClip {
         "display_type": displayType,
         "content_type": contentType,
         "description": description,
+        "asset_id": assetId,
+        "duration": duration,
         "content_images": contentImages,
+        "seasons": seasons,
       };
 
   @override

@@ -1,3 +1,4 @@
+import 'package:coptix/core/network/api_names.dart';
 import 'package:coptix/shared/enums/content_type.dart';
 
 class DetailsRequestParams {
@@ -6,17 +7,31 @@ class DetailsRequestParams {
   const DetailsRequestParams(this.contentId, this.contentType);
 }
 
-extension DetailsRequestParamsValidation on DetailsRequestParams {
+extension DetailsRequestParamsExt on DetailsRequestParams {
   bool isValidRequest() {
     return contentId.isNotEmpty &&
-        allowedContentTypesForDetailsApi.contains(contentType);
+        (allowedContentTypesForClipDetailsApi.contains(contentType) ||
+            allowedContentTypesForSeriesDetailsApi.contains(contentType));
+  }
+
+  String getApiName() {
+    if (allowedContentTypesForClipDetailsApi.contains(contentType)) {
+      return ApiNames.clipDetails;
+    } else if (allowedContentTypesForSeriesDetailsApi.contains(contentType)) {
+      return ApiNames.seriesDetails;
+    } else {
+      return "";
+    }
   }
 }
 
-List<String> allowedContentTypesForDetailsApi = [
+List<String> allowedContentTypesForClipDetailsApi = [
   MediaContentType.plays.valueAsString(),
   MediaContentType.clips.valueAsString(),
   MediaContentType.movies.valueAsString(),
+];
+
+List<String> allowedContentTypesForSeriesDetailsApi = [
   MediaContentType.shows.valueAsString(),
   MediaContentType.series.valueAsString(),
 ];

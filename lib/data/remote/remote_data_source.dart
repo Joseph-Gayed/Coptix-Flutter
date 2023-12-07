@@ -8,6 +8,6 @@ import '../../domain/model/domain_collection.dart';
 abstract class RemoteDataSource {
   Future<Either<ApiException, List<DomainCollection>>> getHomeCollections();
 
-  Future<Either<ApiException, DomainClip>> getClipDetails(
+  Future<Either<ApiException, DomainClip>> getClipOrSeriesDetails(
       DetailsRequestParams request);
 }

@@ -45,6 +45,8 @@ class _SeasonDetailsScreenState extends State<SeasonDetailsScreen> {
             contentType: MediaContentType.showsEpisode,
             name: "episode 1",
             description: "description",
+            assetId: "",
+            duration: "10",
             clipImages: []));
       },
       child: Text(

@@ -82,6 +82,17 @@ class _VideoDetailsScreenState extends State<VideoDetailsScreen> {
                 width: double.infinity,
                 height: VideoDetailsDimens.bannerHeight),
 
+            //Crosses layer Mask
+            Opacity(
+              opacity: Dimens.detailsBannerMaskOpacity,
+              child: Image.asset(
+                "${imagesPath}details_banner_mask.png",
+                width: double.infinity,
+                height: VideoDetailsDimens.bannerHeight,
+                fit: BoxFit.fill,
+              ),
+            ),
+
             //Gradient layer
             Positioned(
               bottom: 0,

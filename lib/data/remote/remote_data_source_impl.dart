@@ -41,17 +41,18 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   @override
-  Future<Either<ApiException, DomainClip>> getClipDetails(
+  Future<Either<ApiException, DomainClip>> getClipOrSeriesDetails(
       DetailsRequestParams request) async {
     try {
-      if (!request.isValidRequest()) {
+      String detailsApiName = request.getApiName();
+      if (!request.isValidRequest() || detailsApiName.isEmpty) {
         return Left(ApiException(
             message: AppLocalizations.of(rootNavigatorKey.currentContext!)
                 .translate(LocalizationKey.notFoundErrorMessage)));
       }
 
       String path =
-          "${ApiNames.clipDetails}/${request.contentType}/${request.contentId}";
+          "$detailsApiName/${request.contentType}/${request.contentId}";
       final Response response = await dio.get(path);
 
       // Parse the response using the BaseApiResponse and HomeResponse classes

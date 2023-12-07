@@ -9,6 +9,7 @@ import '../../../presentation/features/home_landing/home_landing_screen.dart';
 import '../../../presentation/features/home_landing/my_profile/change_app_language/change_app_language_screen.dart';
 import '../../../presentation/features/clip_details/video_details_screen.dart';
 import '../../../presentation/features/season_details/season_details_screen.dart';
+import '../../../presentation/features/series_details/cubit/series_details_cubit.dart';
 import '../../../presentation/features/series_details/series_details_screen.dart';
 import '../../../presentation/features/splash/splash_screen.dart';
 import '../../../presentation/features/video_player/video_player_screen.dart';
@@ -79,7 +80,12 @@ class AppRouter {
     if (arguments == null) {
       return const NotFoundScreen();
     }
-    return SeriesDetailsScreen(arguments: arguments);
+    return BlocProvider<SeriesDetailsCubit>(
+      create: (context) => getIt(),
+      child: SeriesDetailsScreen(
+        arguments: arguments,
+      ),
+    );
   }
 
   Widget _getVideoDetailsScreen(BuildContext context) {
