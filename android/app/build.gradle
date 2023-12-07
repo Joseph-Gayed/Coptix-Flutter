@@ -12,15 +12,15 @@ if (localPropertiesFile.exists()) {
     }
 }
 
-def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
-if (flutterVersionCode == null) {
-    flutterVersionCode = '1'
-}
+def versionConfig = new File("../app_distribution/app_version.dart")
+def versionConfigLines = versionConfig.readLines()
+def versionNameLine = versionConfigLines.find { it.contains('versionName') }
+def versionCodeLine = versionConfigLines.find { it.contains('versionCode') }
 
-def flutterVersionName = localProperties.getProperty('flutter.versionName')
-if (flutterVersionName == null) {
-    flutterVersionName = '1.0'
-}
+def splitter = " = "
+def appVersionName = versionNameLine.split(splitter)[1].replaceAll(";", "")
+def appVersionCode = versionCodeLine.split(splitter)[1].replaceAll(";", "")
+
 
 android {
     namespace "com.ovp.coptix.coptix"
@@ -41,14 +41,11 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.ovp.coptix.coptix"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
+        applicationId "com.ovp.coptix"
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
-        versionCode flutterVersionCode.toInteger()
-        versionName flutterVersionName
+        versionCode appVersionCode.toInteger()
+        versionName appVersionName.replaceAll("'", "")
     }
 
     buildTypes {

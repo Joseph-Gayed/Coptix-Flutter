@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "974856763223",
+    "project_id": "coptix-1d79b",
+    "storage_bucket": "coptix-1d79b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974856763223:android:aff93845402a46edc37012",
+        "android_client_info": {
+          "package_name": "com.ovp.coptix"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRWjek3BGaZjxGdRPLBViSgzHSf8WccVQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
