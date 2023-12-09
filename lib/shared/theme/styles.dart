@@ -22,24 +22,23 @@ var appTheme = ThemeData(
 const TextStyle headTextStyle = TextStyle(
     fontSize: FontSizes.h5,
     fontWeight: FontWeight.bold,
-    color: lightTextColor,
+    color: lightColor,
     fontFamily: appFontFamily);
 
 const TextStyle titleTextStyle = TextStyle(
     fontSize: FontSizes.h6,
     fontWeight: FontWeight.bold,
-    color: lightTextColor,
+    color: lightColor,
     fontFamily: appFontFamily);
 
 const TextStyle body2TextStyle = TextStyle(
-    fontSize: FontSizes.body2,
-    color: lightTextColor,
-    fontFamily: appFontFamily);
+    fontSize: FontSizes.body2, color: lightColor, fontFamily: appFontFamily);
+
+const TextStyle body1TextStyle = TextStyle(
+    fontSize: FontSizes.body1, color: lightColor, fontFamily: appFontFamily);
 
 const TextStyle captionTextStyle = TextStyle(
-    fontSize: FontSizes.caption,
-    color: lightTextColor,
-    fontFamily: appFontFamily);
+    fontSize: FontSizes.caption, color: lightColor, fontFamily: appFontFamily);
 
 const TextStyle buttonTextStyle = TextStyle(
     fontSize: FontSizes.button,
@@ -49,7 +48,7 @@ const TextStyle buttonTextStyle = TextStyle(
 ButtonStyle primaryButtonStyle = ButtonStyle(
   backgroundColor:
       MaterialStateProperty.all<Color>(primaryButtonBackgroundColor),
-  foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+  foregroundColor: MaterialStateProperty.all<Color>(lightColor),
   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
     RoundedRectangleBorder(
       borderRadius:

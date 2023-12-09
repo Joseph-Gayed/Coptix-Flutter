@@ -24,8 +24,8 @@ class ItemDefaultImageCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(Dimens.cornerRadius),
           child: SafeNetworkImage(
             imagePath: uiClip.getImagePath(),
-            width: HomeDimens.collectionWidths[uiClip.displayType]!,
-            height: HomeDimens.collectionHeights[uiClip.displayType]!,
+            width: HomeDimens.displayTypeWidths[uiClip.displayType]!,
+            height: HomeDimens.displayTypeHeights[uiClip.displayType]!,
           )),
     );
   }

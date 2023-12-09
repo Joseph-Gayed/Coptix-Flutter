@@ -21,12 +21,12 @@ class ClipsGrid extends StatelessWidget {
     if (clips.isNotEmpty) {
       return GridView.builder(
         padding: EdgeInsets.zero,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, // Number of columns
           crossAxisSpacing: Dimens.gridSpacing, // Space between columns
           mainAxisSpacing: Dimens.gridSpacing, // Space between rows
-          childAspectRatio: NewAdditionsDimens.cardWidth /
-              NewAdditionsDimens.cardHeight, // Adjust this ratio as needed
+          childAspectRatio:
+              calculateGridAspectRatio(), // Adjust this ratio as needed
         ),
         itemCount: clips.length,
         itemBuilder: (context, index) {
@@ -46,5 +46,11 @@ class ClipsGrid extends StatelessWidget {
         style: titleTextStyle,
       ));
     }
+  }
+
+  double calculateGridAspectRatio() {
+    var cardWidth = HomeDimens.displayTypeWidths[clips[0].displayType] ?? 1;
+    var cardHeight = HomeDimens.displayTypeHeights[clips[0].displayType] ?? 1;
+    return cardWidth / cardHeight;
   }
 }

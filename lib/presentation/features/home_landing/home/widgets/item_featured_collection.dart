@@ -27,7 +27,7 @@ class _ItemFeaturedCollectionState extends State<ItemFeaturedCollection> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: HomeDimens.collectionHeights[widget.uiCollection.displayType],
+      height: HomeDimens.displayTypeHeights[widget.uiCollection.displayType],
       margin: const EdgeInsets.only(
           left: Dimens.screenMargin,
           right: Dimens.screenMargin,

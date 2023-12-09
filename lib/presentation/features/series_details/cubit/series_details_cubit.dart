@@ -23,8 +23,8 @@ class SeriesDetailsCubit extends Cubit<SeriesDetailsState> {
     };
 
     successHandler = (domainClip) {
-      UiClip uiClip =
-          UiClip.fromDomain(domainClip, CollectionDisplayType.normal);
+      UiClip uiClip = UiClip.fromDomain(domainClip,
+          jsonValueToCollectionDisplayType(domainClip.displayType ?? ""));
       emit(SeriesDetailsSuccessState(uiClip));
     };
   }

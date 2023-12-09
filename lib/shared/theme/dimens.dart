@@ -32,6 +32,8 @@ class Dimens {
   static const double indicatorDotsSize = designScreenFactor * 10;
   static const double gridSpacing = screenMargin;
   static const double detailsBannerMaskOpacity = 0.7;
+  static const double tabBarIndicatorHeight = designScreenFactor * 7;
+  static const double tabBarIndicatorMargin = designScreenFactor * 7;
 }
 
 class SplashDimens {
@@ -43,13 +45,13 @@ class HomeDimens {
   static const double collectionsVerticalMargin = designScreenFactor * 53;
   static const double collectionTitleVerticalMargin = designScreenFactor * 16;
   static const double collectionTitleHorizontalMargin = designScreenFactor * 13;
-  static const Map<CollectionDisplayType, double> collectionWidths = {
+  static const Map<CollectionDisplayType, double> displayTypeWidths = {
     CollectionDisplayType.banner: designScreenFactor * 390,
     CollectionDisplayType.normal: designScreenFactor * 250,
     CollectionDisplayType.vertical: designScreenFactor * 165,
     CollectionDisplayType.special: designScreenFactor * 130,
   };
-  static const Map<CollectionDisplayType, double> collectionHeights = {
+  static const Map<CollectionDisplayType, double> displayTypeHeights = {
     CollectionDisplayType.banner: designScreenFactor * 485,
     CollectionDisplayType.normal: designScreenFactor * 140,
     CollectionDisplayType.vertical: designScreenFactor * 290,
@@ -57,7 +59,7 @@ class HomeDimens {
   };
 
   static double featuredGradientLayerHeight = designScreenFactor *
-      collectionHeights[CollectionDisplayType.banner]! *
+      displayTypeHeights[CollectionDisplayType.banner]! *
       0.7;
 
   static double featuredButtonsFontSize = 13;

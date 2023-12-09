@@ -1,12 +1,16 @@
 import 'package:coptix/shared/theme/colors.dart';
 import 'package:coptix/shared/theme/dimens.dart';
+import 'package:coptix/shared/widgets/coptix_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../shared/widgets/coptix_container.dart';
 import '../../../shared/utils/constants.dart';
+import '../../../shared/utils/localization/app_localizations_delegate.dart';
+import '../../../shared/utils/localization/localized_content.dart';
 import '../../../shared/utils/navigation/navigation_args.dart';
 import '../../../shared/utils/navigation/shared_navigation.dart';
+import '../../../shared/widgets/clips_tab_view.dart';
 import '../../../shared/widgets/details_header_mobile.dart';
 import '../../model/ui_clip.dart';
 import '../error_screen/not_found_screen.dart';
@@ -38,9 +42,7 @@ class _VideoDetailsScreenState extends State<VideoDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(uiClip.name),
-        ),
+        appBar: const CoptixAppBar(),
         body: CoptixContainer(
             child: BlocBuilder<VideoDetailsCubit, VideoDetailsState>(
           builder: (context, state) {
@@ -68,17 +70,25 @@ class _VideoDetailsScreenState extends State<VideoDetailsScreen> {
   }
 
   Widget screenContent(VideoDetailsSuccessState state) {
-    return SingleChildScrollView(
-        // child: Placeholder()
-        child: Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        DetailsHeaderMobile(
-            uiClip: state.uiClip,
-            onPlayNowClicked: openVideoPlayer,
-            onAddToFavoritesClicked: addToFavorites),
+    AppLocalizations appLocalizations = AppLocalizations.of(context);
+
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: DetailsHeaderMobile(
+              uiClip: state.uiClip,
+              onPlayNowClicked: openVideoPlayer,
+              onAddToFavoritesClicked: addToFavorites),
+        ),
+        SliverFillRemaining(
+          child: DetailsTabsView(detailsTabs: [
+            DetailsTabItem(
+                tabName: appLocalizations.translate(LocalizationKey.related),
+                uiClips: state.uiClip.relatedClips),
+          ]),
+        )
       ],
-    ));
+    );
   }
 
   Widget shareButton() {
@@ -90,7 +100,7 @@ class _VideoDetailsScreenState extends State<VideoDetailsScreen> {
         onPressed: share,
         child: const ImageIcon(
           AssetImage("${imagesPath}ic_share.png"),
-          color: Colors.white,
+          color: lightColor,
           size: VideoDetailsDimens.shareIconSize,
         ));
   }

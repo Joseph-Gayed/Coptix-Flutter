@@ -126,7 +126,7 @@ class DetailsHeaderMobile extends StatelessWidget {
         onPressed: share,
         child: const ImageIcon(
           AssetImage("${imagesPath}ic_share.png"),
-          color: Colors.white,
+          color: lightColor,
           size: VideoDetailsDimens.shareIconSize,
         ));
   }

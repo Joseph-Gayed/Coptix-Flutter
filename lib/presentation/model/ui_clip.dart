@@ -1,6 +1,7 @@
 import 'package:coptix/presentation/model/ui_clip_image.dart';
 import 'package:coptix/presentation/model/ui_season.dart';
 import 'package:coptix/shared/extentsions/list.dart';
+import 'package:flutter/material.dart';
 
 import '../../../../../shared/enums/collection_display_type.dart';
 import '../../../../../shared/enums/content_type.dart';
@@ -18,6 +19,9 @@ class UiClip {
   List<UiSeason> seasons;
 
   UiSeason? currentSeason;
+
+  List<UiClip> relatedClips;
+
   UiClip({
     required this.id,
     required this.displayType,
@@ -28,12 +32,24 @@ class UiClip {
     required this.duration,
     required this.clipImages,
     this.seasons = const [],
+    this.relatedClips = const [],
   });
 
   factory UiClip.fromDomain(
       DomainClip domain, CollectionDisplayType displayType) {
+    var id = domain.id?.toString() ?? "";
+
+    var relatedClips = (domain.relatedClips ?? [])
+        .map((domainClip) => UiClip.fromDomain(domainClip,
+            jsonValueToCollectionDisplayType(domainClip.displayType ?? "")))
+        .toList();
+    if (relatedClips.isNotEmpty) {
+      debugPrint(
+          "UiClip.fromDomain - finished mapping UiClip:$id with ${relatedClips.length} relatedClips");
+    }
+
     return UiClip(
-        id: domain.id?.toString() ?? "",
+        id: id,
         displayType: displayType,
         contentType: jsonValueToMediaContentType(domain.contentType ?? ""),
         name: domain.name ?? "",
@@ -45,7 +61,8 @@ class UiClip {
             .toList(),
         seasons: (domain.seasons ?? [])
             .map((domainSeason) => UiSeason.fromDomain(domainSeason))
-            .toList());
+            .toList(),
+        relatedClips: relatedClips);
   }
 
   String getImagePath() {
@@ -64,6 +81,8 @@ class UiClip {
         "asset_id": assetId,
         "duration": duration,
         "image": getImagePath(),
+        "seasons": seasons,
+        "related": relatedClips,
       };
 
   @override

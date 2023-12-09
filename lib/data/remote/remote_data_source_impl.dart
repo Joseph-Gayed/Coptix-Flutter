@@ -29,7 +29,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       BaseApiResponse apiResponse = BaseApiResponse.fromJson(response.data);
       if (response.statusCode == StatusCode.SUCCESS) {
         // Return Success contains the collections
-        var homeApiResponse = HomeApiResponse.fromJson(apiResponse.body);
+        var body = apiResponse.body as Map<String, dynamic>;
+        var homeApiResponse = HomeApiResponse.fromJson(body);
         return right(homeApiResponse.collections ?? []);
       }
       // Return Error

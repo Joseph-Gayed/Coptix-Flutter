@@ -77,7 +77,7 @@ class ItemDefaultCollection extends StatelessWidget {
 
         //Horizontal List
         SizedBox(
-          height: HomeDimens.collectionHeights[uiCollection.displayType],
+          height: HomeDimens.displayTypeHeights[uiCollection.displayType],
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: uiCollection.clips.length,
