@@ -24,8 +24,8 @@ class SafeNetworkImage extends StatelessWidget {
     if (imagePath.isNotEmpty) {
       return FadeInImage.assetNetwork(
         image: imagePath,
-        placeholder: '${imagesPath}ic_loading.gif',
-        placeholderFit: BoxFit.scaleDown,
+        placeholder: placeHolder,
+        placeholderFit: fit,
         width: width,
         height: height,
         fit: fit,

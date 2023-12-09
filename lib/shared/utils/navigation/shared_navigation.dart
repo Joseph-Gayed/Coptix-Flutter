@@ -6,11 +6,12 @@ import 'app_router.dart';
 import 'navigation_args.dart';
 
 void openDetailsScreen(BuildContext context, UiClip uiClip) {
-  Navigator.pushNamed(context,
-      detailsRouteOfContentType[uiClip.contentType] ?? AppRouter.notFound,
-      arguments: {
-        NavArgsKeys.clipArgs: uiClip,
-      });
+  var routeName =
+      detailsRouteOfContentType[uiClip.contentType] ?? AppRouter.notFound;
+  print(routeName);
+  Navigator.pushNamed(context, routeName, arguments: {
+    NavArgsKeys.clipArgs: uiClip,
+  });
 }
 
 void openVideoPlayerScreen(BuildContext context, UiClip uiClip) {

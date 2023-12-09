@@ -45,6 +45,7 @@ class AppRouter {
       collection: (context) => _getCollectionDetailsScreen(context),
       season: (context) => _getSeasonDetailsScreen(context),
       series: (context) => _getSeriesDetailsScreen(context),
+      show: (context) => _getSeriesDetailsScreen(context),
       clip: (context) => _getVideoDetailsScreen(context),
       movie: (context) => _getVideoDetailsScreen(context),
       episode: (context) => _getVideoDetailsScreen(context),
