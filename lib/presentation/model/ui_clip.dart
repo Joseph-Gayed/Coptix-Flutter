@@ -1,7 +1,6 @@
 import 'package:coptix/presentation/model/ui_clip_image.dart';
 import 'package:coptix/presentation/model/ui_season.dart';
 import 'package:coptix/shared/extentsions/list.dart';
-import 'package:flutter/material.dart';
 
 import '../../../../../shared/enums/collection_display_type.dart';
 import '../../../../../shared/enums/content_type.dart';
@@ -43,10 +42,6 @@ class UiClip {
         .map((domainClip) => UiClip.fromDomain(domainClip,
             jsonValueToCollectionDisplayType(domainClip.displayType ?? "")))
         .toList();
-    if (relatedClips.isNotEmpty) {
-      debugPrint(
-          "UiClip.fromDomain - finished mapping UiClip:$id with ${relatedClips.length} relatedClips");
-    }
 
     return UiClip(
         id: id,
@@ -70,23 +65,5 @@ class UiClip {
                 .find((uiClipImage) => uiClipImage.displayType == displayType))
             ?.imagePath ??
         "";
-  }
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "display_type": displayType,
-        "content_type": contentType,
-        "description": description,
-        "asset_id": assetId,
-        "duration": duration,
-        "image": getImagePath(),
-        "seasons": seasons,
-        "related": relatedClips,
-      };
-
-  @override
-  String toString() {
-    return toJson().toString();
   }
 }

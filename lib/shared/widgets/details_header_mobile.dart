@@ -1,4 +1,3 @@
-import 'package:coptix/main.dart';
 import 'package:coptix/shared/theme/styles.dart';
 import 'package:coptix/shared/utils/localization/app_localizations_delegate.dart';
 import 'package:coptix/shared/utils/localization/localized_content.dart';

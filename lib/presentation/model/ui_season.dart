@@ -1,7 +1,6 @@
 import 'package:coptix/domain/model/domain_season.dart';
 import 'package:coptix/presentation/model/ui_clip.dart';
 import 'package:coptix/shared/enums/collection_display_type.dart';
-import 'package:flutter/material.dart';
 
 class UiSeason {
   String id;
@@ -27,9 +26,6 @@ class UiSeason {
             jsonValueToCollectionDisplayType(domainClip.displayType ?? "")))
         .toList();
 
-    debugPrint(
-        "UiSeason.fromDomain - finished mapping season: $id with ${episodes.length} episodes");
-
     return UiSeason(
       id,
       year,
@@ -39,19 +35,5 @@ class UiSeason {
       description,
       episodes,
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['id'] = id;
-    map['year'] = year;
-    map['no_of_episodes'] = noOfEpisodes;
-    map['rate'] = rate;
-    map['name'] = name;
-    map['description'] = description;
-    if (episodes.isNotEmpty) {
-      map['episodes'] = episodes.map((uiClip) => uiClip.toJson()).toList();
-    }
-    return map;
   }
 }

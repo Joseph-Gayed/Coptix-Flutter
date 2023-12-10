@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 import '../../../../../shared/utils/object_print.dart';
 import '../../domain/model/domain_collection.dart';
@@ -9,9 +8,6 @@ class HomeApiResponse {
   HomeApiResponse({required this.collections});
 
   factory HomeApiResponse.fromJson(Map<String, dynamic> jsonAsMap) {
-    debugPrint(
-        "HomeApiResponse.fromJson - will Parse ${jsonAsMap.length} objects");
-
     List<DomainCollection> collections = [];
     if (jsonAsMap.containsKey("collections")) {
       List jsonList = jsonAsMap['collections'] as List;
@@ -20,8 +16,6 @@ class HomeApiResponse {
       }).toList();
     }
 
-    debugPrint(
-        "HomeApiResponse.fromJson - Finished Parsing ${collections.length} Collections");
     return HomeApiResponse(collections: collections);
   }
 
