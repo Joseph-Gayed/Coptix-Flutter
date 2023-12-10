@@ -42,7 +42,7 @@ class _VideoDetailsScreenState extends State<VideoDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const CoptixAppBar(),
+        appBar: const CoptixAppBar(showingBackButton: true),
         body: CoptixContainer(
             child: BlocBuilder<VideoDetailsCubit, VideoDetailsState>(
           builder: (context, state) {

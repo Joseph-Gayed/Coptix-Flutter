@@ -42,7 +42,7 @@ class _SeriesDetailsScreenState extends State<SeriesDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const CoptixAppBar(),
+        appBar: const CoptixAppBar(showingBackButton: true),
         body: CoptixContainer(
             child: BlocBuilder<SeriesDetailsCubit, SeriesDetailsState>(
           builder: (context, state) {

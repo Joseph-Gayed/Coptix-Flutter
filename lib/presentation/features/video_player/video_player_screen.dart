@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import '../../../../../shared/widgets/coptix_container.dart';
 import '../../../presentation/model/ui_clip.dart';
 import '../../../shared/utils/navigation/navigation_args.dart';
+import '../../../shared/widgets/coptix_app_bar.dart';
 
 class VideoPlayerScreen extends StatefulWidget {
   final Map<String, dynamic> arguments;
@@ -31,9 +32,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     ]);
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text(uiClip.name),
-        ),
+        appBar: const CoptixAppBar(showingBackButton: true),
         body: CoptixContainer(child: screenContent()));
   }
 

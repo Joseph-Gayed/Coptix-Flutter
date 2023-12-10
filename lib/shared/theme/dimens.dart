@@ -34,6 +34,7 @@ class Dimens {
   static const double detailsBannerMaskOpacity = 0.7;
   static const double tabBarIndicatorHeight = designScreenFactor * 7;
   static const double tabBarIndicatorMargin = designScreenFactor * 7;
+  static const double backButtonSize = designScreenFactor * 60;
 }
 
 class SplashDimens {
