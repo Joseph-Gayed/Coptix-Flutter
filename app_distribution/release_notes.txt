@@ -1,10 +1,7 @@
 What's Done: \n
-  - Splash Screen.\n
-  - Home Landing Screen with bottom bar that opens 4 screens (home, new additions,search , profile).\n
-  - Home collections screen - (Ui, API) without categories.\n
-  - Home screen (Ui, API).\n
-  - Series details screen : API and Ui of the upper part(banner, title , description).\n
-  - Movie details screen : API and Ui of the upper part(banner, title , description).\n
-  - Change Language screen in profile screen(profile screen contains only title that opens the change language screen).\n
-  - Supporting multi languages.\n
-  - New Additions screen Ui only.\n
+  - Add button in Splash Screen to call apis on mocking server.\n
+  - Fix the navigation of type "shows" to details screen.\n
+  - For Image Loading : Replace the animated loading gif with the fixed placeholder.\n
+  - Series Details screen: Tabs (Episodes , Related) .\n
+  - Movie Details screen: Tab (Related) .\n
+  - Handle Api Errors.
