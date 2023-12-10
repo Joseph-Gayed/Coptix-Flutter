@@ -1,7 +1,9 @@
+import 'package:coptix/main.dart';
 import 'package:coptix/shared/theme/styles.dart';
 import 'package:coptix/shared/utils/localization/app_localizations_delegate.dart';
 import 'package:coptix/shared/utils/localization/localized_content.dart';
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 
 import '../../presentation/model/ui_clip.dart';
 import '../theme/colors.dart';
@@ -19,8 +21,8 @@ class DetailsHeaderMobile extends StatelessWidget {
   });
 
   final UiClip uiClip;
-  final Function(UiClip p1) onPlayNowClicked;
-  final Function(UiClip p1) onAddToFavoritesClicked;
+  final Function(UiClip) onPlayNowClicked;
+  final Function(UiClip) onAddToFavoritesClicked;
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +79,6 @@ class DetailsHeaderMobile extends StatelessWidget {
         ),
 
         if (uiClip.currentSeason != null)
-
           //current season
           Text(
             "${AppLocalizations.of(context).translate(LocalizationKey.season)}: ${uiClip.currentSeason!.name}",
@@ -132,10 +133,6 @@ class DetailsHeaderMobile extends StatelessWidget {
   }
 
   Future<void> share() async {
-    /*var text = 'Check out the movie ${uiClip.getImagePath()}';
-    final box = context.findRenderObject() as RenderBox?;
-    await Share.share(text,
-        subject: uiClip.getImagePath(),
-        sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);*/
+    Share.share(uiClip.getImagePath());
   }
 }

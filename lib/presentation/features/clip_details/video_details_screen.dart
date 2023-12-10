@@ -1,11 +1,9 @@
 import 'package:coptix/shared/theme/colors.dart';
-import 'package:coptix/shared/theme/dimens.dart';
 import 'package:coptix/shared/widgets/coptix_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../shared/widgets/coptix_container.dart';
-import '../../../shared/utils/constants.dart';
 import '../../../shared/utils/localization/app_localizations_delegate.dart';
 import '../../../shared/utils/localization/localized_content.dart';
 import '../../../shared/utils/navigation/navigation_args.dart';
@@ -89,28 +87,6 @@ class _VideoDetailsScreenState extends State<VideoDetailsScreen> {
         )
       ],
     );
-  }
-
-  Widget shareButton() {
-    return TextButton(
-        style: TextButton.styleFrom(
-          backgroundColor: gradientPrimaryColor,
-          shape: const CircleBorder(),
-        ),
-        onPressed: share,
-        child: const ImageIcon(
-          AssetImage("${imagesPath}ic_share.png"),
-          color: lightColor,
-          size: VideoDetailsDimens.shareIconSize,
-        ));
-  }
-
-  Future<void> share() async {
-    /*var text = 'Check out the movie ${uiClip.getImagePath()}';
-    final box = context.findRenderObject() as RenderBox?;
-    await Share.share(text,
-        subject: uiClip.getImagePath(),
-        sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);*/
   }
 
   void openVideoPlayer(UiClip uiClip) {
