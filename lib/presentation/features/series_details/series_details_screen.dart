@@ -64,6 +64,10 @@ class _SeriesDetailsScreenState extends State<SeriesDetailsScreen> {
         showAppBar: false,
       );
     } else if (state is SeriesDetailsSuccessState) {
+      if (state.uiClip.currentSeason == null &&
+          state.uiClip.seasons.isNotEmpty) {
+        state.uiClip.currentSeason = state.uiClip.seasons[0];
+      }
       return screenContent(state);
     }
 
