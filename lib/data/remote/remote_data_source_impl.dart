@@ -1,73 +1,82 @@
 import 'package:coptix/core/network/api_names.dart';
 import 'package:coptix/core/network/base_api_response.dart';
-import 'package:coptix/core/network/status_codes.dart';
+import 'package:coptix/core/network/error_handling/status_codes.dart';
 import 'package:coptix/domain/model/details_request_params.dart';
 import 'package:coptix/domain/model/domain_clip.dart';
-import 'package:coptix/main.dart';
 import 'package:coptix/shared/utils/localization/app_localizations_delegate.dart';
 import 'package:coptix/shared/utils/localization/localized_content.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
-import '../../../../../core/network/api_error.dart';
+import '../../core/network/error_handling/failure.dart';
+import '../../core/network/error_handling/error_handler.dart';
+import '../../core/network/network_info.dart';
 import '../../domain/model/domain_collection.dart';
 import '../model/home_api_response.dart';
 import 'remote_data_source.dart';
 
 class RemoteDataSourceImpl implements RemoteDataSource {
   final Dio dio;
+  final NetworkInfo networkInfo;
 
-  RemoteDataSourceImpl({required this.dio});
+  RemoteDataSourceImpl({required this.dio, required this.networkInfo});
 
   @override
-  Future<Either<ApiException, List<DomainCollection>>>
-      getHomeCollections() async {
-    try {
-      final Response response = await dio.get(ApiNames.home);
+  Future<Either<Failure, List<DomainCollection>>> getHomeCollections() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final Response response = await dio.get(ApiNames.home);
 
-      // Parse the response using the BaseApiResponse and HomeResponse classes
-      BaseApiResponse apiResponse = BaseApiResponse.fromJson(response.data);
-      if (response.statusCode == StatusCode.SUCCESS) {
-        // Return Success contains the collections
-        var body = apiResponse.body as Map<String, dynamic>;
-        var homeApiResponse = HomeApiResponse.fromJson(body);
-        return right(homeApiResponse.collections ?? []);
+        // Parse the response using the BaseApiResponse and HomeResponse classes
+        BaseApiResponse apiResponse = BaseApiResponse.fromJson(response.data);
+        if (response.statusCode == StatusCode.success) {
+          // Return Success contains the collections
+          var body = apiResponse.body as Map<String, dynamic>;
+          var homeApiResponse = HomeApiResponse.fromJson(body);
+          return right(homeApiResponse.collections ?? []);
+        }
+        // Return Error
+        Failure failure = getResponseFailure(response, apiResponse);
+        return Left(failure);
+      } catch (e) {
+        // Return Error
+        return Left(Failure(message: e.toString()));
       }
-      // Return Error
-      return Left(ApiException(message: apiResponse.message));
-    } catch (e) {
-      // Return Error
-      return Left(ApiException(message: e.toString()));
+    } else {
+      return Left(StatusCode.noInternetConnection.getFailure());
     }
   }
 
   @override
-  Future<Either<ApiException, DomainClip>> getClipOrSeriesDetails(
+  Future<Either<Failure, DomainClip>> getClipOrSeriesDetails(
       DetailsRequestParams request) async {
-    try {
-      String detailsApiName = request.getApiName();
-      if (!request.isValidRequest() || detailsApiName.isEmpty) {
-        return Left(ApiException(
-            message: AppLocalizations.of(rootNavigatorKey.currentContext!)
-                .translate(LocalizationKey.notFoundErrorMessage)));
+    if (await networkInfo.isConnected) {
+      try {
+        String detailsApiName = request.getApiName();
+        if (!request.isValidRequest() || detailsApiName.isEmpty) {
+          return Left(Failure(message: LocalizationKey.badRequest.tr()));
+        }
+
+        String path =
+            "$detailsApiName/${request.contentType}/${request.contentId}";
+        final Response response = await dio.get(path);
+
+        // Parse the response using the BaseApiResponse and HomeResponse classes
+        BaseApiResponse apiResponse = BaseApiResponse.fromJson(response.data);
+
+        if (response.statusCode == StatusCode.success) {
+          var detailsApiResponse = DomainClip.fromJson(apiResponse.body);
+          return right(detailsApiResponse);
+        }
+
+        Failure failure = getResponseFailure(response, apiResponse);
+        return Left(failure);
+      } catch (e) {
+        // Return Error
+        return Left(ErrorHandler.handle(e).failure);
       }
-
-      String path =
-          "$detailsApiName/${request.contentType}/${request.contentId}";
-      final Response response = await dio.get(path);
-
-      // Parse the response using the BaseApiResponse and HomeResponse classes
-      BaseApiResponse apiResponse = BaseApiResponse.fromJson(response.data);
-
-      if (response.statusCode == StatusCode.SUCCESS) {
-        var detailsApiResponse = DomainClip.fromJson(apiResponse.body);
-        return right(detailsApiResponse);
-      }
-
-      return Left(ApiException(message: apiResponse.message));
-    } catch (e) {
-      // Return Error
-      return Left(ApiException(message: e.toString()));
+    } else {
+      return Left(StatusCode.noInternetConnection.getFailure());
     }
   }
 }

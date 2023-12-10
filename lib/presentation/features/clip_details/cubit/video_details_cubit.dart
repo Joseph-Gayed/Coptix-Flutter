@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:coptix/core/network/api_error.dart';
+import 'package:coptix/core/network/error_handling/failure.dart';
 import 'package:coptix/domain/model/details_request_params.dart';
 import 'package:coptix/domain/model/domain_clip.dart';
 import 'package:coptix/presentation/model/ui_clip.dart';
@@ -13,7 +13,7 @@ part 'video_details_state.dart';
 
 class VideoDetailsCubit extends Cubit<VideoDetailsState> {
   final ContentRepository repository;
-  late Function(ApiException) errorHandler;
+  late Function(Failure) errorHandler;
   late Function(DomainClip) successHandler;
 
   VideoDetailsCubit(this.repository) : super(VideoDetailsInitialState()) {

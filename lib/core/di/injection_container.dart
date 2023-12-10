@@ -1,6 +1,7 @@
-import 'package:coptix/core/di/network_di.dart';
+import 'package:coptix/core/network/dio_factory.dart';
 import 'package:coptix/data/remote/remote_data_source.dart';
 import 'package:get_it/get_it.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 import '../../data/remote/remote_data_source_impl.dart';
 import '../../data/repository/content_repository.dart';
@@ -8,15 +9,20 @@ import '../../domain/repository/content_repository.dart';
 import '../../presentation/features/clip_details/cubit/video_details_cubit.dart';
 import '../../presentation/features/home_landing/home/cubit/home_cubit.dart';
 import '../../presentation/features/series_details/cubit/series_details_cubit.dart';
+import '../network/network_info.dart';
 
 final getIt = GetIt.instance;
 void initDi() {
+  //NetworkInfo instance
+  getIt.registerLazySingleton<NetworkInfo>(
+      () => NetworkInfoImpl(InternetConnectionChecker()));
+
   // Dio
-  getIt.registerLazySingleton(() => NetworkDi().dioInstance);
+  getIt.registerLazySingleton(() => DioFactory().dioInstance);
 
   //dataSource
   getIt.registerLazySingleton<RemoteDataSource>(
-      () => RemoteDataSourceImpl(dio: getIt()));
+      () => RemoteDataSourceImpl(dio: getIt(), networkInfo: getIt()));
 
   // Repository
   getIt.registerLazySingleton<ContentRepository>(

@@ -8,7 +8,6 @@ import 'navigation_args.dart';
 void openDetailsScreen(BuildContext context, UiClip uiClip) {
   var routeName =
       detailsRouteOfContentType[uiClip.contentType] ?? AppRouter.notFound;
-  print(routeName);
   Navigator.pushNamed(context, routeName, arguments: {
     NavArgsKeys.clipArgs: uiClip,
   });

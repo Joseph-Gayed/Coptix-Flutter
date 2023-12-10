@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:coptix/core/network/api_error.dart';
+import 'package:coptix/core/network/error_handling/failure.dart';
 import 'package:coptix/domain/model/details_request_params.dart';
 import 'package:coptix/domain/model/domain_clip.dart';
 import 'package:coptix/presentation/model/ui_clip.dart';
@@ -14,7 +14,7 @@ part 'series_details_state.dart';
 
 class SeriesDetailsCubit extends Cubit<SeriesDetailsState> {
   final ContentRepository repository;
-  late Function(ApiException) errorHandler;
+  late Function(Failure) errorHandler;
   late Function(DomainClip) successHandler;
 
   SeriesDetailsCubit(this.repository) : super(SeriesDetailsInitialState()) {

@@ -18,6 +18,21 @@ class LocalizationKey {
   static const String season = "season";
   static const String episodes = "episodes";
   static const String related = "related";
+//================================================
+  static const String success = "success";
+  static const String noContent = "noContent";
+  static const String badRequest = "badRequest";
+  static const String unAuthorised = "unAuthorised";
+  static const String forbidden = "forbidden";
+  static const String internalServerError = "internalServerError";
+  static const String notFound = "notFound";
+  static const String cancel = "cancel";
+  static const String connectTimeout = "connectTimeout";
+  static const String receiveTimeout = "receiveTimeout";
+  static const String sendTimeout = "sendTimeout";
+  static const String cacheError = "cacheError";
+  static const String noInternetConnection = "noInternetConnection";
+  static const String unKnownError = "defaultError";
 }
 
 const Map<String, Map<String, String>> localizedContent = {
@@ -43,6 +58,21 @@ const Map<String, String> englishContent = {
   LocalizationKey.season: "Season",
   LocalizationKey.episodes: "Episodes",
   LocalizationKey.related: "Related",
+  //================================================
+  LocalizationKey.success: "success",
+  LocalizationKey.noContent: "noContent",
+  LocalizationKey.badRequest: "badRequest",
+  LocalizationKey.unAuthorised: "unAuthorised",
+  LocalizationKey.forbidden: "forbidden",
+  LocalizationKey.internalServerError: "internalServerError",
+  LocalizationKey.notFound: "notFound",
+  LocalizationKey.cancel: "cancel",
+  LocalizationKey.connectTimeout: "connectTimeout",
+  LocalizationKey.receiveTimeout: "receiveTimeout",
+  LocalizationKey.sendTimeout: "sendTimeout",
+  LocalizationKey.cacheError: "cacheError",
+  LocalizationKey.noInternetConnection: "noInternetConnection",
+  LocalizationKey.unKnownError: "defaultError",
 };
 
 const Map<String, String> arabicContent = {
@@ -62,7 +92,23 @@ const Map<String, String> arabicContent = {
   LocalizationKey.season: "الموسم",
   LocalizationKey.episodes: "الحلقات",
   LocalizationKey.related: "ذات صلة",
+  //================================================
+  LocalizationKey.success: "success",
+  LocalizationKey.noContent: "noContent",
+  LocalizationKey.badRequest: "badRequest",
+  LocalizationKey.unAuthorised: "unAuthorised",
+  LocalizationKey.forbidden: "forbidden",
+  LocalizationKey.internalServerError: "internalServerError",
+  LocalizationKey.notFound: "لا يوجد اي شي",
+  LocalizationKey.cancel: "cancel",
+  LocalizationKey.connectTimeout: "connectTimeout",
+  LocalizationKey.receiveTimeout: "receiveTimeout",
+  LocalizationKey.sendTimeout: "sendTimeout",
+  LocalizationKey.cacheError: "cacheError",
+  LocalizationKey.noInternetConnection: "noInternetConnection",
+  LocalizationKey.unKnownError: "defaultError",
 };
+
 const Map<String, String> frenchContent = {
   LocalizationKey.welcome: "Bienvenue dans l'application Coptix",
   LocalizationKey.home: "Accueil",
@@ -80,4 +126,19 @@ const Map<String, String> frenchContent = {
   LocalizationKey.season: "Saison",
   LocalizationKey.episodes: "Épisodes",
   LocalizationKey.related: "En rapport",
+  //================================================
+  LocalizationKey.success: "success",
+  LocalizationKey.noContent: "noContent",
+  LocalizationKey.badRequest: "badRequest",
+  LocalizationKey.unAuthorised: "unAuthorised",
+  LocalizationKey.forbidden: "forbidden",
+  LocalizationKey.internalServerError: "internalServerError",
+  LocalizationKey.notFound: "notFound",
+  LocalizationKey.cancel: "cancel",
+  LocalizationKey.connectTimeout: "connectTimeout",
+  LocalizationKey.receiveTimeout: "receiveTimeout",
+  LocalizationKey.sendTimeout: "sendTimeout",
+  LocalizationKey.cacheError: "cacheError",
+  LocalizationKey.noInternetConnection: "noInternetConnection",
+  LocalizationKey.unKnownError: "defaultError",
 };

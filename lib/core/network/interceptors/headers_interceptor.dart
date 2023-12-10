@@ -6,7 +6,6 @@ class HeadersInterceptor extends Interceptor {
   Future<void> onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
     await addLanguage(options);
-    options.headers.addAll({"Accept": "application/json"});
     return handler.next(options);
   }
 

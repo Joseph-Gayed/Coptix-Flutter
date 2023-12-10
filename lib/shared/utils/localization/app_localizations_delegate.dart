@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../../main.dart';
 import 'localized_content.dart';
 
 class AppLocalizations {
@@ -21,7 +22,7 @@ class AppLocalizations {
 
   String translate(String key) {
     String languageCode = locale.languageCode;
-    var translation = localizedContent[languageCode]![key]!;
+    var translation = localizedContent[languageCode]?[key] ?? "";
     return translation;
   }
 }
@@ -42,4 +43,11 @@ class _AppLocalizationsDelegate
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
+}
+
+extension TranslateX on String {
+  String tr() {
+    var context = rootNavigatorKey.currentContext;
+    return AppLocalizations.of(context!).translate(this);
+  }
 }
