@@ -29,17 +29,25 @@ class SafeNetworkImage extends StatelessWidget {
         width: width,
         height: height,
         fit: fit,
+        imageErrorBuilder: (context, error, stackTrace) {
+          // Return a custom error widget or a placeholder image
+          return getPlaceHolderImage();
+        },
       );
     } else {
-      return Image.asset(
-        width > height
-            ? "${imagesPath}placeholder_horizontal.png"
-            : "${imagesPath}placeholder_vertical.png",
-        color: secondaryColor,
-        width: width,
-        height: height,
-        fit: BoxFit.fill,
-      );
+      return getPlaceHolderImage();
     }
+  }
+
+  Image getPlaceHolderImage() {
+    return Image.asset(
+      width > height
+          ? "${imagesPath}placeholder_horizontal.png"
+          : "${imagesPath}placeholder_vertical.png",
+      color: secondaryColor,
+      width: width,
+      height: height,
+      fit: BoxFit.fill,
+    );
   }
 }
