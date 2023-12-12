@@ -1,11 +1,9 @@
-import 'package:coptix/shared/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/constants.dart';
 
 class SafeNetworkImage extends StatelessWidget {
   final String imagePath;
-  final String placeHolder;
   final double width;
   final double height;
   final BoxFit fit;
@@ -13,7 +11,6 @@ class SafeNetworkImage extends StatelessWidget {
   const SafeNetworkImage({
     super.key,
     required this.imagePath,
-    this.placeHolder = '${imagesPath}placeholder_horizontal.png',
     required this.width,
     required this.height,
     this.fit = BoxFit.cover,
@@ -24,8 +21,8 @@ class SafeNetworkImage extends StatelessWidget {
     if (imagePath.isNotEmpty) {
       return FadeInImage.assetNetwork(
         image: imagePath,
-        placeholder: placeHolder,
-        placeholderFit: fit,
+        placeholder: getPlaceHolderPath(),
+        placeholderFit: BoxFit.fill,
         width: width,
         height: height,
         fit: fit,
@@ -39,12 +36,15 @@ class SafeNetworkImage extends StatelessWidget {
     }
   }
 
+  String getPlaceHolderPath() {
+    return width > height
+        ? "${imagesPath}placeholder_horizontal.png"
+        : "${imagesPath}placeholder_vertical.png";
+  }
+
   Image getPlaceHolderImage() {
     return Image.asset(
-      width > height
-          ? "${imagesPath}placeholder_horizontal.png"
-          : "${imagesPath}placeholder_vertical.png",
-      color: secondaryColor,
+      getPlaceHolderPath(),
       width: width,
       height: height,
       fit: BoxFit.fill,
