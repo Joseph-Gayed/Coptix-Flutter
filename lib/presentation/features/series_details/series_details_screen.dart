@@ -1,6 +1,6 @@
 import 'package:coptix/shared/utils/localization/app_localizations_delegate.dart';
 import 'package:coptix/shared/utils/localization/localized_content.dart';
-import 'package:coptix/shared/widgets/clips_tab_view.dart';
+import 'package:coptix/shared/widgets/details_tab_view.dart';
 import 'package:coptix/shared/widgets/details_header_mobile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,46 +1,57 @@
-import 'package:coptix/presentation/model/ui_season.dart';
-import 'package:coptix/shared/theme/dimens.dart';
 import 'package:flutter/material.dart';
 
 import '../theme/colors.dart';
+import '../theme/dimens.dart';
 
-class SeasonsSingleSelectionChips extends StatefulWidget {
-  final List<UiSeason> seasons;
-  final Function(UiSeason) onSeasonSelected;
-  final UiSeason selectedSeason;
-  const SeasonsSingleSelectionChips(
-      {super.key,
-      required this.seasons,
-      required this.selectedSeason,
-      required this.onSeasonSelected});
+class ChipItem {
+  final String id;
+  final String title;
+
+  const ChipItem({required this.id, required this.title});
 
   @override
-  State<SeasonsSingleSelectionChips> createState() =>
-      _SeasonsSingleSelectionChipsState();
+  int get hashCode => Object.hash(id, title);
+
+  @override
+  bool operator ==(dynamic other) {
+    ChipItem otherChipItem = (other as ChipItem);
+    return id == otherChipItem.id && title == otherChipItem.title;
+  }
 }
 
-class _SeasonsSingleSelectionChipsState
-    extends State<SeasonsSingleSelectionChips> {
-  int _selectedIndex = 0; // To keep track of the selected chip index
+class HorizontalChips extends StatelessWidget {
+  final List<ChipItem> chips;
+  final ChipItem? selectedChip;
+  final Function(ChipItem clickedChip) onClick;
+
+  final Color selectedColor;
+  final Color notSelectedColor;
+
+  const HorizontalChips(
+      {super.key,
+      required this.chips,
+      this.selectedChip,
+      required this.onClick,
+      this.selectedColor = secondaryColor,
+      this.notSelectedColor = lightColor});
 
   @override
   Widget build(BuildContext context) {
-    _selectedIndex = widget.seasons.indexOf(widget.selectedSeason);
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
         children: List.generate(
-          widget.seasons.length,
+          chips.length,
           (index) {
-            bool isSelected = _selectedIndex == index;
-            Color stateColor = isSelected ? secondaryColor : lightColor;
+            bool isSelected = chips[index] == selectedChip;
+            Color stateColor = isSelected ? selectedColor : notSelectedColor;
             return Container(
               padding: const EdgeInsets.only(
                   left: Dimens.screenMargin, right: Dimens.screenMargin),
               child: ChoiceChip(
                 showCheckmark: false,
                 label: Text(
-                  widget.seasons[index].name,
+                  chips[index].title,
                   style: TextStyle(
                     color: stateColor,
                   ),
@@ -54,12 +65,9 @@ class _SeasonsSingleSelectionChipsState
                   ),
                 ),
                 onSelected: (selected) {
-                  setState(() {
-                    _selectedIndex = selected ? index : -1;
-                    if (_selectedIndex != -1) {
-                      widget.onSeasonSelected(widget.seasons[_selectedIndex]);
-                    }
-                  });
+                  if (index != -1) {
+                    onClick(chips[index]);
+                  }
                 },
                 color: MaterialStateProperty.all<Color>(Colors.transparent),
                 padding:

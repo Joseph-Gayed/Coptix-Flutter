@@ -8,7 +8,7 @@ import '../../../shared/utils/localization/app_localizations_delegate.dart';
 import '../../../shared/utils/localization/localized_content.dart';
 import '../../../shared/utils/navigation/navigation_args.dart';
 import '../../../shared/utils/navigation/shared_navigation.dart';
-import '../../../shared/widgets/clips_tab_view.dart';
+import '../../../shared/widgets/details_tab_view.dart';
 import '../../../shared/widgets/details_header_mobile.dart';
 import '../../model/ui_clip.dart';
 import '../error_screen/not_found_screen.dart';

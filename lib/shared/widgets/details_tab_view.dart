@@ -1,7 +1,7 @@
 import 'package:coptix/shared/theme/colors.dart';
 import 'package:coptix/shared/theme/dimens.dart';
 import 'package:coptix/shared/theme/styles.dart';
-import 'package:coptix/shared/widgets/seasons_view.dart';
+import 'package:coptix/presentation/features/series_details/widgets/seasons_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../presentation/model/ui_clip.dart';
@@ -23,7 +23,7 @@ class DetailsTabItem {
       this.onSeasonSelected});
 }
 
-class DetailsTabsView extends StatefulWidget {
+class DetailsTabsView extends StatelessWidget {
   final List<DetailsTabItem> detailsTabs;
 
   const DetailsTabsView({
@@ -32,14 +32,9 @@ class DetailsTabsView extends StatefulWidget {
   });
 
   @override
-  State<DetailsTabsView> createState() => _DetailsTabsViewState();
-}
-
-class _DetailsTabsViewState extends State<DetailsTabsView> {
-  @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: widget.detailsTabs.length,
+      length: detailsTabs.length,
       child: Column(
         children: [
           TabBar(
@@ -60,12 +55,12 @@ class _DetailsTabsViewState extends State<DetailsTabsView> {
               ),
               indicatorSize: TabBarIndicatorSize.label,
               indicatorColor: secondaryColor,
-              tabs: widget.detailsTabs
+              tabs: detailsTabs
                   .map((clipsTabItem) => Tab(text: clipsTabItem.tabName))
                   .toList()),
           Expanded(
             child: TabBarView(
-                children: widget.detailsTabs.map((clipTabItem) {
+                children: detailsTabs.map((clipTabItem) {
               if (clipTabItem.seasonedClip != null &&
                   clipTabItem.onSeasonSelected != null) {
                 return SeasonsView(

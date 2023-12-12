@@ -1,5 +1,4 @@
 import 'package:coptix/presentation/features/home_landing/home/widgets/play_now_or_later.dart';
-import 'package:coptix/shared/theme/colors.dart';
 import 'package:coptix/shared/theme/styles.dart';
 import 'package:coptix/shared/widgets/safe_network_image.dart';
 import 'package:flutter/material.dart';
@@ -35,11 +34,11 @@ class ItemFeaturedBanner extends StatelessWidget {
           right: 0,
           child: Container(
             height: HomeDimens.featuredGradientLayerHeight,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 gradient: LinearGradient(
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,
-              colors: [gradientPrimaryColor, Colors.transparent],
+              colors: [Colors.black, Colors.transparent],
             )),
           ),
         ),
