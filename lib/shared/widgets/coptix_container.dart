@@ -10,8 +10,10 @@ class CoptixContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.symmetric(
-            vertical: Dimens.screenMargin, horizontal: Dimens.halfScreenMargin),
+        padding: const EdgeInsets.only(
+            top: Dimens.halfScreenMargin,
+            left: Dimens.halfScreenMargin,
+            right: Dimens.halfScreenMargin),
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("${imagesPath}screens_background.png"),

@@ -1,13 +1,12 @@
-
 import '../../../../../shared/utils/object_print.dart';
 import '../../domain/model/domain_collection.dart';
 
-class HomeApiResponse {
+class HomeCollectionsApiResponse {
   final List<DomainCollection>? collections;
 
-  HomeApiResponse({required this.collections});
+  HomeCollectionsApiResponse({required this.collections});
 
-  factory HomeApiResponse.fromJson(Map<String, dynamic> jsonAsMap) {
+  factory HomeCollectionsApiResponse.fromJson(Map<String, dynamic> jsonAsMap) {
     List<DomainCollection> collections = [];
     if (jsonAsMap.containsKey("collections")) {
       List jsonList = jsonAsMap['collections'] as List;
@@ -16,7 +15,7 @@ class HomeApiResponse {
       }).toList();
     }
 
-    return HomeApiResponse(collections: collections);
+    return HomeCollectionsApiResponse(collections: collections);
   }
 
   Map<String, dynamic> toJson() => {"collections": collections};

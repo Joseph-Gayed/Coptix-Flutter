@@ -1,10 +1,11 @@
+import 'package:coptix/presentation/features/home_landing/home/screens/category_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/di/injection_container.dart';
 import '../../../presentation/features/clip_details/cubit/video_details_cubit.dart';
 import '../../../presentation/features/error_screen/not_found_screen.dart';
-import '../../../presentation/features/home_landing/home/collection_screen.dart';
+import '../../../presentation/features/home_landing/home/screens/collection_screen.dart';
 import '../../../presentation/features/home_landing/home_landing_screen.dart';
 import '../../../presentation/features/home_landing/my_profile/change_app_language/change_app_language_screen.dart';
 import '../../../presentation/features/clip_details/video_details_screen.dart';
@@ -35,6 +36,7 @@ class AppRouter {
   static const String movie = "/movie";
   static const String play = "/play";
   static const String videoPlayer = "/video_player";
+  static const String category = "/category";
 
   Map<String, WidgetBuilder> getAppRoutes(BuildContext context) {
     return {
@@ -51,6 +53,7 @@ class AppRouter {
       episode: (context) => _getVideoDetailsScreen(context),
       play: (context) => _getVideoDetailsScreen(context),
       videoPlayer: (context) => _getVideoPlayerScreen(context),
+      category: (context) => _getCategoryScreen(context),
     };
   }
 
@@ -106,5 +109,13 @@ class AppRouter {
       return const NotFoundScreen();
     }
     return VideoPlayerScreen(arguments: arguments);
+  }
+
+  Widget _getCategoryScreen(BuildContext context) {
+    Map<String, dynamic>? arguments = _getNavArgs(context);
+    if (arguments == null) {
+      return const NotFoundScreen();
+    }
+    return CategoryScreen(arguments: arguments);
   }
 }

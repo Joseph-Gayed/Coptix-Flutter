@@ -1,4 +1,5 @@
 import 'package:coptix/domain/model/details_request_params.dart';
+import 'package:coptix/domain/model/domain_category.dart';
 import 'package:coptix/domain/model/domain_clip.dart';
 import 'package:dartz/dartz.dart';
 
@@ -12,9 +13,14 @@ class ContentRepositoryImpl extends ContentRepository {
 
   ContentRepositoryImpl({required this.remoteDataSource});
 
-  @override
-  //TODO:Merge response of 3 apis (Categories , Home , Watch History)
   //TODO: Caching
+  @override
+  Future<Either<Failure, List<DomainCategory>>> getHomeCategories() {
+    return remoteDataSource.getHomeCategories();
+  }
+
+  //TODO: Caching
+  @override
   Future<Either<Failure, List<DomainCollection>>> getHomeCollections() {
     return remoteDataSource.getHomeCollections();
   }

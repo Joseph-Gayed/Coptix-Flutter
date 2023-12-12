@@ -1,5 +1,8 @@
 import 'package:coptix/core/network/dio_factory.dart';
 import 'package:coptix/data/remote/remote_data_source.dart';
+import 'package:coptix/domain/usecase/get_categories_usecase.dart';
+import 'package:coptix/domain/usecase/get_collections_usecase.dart';
+import 'package:coptix/domain/usecase/home_usecase.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
@@ -27,6 +30,13 @@ void initDi() {
   // Repository
   getIt.registerLazySingleton<ContentRepository>(
       () => ContentRepositoryImpl(remoteDataSource: getIt()));
+
+  // UseCases
+  getIt.registerFactory<GetCategoriesUseCase>(
+      () => GetCategoriesUseCase(getIt()));
+  getIt.registerFactory<GetCollectionsUseCase>(
+      () => GetCollectionsUseCase(getIt()));
+  getIt.registerFactory<HomeUseCase>(() => HomeUseCase(getIt(), getIt()));
 
   // Bloc Cubit
   getIt.registerFactory<HomeCubit>(() => HomeCubit(getIt()));

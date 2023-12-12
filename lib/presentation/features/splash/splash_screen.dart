@@ -56,15 +56,15 @@ class _SplashScreenState extends State<SplashScreen> {
                 onPressed: () {
                   ApiNames.isMocking = true;
                 },
-                child: Text("Mock"))),
+                child: const Text("Mock"))),
         Expanded(
             child: Container(
-          padding: EdgeInsets.only(
+          padding: const EdgeInsets.only(
               left: SplashDimens.logoMargin, right: SplashDimens.logoMargin),
           child: Image.asset("${imagesPath}logo_name.png"),
         )),
         Container(
-          padding: EdgeInsets.only(bottom: SplashDimens.greetingMargin),
+          padding: const EdgeInsets.only(bottom: SplashDimens.greetingMargin),
           child: Text(
             AppLocalizations.of(context).translate(LocalizationKey.welcome),
             style: titleTextStyle,

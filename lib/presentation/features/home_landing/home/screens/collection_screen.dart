@@ -1,10 +1,10 @@
 import 'package:coptix/shared/widgets/clips_grid.dart';
 import 'package:flutter/material.dart';
 
-import '../../../model/ui_collection.dart';
-import '../../../../shared/utils/navigation/app_router.dart';
-import '../../../../shared/utils/navigation/navigation_args.dart';
-import '../../../../shared/widgets/coptix_container.dart';
+import '../../../../model/ui_collection.dart';
+import '../../../../../shared/utils/navigation/app_router.dart';
+import '../../../../../shared/utils/navigation/navigation_args.dart';
+import '../../../../../shared/widgets/coptix_container.dart';
 
 class CollectionScreen extends StatefulWidget {
   final Map<String, dynamic> arguments;

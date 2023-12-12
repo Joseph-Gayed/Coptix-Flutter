@@ -8,7 +8,7 @@ import '../../../shared/widgets/coptix_bottom_nav_bar.dart';
 import '../../features/home_landing/home/cubit/home_cubit.dart';
 import '../../features/home_landing/new_additions/new_additions_screen.dart';
 import '../../features/home_landing/search/search_screen.dart';
-import 'home/home_screen.dart';
+import 'home/screens/home_screen.dart';
 import 'my_profile/profile_screen.dart';
 
 class HomeLandingScreen extends StatefulWidget {

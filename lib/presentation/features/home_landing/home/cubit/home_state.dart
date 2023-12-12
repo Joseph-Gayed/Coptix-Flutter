@@ -1,9 +1,8 @@
-part of 'home_cubit.dart';
+import '../../../../model/ui_home.dart';
 
-@immutable
 abstract class HomeState {}
 
-class HomeInitial extends HomeState {}
+class HomeInitialState extends HomeState {}
 
 class HomeLoadingState extends HomeState {}
 
@@ -13,6 +12,6 @@ class HomeErrorState extends HomeState {
 }
 
 class HomeSuccessState extends HomeState {
-  final List<UiCollection> collections;
-  HomeSuccessState(this.collections);
+  final UiHome uiHome;
+  HomeSuccessState(this.uiHome);
 }

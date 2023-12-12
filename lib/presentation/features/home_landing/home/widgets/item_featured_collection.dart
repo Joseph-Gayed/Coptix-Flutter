@@ -31,7 +31,7 @@ class _ItemFeaturedCollectionState extends State<ItemFeaturedCollection> {
       margin: const EdgeInsets.only(
           left: Dimens.screenMargin,
           right: Dimens.screenMargin,
-          bottom: HomeDimens.collectionsVerticalMargin),
+          bottom: HomeDimens.categoriesVerticalMargin),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(Dimens.cornerRadius),
         child: Stack(

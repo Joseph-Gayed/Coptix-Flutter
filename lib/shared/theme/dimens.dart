@@ -45,17 +45,18 @@ class SplashDimens {
 class HomeDimens {
   static const double collectionsVerticalMargin = designScreenFactor * 53;
   static const double collectionTitleVerticalMargin = designScreenFactor * 16;
+  static const double categoriesVerticalMargin = designScreenFactor * 32;
   static const double collectionTitleHorizontalMargin = designScreenFactor * 13;
   static const Map<CollectionDisplayType, double> displayTypeWidths = {
-    CollectionDisplayType.banner: designScreenFactor * 390,
+    CollectionDisplayType.banner: designScreenFactor * 385,
     CollectionDisplayType.normal: designScreenFactor * 250,
     CollectionDisplayType.vertical: designScreenFactor * 165,
     CollectionDisplayType.special: designScreenFactor * 130,
   };
   static const Map<CollectionDisplayType, double> displayTypeHeights = {
-    CollectionDisplayType.banner: designScreenFactor * 485,
+    CollectionDisplayType.banner: designScreenFactor * 688,
     CollectionDisplayType.normal: designScreenFactor * 140,
-    CollectionDisplayType.vertical: designScreenFactor * 290,
+    CollectionDisplayType.vertical: designScreenFactor * 294,
     CollectionDisplayType.special: designScreenFactor * 225,
   };
 
