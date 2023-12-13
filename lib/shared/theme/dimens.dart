@@ -35,6 +35,7 @@ class Dimens {
   static const double tabBarIndicatorHeight = designScreenFactor * 7;
   static const double tabBarIndicatorMargin = designScreenFactor * 7;
   static const double backButtonSize = designScreenFactor * 60;
+  static const double chipHeight = designScreenFactor * 40;
 }
 
 class SplashDimens {
@@ -51,20 +52,24 @@ class HomeDimens {
     CollectionDisplayType.banner: designScreenFactor * 385,
     CollectionDisplayType.normal: designScreenFactor * 250,
     CollectionDisplayType.vertical: designScreenFactor * 165,
-    CollectionDisplayType.special: designScreenFactor * 130,
+    CollectionDisplayType.special: designScreenFactor * 165,
   };
   static const Map<CollectionDisplayType, double> displayTypeHeights = {
     CollectionDisplayType.banner: designScreenFactor * 688,
     CollectionDisplayType.normal: designScreenFactor * 140,
     CollectionDisplayType.vertical: designScreenFactor * 294,
-    CollectionDisplayType.special: designScreenFactor * 225,
+    CollectionDisplayType.special: designScreenFactor * 294,
   };
 
   static double featuredGradientLayerHeight = designScreenFactor *
       displayTypeHeights[CollectionDisplayType.banner]! *
       0.7;
 
-  static double featuredButtonsFontSize = 13;
+  static double featuredButtonsFontSize = designScreenFactor * 16;
+  static double specialVerticalPadding = designScreenFactor * 32;
+  static double specialCollectionHeight = specialVerticalPadding +
+      displayTypeHeights[CollectionDisplayType.special]!;
+  static double specialTextContainerWidth = designScreenFactor * 195;
 }
 
 class NewAdditionsDimens {

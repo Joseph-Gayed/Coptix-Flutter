@@ -17,7 +17,7 @@ class UiCollection {
 
   factory UiCollection.fromDomain(DomainCollection domain) {
     CollectionDisplayType displayType =
-        jsonValueToCollectionDisplayType(domain.displayType ?? "");
+        displayTypeFromJson(domain.displayType ?? "");
     return UiCollection(domain.id?.toString() ?? "", domain.name ?? "",
         clipsFromDomain(domain, displayType), displayType);
   }

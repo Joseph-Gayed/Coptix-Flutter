@@ -14,8 +14,8 @@ class UiClipImage {
 
   factory UiClipImage.fromDomain(DomainClipImage domain) {
     return UiClipImage(
-        displayType: jsonValueToCollectionDisplayType(domain.displayType ?? ""),
-        contentType: jsonValueToMediaContentType(domain.contentType ?? ""),
+        displayType: displayTypeFromJson(domain.displayType ?? ""),
+        contentType: mediaContentTypeFromJson(domain.contentType ?? ""),
         imagePath: domain.imagePath ?? "");
   }
 }

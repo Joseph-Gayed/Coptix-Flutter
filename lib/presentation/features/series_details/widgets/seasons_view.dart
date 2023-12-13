@@ -15,8 +15,7 @@ class SeasonsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var seasons = seasonedClip.seasons;
-    UiSeason selectedSeason =
-        seasonedClip.currentSeason ?? seasonedClip.seasons[0];
+    UiSeason selectedSeason = seasonedClip.currentSeason ?? seasons[0];
 
     return widgetContent(context, seasons, selectedSeason);
   }
@@ -28,10 +27,14 @@ class SeasonsView extends StatelessWidget {
         SliverFillRemaining(
           child: Column(
             children: [
-              SeasonsChips(
-                  seasons: seasons,
-                  selectedSeason: selectedSeason,
-                  onSeasonSelected: onSeasonSelected),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    vertical: Dimens.halfScreenMargin),
+                child: SeasonsChips(
+                    seasons: seasons,
+                    selectedSeason: selectedSeason,
+                    onSeasonSelected: onSeasonSelected),
+              ),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(

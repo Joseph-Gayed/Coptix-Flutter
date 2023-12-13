@@ -22,8 +22,8 @@ class UiSeason {
     var name = domain.name ?? "";
     var description = domain.description ?? "";
     var episodes = (domain.episodes ?? [])
-        .map((domainClip) => UiClip.fromDomain(domainClip,
-            jsonValueToCollectionDisplayType(domainClip.displayType ?? "")))
+        .map((domainClip) => UiClip.fromDomain(
+            domainClip, displayTypeFromJson(domainClip.displayType ?? "")))
         .toList();
 
     return UiSeason(

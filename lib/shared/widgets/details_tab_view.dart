@@ -62,6 +62,7 @@ class DetailsTabsView extends StatelessWidget {
             child: TabBarView(
                 children: detailsTabs.map((clipTabItem) {
               if (clipTabItem.seasonedClip != null &&
+                  clipTabItem.seasonedClip!.seasons.isNotEmpty &&
                   clipTabItem.onSeasonSelected != null) {
                 return SeasonsView(
                     seasonedClip: clipTabItem.seasonedClip!,

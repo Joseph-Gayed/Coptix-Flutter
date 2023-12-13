@@ -22,8 +22,8 @@ class VideoDetailsCubit extends Cubit<VideoDetailsState> {
     };
 
     successHandler = (domainClip) {
-      UiClip uiClip = UiClip.fromDomain(domainClip,
-          jsonValueToCollectionDisplayType(domainClip.displayType ?? ""));
+      UiClip uiClip = UiClip.fromDomain(
+          domainClip, displayTypeFromJson(domainClip.displayType ?? ""));
       emit(VideoDetailsSuccessState(uiClip));
     };
   }

@@ -1,6 +1,6 @@
 import 'package:coptix/presentation/features/home_landing/home/widgets/categories_chips.dart';
-import 'package:coptix/presentation/model/ui_collection.dart';
 import 'package:coptix/presentation/model/ui_category.dart';
+import 'package:coptix/presentation/model/ui_collection.dart';
 import 'package:coptix/shared/enums/collection_display_type.dart';
 import 'package:coptix/shared/theme/colors.dart';
 import 'package:coptix/shared/theme/dimens.dart';
@@ -9,15 +9,17 @@ import 'package:coptix/shared/utils/localization/localized_content.dart';
 import 'package:coptix/shared/widgets/coptix_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../../shared/utils/navigation/shared_navigation.dart';
 import '../../../../model/ui_clip.dart';
 import '../../../error_screen/not_found_screen.dart';
-import 'category_screen.dart';
-import 'collection_screen.dart';
 import '../cubit/home_cubit.dart';
 import '../cubit/home_state.dart';
-import '../widgets/item_default_collection.dart';
-import '../widgets/item_featured_collection.dart';
+import '../widgets/default_collection/item_default_collection.dart';
+import '../widgets/featured_collection/item_featured_collection.dart';
+import '../widgets/special_collection/item_special_collection.dart';
+import 'category_screen.dart';
+import 'collection_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -126,6 +128,11 @@ class _HomeScreenState extends State<HomeScreen> {
         uiCollection: uiCollection,
         onPlayNowClicked: openDetails,
         onAddToFavoritesClicked: addToFavorites,
+      );
+    } else if (uiCollection.displayType == CollectionDisplayType.special) {
+      return ItemSpecialCollection(
+        uiCollection: uiCollection,
+        onCardClicked: openDetails,
       );
     }
     return ItemDefaultCollection(

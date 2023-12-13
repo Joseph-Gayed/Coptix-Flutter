@@ -10,7 +10,7 @@ enum MediaContentType {
   showsEpisode,
 }
 
-MediaContentType jsonValueToMediaContentType(String jsonValue) {
+MediaContentType mediaContentTypeFromJson(String jsonValue) {
   switch (jsonValue) {
     case 'clips':
       return MediaContentType.clips;

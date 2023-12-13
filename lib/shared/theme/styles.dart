@@ -31,6 +31,9 @@ const TextStyle titleTextStyle = TextStyle(
     color: lightColor,
     fontFamily: appFontFamily);
 
+TextStyle subTitleTextStyle =
+    titleTextStyle.copyWith(fontSize: FontSizes.subtitle1);
+
 const TextStyle body2TextStyle = TextStyle(
     fontSize: FontSizes.body2, color: lightColor, fontFamily: appFontFamily);
 

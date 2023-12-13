@@ -39,14 +39,14 @@ class UiClip {
     var id = domain.id?.toString() ?? "";
 
     var relatedClips = (domain.relatedClips ?? [])
-        .map((domainClip) => UiClip.fromDomain(domainClip,
-            jsonValueToCollectionDisplayType(domainClip.displayType ?? "")))
+        .map((domainClip) => UiClip.fromDomain(
+            domainClip, displayTypeFromJson(domainClip.displayType ?? "")))
         .toList();
 
     return UiClip(
         id: id,
         displayType: displayType,
-        contentType: jsonValueToMediaContentType(domain.contentType ?? ""),
+        contentType: mediaContentTypeFromJson(domain.contentType ?? ""),
         name: domain.name ?? "",
         description: domain.description ?? "",
         assetId: domain.assetId ?? "",
@@ -61,9 +61,14 @@ class UiClip {
   }
 
   String getImagePath() {
-    return (clipImages
-                .find((uiClipImage) => uiClipImage.displayType == displayType))
-            ?.imagePath ??
+    CollectionDisplayType displayTypeToFilterWith =
+        displayType == CollectionDisplayType.special
+            ? CollectionDisplayType.vertical
+            : displayType;
+    var path = (clipImages.find((uiClipImage) =>
+            uiClipImage.displayType == displayTypeToFilterWith))?.imagePath ??
         "";
+
+    return path;
   }
 }
