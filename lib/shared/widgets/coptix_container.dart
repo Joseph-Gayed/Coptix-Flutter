@@ -17,7 +17,7 @@ class CoptixContainer extends StatelessWidget {
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("${imagesPath}screens_background.png"),
-            fit: BoxFit.fill,
+            fit: BoxFit.cover,
           ),
         ),
         child: Column(
