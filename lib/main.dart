@@ -1,5 +1,6 @@
 import 'package:coptix/core/di/injection_container.dart';
 import 'package:coptix/shared/theme/styles.dart';
+import 'package:coptix/shared/utils/app_configurations.dart';
 import 'package:coptix/shared/utils/localization/app_localizations_delegate.dart';
 import 'package:coptix/shared/utils/localization/localized_content.dart';
 import 'package:coptix/shared/utils/navigation/app_router.dart';
@@ -12,7 +13,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 void main() {
   initDi();
-  runApp(DevicePreview(enabled: false, builder: (context) => const MyApp()));
+  runApp(DevicePreview(
+      enabled: enableDevicePreview, builder: (context) => const MyApp()));
 }
 
 void configureOrientation() {

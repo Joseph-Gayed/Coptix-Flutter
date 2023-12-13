@@ -8,6 +8,7 @@ class ApiNames {
   static const String liveBaseUrl = "$liveServerUrl/ovp_backend_2/public/api/";
 
   static bool isMocking = false;
+
   static String baseUrl = isMocking ? mockBaseUrl : liveBaseUrl;
 
   static const String categories = "categories";

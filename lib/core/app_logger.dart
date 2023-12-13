@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 
+import '../shared/utils/app_configurations.dart';
+
 class AppLogger {
   final Logger _logger = Logger(
       printer: PrettyPrinter(
@@ -12,7 +14,7 @@ class AppLogger {
           printEmojis: true, // Print an emoji for each log message
           printTime: false // Should each log print contain a timestamp
           ));
-  final isReleaseLoggingEnabled = false;
+  final isReleaseLoggingEnabled = enableAppLoggingInReleaseMode;
 
   void t(dynamic message) {
     if (isReleaseLoggingEnabled || !kReleaseMode) {

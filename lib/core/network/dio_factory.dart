@@ -4,13 +4,13 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
+import '../../shared/utils/app_configurations.dart';
 import 'api_names.dart';
 
 //Singleton https://stackoverflow.com/a/55348216
 class DioFactory {
   late Dio dioInstance;
 
-  bool enableLogging = true;
   Map<String, String> headers = {
     "content-type": "application/json",
     "accept": "application/json",
@@ -29,7 +29,7 @@ class DioFactory {
     dioInstance = Dio(baseOptions);
     dioInstance.interceptors.add(HeadersInterceptor());
 
-    if (enableLogging && !kReleaseMode) {
+    if (enableApisLogging && !kReleaseMode) {
       // dioInstance.interceptors.add(LoggingInterceptor());
       dioInstance.interceptors.add(PrettyDioLogger(
         requestHeader: true,

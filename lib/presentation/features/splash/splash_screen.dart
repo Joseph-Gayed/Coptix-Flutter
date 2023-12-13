@@ -4,6 +4,7 @@ import 'package:coptix/shared/widgets/coptix_container.dart';
 import 'package:flutter/material.dart';
 
 import '../../../shared/theme/styles.dart';
+import '../../../shared/utils/app_configurations.dart';
 import '../../../shared/utils/constants.dart';
 import '../../../shared/utils/localization/app_localizations_delegate.dart';
 import '../../../shared/utils/localization/localized_content.dart';
@@ -51,12 +52,13 @@ class _SplashScreenState extends State<SplashScreen> {
         // Your logo widget goes here
         // Text widget for "Welcome to coptix app" goes here
 
-        SafeArea(
-            child: ElevatedButton(
-                onPressed: () {
-                  ApiNames.isMocking = true;
-                },
-                child: const Text("Mock"))),
+        if (showMockingButton)
+          SafeArea(
+              child: ElevatedButton(
+                  onPressed: () {
+                    ApiNames.isMocking = true;
+                  },
+                  child: const Text("Mock"))),
         Expanded(
             child: Container(
           padding: const EdgeInsets.only(
