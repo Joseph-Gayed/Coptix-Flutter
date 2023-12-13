@@ -37,45 +37,46 @@ class HorizontalChips extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: List.generate(
-          chips.length,
-          (index) {
-            bool isSelected = chips[index] == selectedChip;
-            Color stateColor = isSelected ? selectedColor : notSelectedColor;
-            return Container(
-              padding: const EdgeInsets.only(
-                  left: Dimens.screenMargin, right: Dimens.screenMargin),
-              child: ChoiceChip(
-                showCheckmark: false,
-                label: Text(
-                  chips[index].title,
-                  style: TextStyle(
-                    color: stateColor,
-                  ),
-                ),
-                selected: isSelected,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(Dimens.cornerRadius),
-                  side: BorderSide(
-                    color: stateColor,
-                    width: 1,
-                  ),
-                ),
-                onSelected: (selected) {
-                  if (index != -1) {
-                    onClick(chips[index]);
-                  }
-                },
-                color: MaterialStateProperty.all<Color>(Colors.transparent),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: Dimens.screenMargin),
-              ),
-            );
-          },
+    return SizedBox(
+        height: Dimens.chipHeight,
+        child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: chips.length,
+            itemBuilder: (context, index) {
+              return chipWidget(index);
+            }));
+  }
+
+  Widget chipWidget(int index) {
+    bool isSelected = chips[index] == selectedChip;
+    Color stateColor = isSelected ? selectedColor : notSelectedColor;
+
+    return Container(
+      margin: const EdgeInsets.only(
+          left: Dimens.screenMargin, right: Dimens.screenMargin),
+      child: ChoiceChip(
+        label: Text(
+          chips[index].title,
+          style: TextStyle(
+            color: stateColor,
+          ),
         ),
+        showCheckmark: false,
+        selected: isSelected,
+        color: MaterialStateProperty.all<Color>(Colors.transparent),
+        padding: const EdgeInsets.symmetric(horizontal: Dimens.screenMargin),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(Dimens.cornerRadius),
+          side: BorderSide(
+            color: stateColor,
+            width: 1,
+          ),
+        ),
+        onSelected: (selected) {
+          if (index != -1) {
+            onClick(chips[index]);
+          }
+        },
       ),
     );
   }

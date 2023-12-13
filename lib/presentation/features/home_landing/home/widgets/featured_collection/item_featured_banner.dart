@@ -3,8 +3,8 @@ import 'package:coptix/shared/theme/styles.dart';
 import 'package:coptix/shared/widgets/safe_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../presentation/model/ui_clip.dart';
-import '../../../../../../shared/theme/dimens.dart';
+import '../../../../../../../presentation/model/ui_clip.dart';
+import '../../../../../../../shared/theme/dimens.dart';
 
 class ItemFeaturedBanner extends StatelessWidget {
   final UiClip uiClip;

@@ -1,13 +1,13 @@
+import 'package:coptix/presentation/features/home_landing/home/widgets/default_collection/clips_horizontal_list_view.dart';
 import 'package:coptix/shared/theme/colors.dart';
 import 'package:coptix/shared/theme/dimens.dart';
 import 'package:coptix/shared/utils/constants.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../main.dart';
-import '../../../../../../presentation/model/ui_clip.dart';
-import '../../../../../../presentation/model/ui_collection.dart';
-import '../../../../../../shared/theme/styles.dart';
-import 'item_default_image_card.dart';
+import '../../../../../../../main.dart';
+import '../../../../../../../presentation/model/ui_clip.dart';
+import '../../../../../../../presentation/model/ui_collection.dart';
+import '../../../../../../../shared/theme/styles.dart';
 
 class ItemDefaultCollection extends StatelessWidget {
   final UiCollection uiCollection;
@@ -76,25 +76,9 @@ class ItemDefaultCollection extends StatelessWidget {
         ),
 
         //Horizontal List
-        SizedBox(
-          height: HomeDimens.displayTypeHeights[uiCollection.displayType],
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: uiCollection.clips.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: Dimens.halfScreenMargin),
-                child: ItemDefaultImageCard(
-                    onItemClicked: onCardClicked,
-                    uiClip: uiCollection.clips[index]),
-              );
-            },
-          ),
-        ),
+        ClipsHorizontalListView(
+            uiCollection: uiCollection, onCardClicked: onCardClicked),
       ],
     );
   }
-
-  getHeightBasedOnDisplayType() {}
 }

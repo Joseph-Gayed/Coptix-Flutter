@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../presentation/model/ui_clip.dart';
-import '../../../../../../shared/theme/dimens.dart';
-import '../../../../../../shared/widgets/safe_network_image.dart';
+import '../../../../../../../presentation/model/ui_clip.dart';
+import '../../../../../../../shared/theme/dimens.dart';
+import '../../../../../../../shared/widgets/safe_network_image.dart';
 
 class ItemDefaultImageCard extends StatelessWidget {
   final Function(UiClip) onItemClicked;
