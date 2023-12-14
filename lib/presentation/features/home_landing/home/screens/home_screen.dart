@@ -76,11 +76,17 @@ class _HomeScreenState extends State<HomeScreen> {
         homeSuccessState.uiHome.collections);
 
     if (homeWidgets.isNotEmpty) {
-      return ListView.builder(
-        itemCount: homeWidgets.length,
-        itemBuilder: (context, index) {
-          return homeWidgets[index];
-        },
+      return CustomScrollView(
+        slivers: [
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              childCount: homeWidgets.length,
+              (BuildContext context, int index) {
+                return homeWidgets[index];
+              },
+            ),
+          ),
+        ],
       );
     } else {
       return NotFoundScreen(
