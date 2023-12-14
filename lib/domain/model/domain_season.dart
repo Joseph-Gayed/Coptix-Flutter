@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:coptix/domain/model/domain_clip.dart';
+import 'package:coptix/shared/enums/content_type.dart';
 
 DomainSeason seasonFromJson(String str) =>
     DomainSeason.fromJson(json.decode(str));
@@ -33,12 +34,20 @@ class DomainSeason {
         : 0;
     rate = jsonAsMap.containsKey("id") ? jsonAsMap['rate'] : 0;
     name = jsonAsMap.containsKey("name") ? jsonAsMap['name'] : "";
+    print("mapping season:$name");
     description =
         jsonAsMap.containsKey("description") ? jsonAsMap['description'] : "";
 
     if (jsonAsMap.containsKey("episodes")) {
       List list = jsonAsMap["episodes"] as List;
-      episodes = list.map((episode) => DomainClip.fromJson(episode)).toList();
+      episodes = list.map((episode) {
+        var domainEpisode = DomainClip.fromJson(episode);
+        domainEpisode.contentType =
+            MediaContentType.seriesEpisode.mediaContentTypeToJson();
+        print(
+            "mapping episode:${domainEpisode.name} , ${domainEpisode.contentType}");
+        return domainEpisode;
+      }).toList();
     } else {
       episodes = null;
     }

@@ -9,6 +9,7 @@ class DetailsRequestParams {
 
 extension DetailsRequestParamsExt on DetailsRequestParams {
   bool isValidRequest() {
+    print(contentType);
     return contentId.isNotEmpty &&
         (allowedContentTypesForClipDetailsApi.contains(contentType) ||
             allowedContentTypesForSeriesDetailsApi.contains(contentType));
@@ -26,12 +27,12 @@ extension DetailsRequestParamsExt on DetailsRequestParams {
 }
 
 List<String> allowedContentTypesForClipDetailsApi = [
-  MediaContentType.plays.valueAsString(),
-  MediaContentType.clips.valueAsString(),
-  MediaContentType.movies.valueAsString(),
+  MediaContentType.plays.mediaContentTypeToJson(),
+  MediaContentType.clips.mediaContentTypeToJson(),
+  MediaContentType.movies.mediaContentTypeToJson(),
 ];
 
 List<String> allowedContentTypesForSeriesDetailsApi = [
-  MediaContentType.shows.valueAsString(),
-  MediaContentType.series.valueAsString(),
+  MediaContentType.shows.mediaContentTypeToJson(),
+  MediaContentType.series.mediaContentTypeToJson(),
 ];

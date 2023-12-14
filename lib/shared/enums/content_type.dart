@@ -10,34 +10,31 @@ enum MediaContentType {
   showsEpisode,
 }
 
-MediaContentType mediaContentTypeFromJson(String jsonValue) {
-  switch (jsonValue) {
-    case 'clips':
-      return MediaContentType.clips;
-    case 'movies':
-      return MediaContentType.movies;
-    case 'plays':
-      return MediaContentType.plays;
-    case 'series':
-      return MediaContentType.series;
-    case 'series_season':
-      return MediaContentType.seriesSeason;
-    case 'series_episode':
-      return MediaContentType.seriesEpisode;
-    case 'shows':
-      return MediaContentType.shows;
-    case 'shows_season':
-      return MediaContentType.showsSeason;
-    case 'shows_episode':
-      return MediaContentType.showsEpisode;
+Map<String, MediaContentType> mediaContentTypeMap = {
+  'clips': MediaContentType.clips,
+  'movies': MediaContentType.movies,
+  'plays': MediaContentType.plays,
+  'series': MediaContentType.series,
+  'series_season': MediaContentType.seriesSeason,
+  'series_episode': MediaContentType.seriesEpisode,
+  'shows': MediaContentType.shows,
+  'shows_season': MediaContentType.showsSeason,
+  'shows_episode': MediaContentType.showsEpisode,
+};
 
-    default:
-      return MediaContentType.clips;
-  }
+MediaContentType mediaContentTypeFromJson(String jsonValue) {
+  return mediaContentTypeMap[jsonValue] ?? MediaContentType.clips;
 }
 
 extension MediaContentTypeExt on MediaContentType {
-  String valueAsString() {
-    return toString().split('.').last;
+  String mediaContentTypeToJson() {
+    String? foundKey;
+    mediaContentTypeMap.forEach((key, value) {
+      if (value == this) {
+        foundKey = key;
+      }
+    });
+    return foundKey ??
+        ""; // Returns the found key or an empty string if not found
   }
 }

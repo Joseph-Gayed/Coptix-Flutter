@@ -31,8 +31,8 @@ class SeriesDetailsCubit extends Cubit<SeriesDetailsState> {
 
   getSeriesDetails(UiClip request) {
     emit(SeriesDetailsLoadingState());
-    var detailsRequestParams =
-        DetailsRequestParams(request.id, request.contentType.valueAsString());
+    var detailsRequestParams = DetailsRequestParams(
+        request.id, request.contentType.mediaContentTypeToJson());
     repository.getClipDetails(detailsRequestParams).then((collectionsEither) {
       return collectionsEither.fold(errorHandler, successHandler);
     });

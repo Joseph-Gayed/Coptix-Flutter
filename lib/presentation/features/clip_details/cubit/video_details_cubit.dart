@@ -30,10 +30,15 @@ class VideoDetailsCubit extends Cubit<VideoDetailsState> {
 
   getClipDetails(UiClip request) {
     emit(VideoDetailsLoadingState());
-    var detailsRequestParams =
-        DetailsRequestParams(request.id, request.contentType.valueAsString());
-    repository.getClipDetails(detailsRequestParams).then((collectionsEither) {
-      return collectionsEither.fold(errorHandler, successHandler);
-    });
+    var detailsRequestParams = DetailsRequestParams(
+        request.id, request.contentType.mediaContentTypeToJson());
+
+    if (detailsRequestParams.isValidRequest()) {
+      repository.getClipDetails(detailsRequestParams).then((collectionsEither) {
+        return collectionsEither.fold(errorHandler, successHandler);
+      });
+    } else {
+      emit(VideoDetailsSuccessState(request));
+    }
   }
 }
