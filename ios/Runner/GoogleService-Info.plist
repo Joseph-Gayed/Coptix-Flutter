@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyCDW35Pci6x9RpIRDRtK5LnPSX6WVGi_vI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>974856763223</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ovp.coptix</string>
+	<key>PROJECT_ID</key>
+	<string>coptix-1d79b</string>
+	<key>STORAGE_BUCKET</key>
+	<string>coptix-1d79b.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:974856763223:ios:f362e62c1aac4174c37012</string>
+</dict>
+</plist>
