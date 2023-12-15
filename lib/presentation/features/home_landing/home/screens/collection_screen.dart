@@ -1,6 +1,7 @@
 import 'package:coptix/shared/widgets/clips_grid.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../shared/widgets/coptix_app_bar.dart';
 import '../../../../model/ui_collection.dart';
 import '../../../../../shared/utils/navigation/app_router.dart';
 import '../../../../../shared/utils/navigation/navigation_args.dart';
@@ -34,8 +35,9 @@ class _CollectionScreenState extends State<CollectionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(uiCollection.name),
+        appBar: CoptixAppBar(
+          title: uiCollection.name,
+          showingBackButton: true,
         ),
         body: CoptixContainer(child: ClipsGrid(clips: uiCollection.clips)));
   }

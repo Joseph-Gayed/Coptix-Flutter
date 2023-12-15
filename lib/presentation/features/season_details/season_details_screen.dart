@@ -7,6 +7,7 @@ import '../../../shared/enums/collection_display_type.dart';
 import '../../../shared/enums/content_type.dart';
 import '../../../shared/utils/navigation/navigation_args.dart';
 import '../../../shared/utils/navigation/shared_navigation.dart';
+import '../../../shared/widgets/coptix_app_bar.dart';
 
 class SeasonDetailsScreen extends StatefulWidget {
   final Map<String, dynamic> arguments;
@@ -29,8 +30,9 @@ class _SeasonDetailsScreenState extends State<SeasonDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Season:${uiClip.name}"),
+        appBar: CoptixAppBar(
+          title: "Season:${uiClip.name}",
+          showingBackButton: true,
         ),
         body: CoptixContainer(child: screenContent()));
   }

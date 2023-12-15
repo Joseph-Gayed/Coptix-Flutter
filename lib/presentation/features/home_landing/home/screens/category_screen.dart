@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../shared/utils/navigation/app_router.dart';
 import '../../../../../shared/utils/navigation/navigation_args.dart';
+import '../../../../../shared/widgets/coptix_app_bar.dart';
 import '../../../../../shared/widgets/coptix_container.dart';
 
 class CategoryScreen extends StatefulWidget {
@@ -34,8 +35,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(uiCategory.name),
+        appBar: CoptixAppBar(
+          title: uiCategory.name,
+          showingBackButton: true,
         ),
         body: const CoptixContainer(child: ClipsGrid(clips: [])));
   }

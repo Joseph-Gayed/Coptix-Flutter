@@ -8,6 +8,7 @@ import '../../../../../main.dart';
 import '../../../../../shared/utils/localization/app_localizations_delegate.dart';
 import '../../../../../shared/utils/localization/localized_content.dart';
 import '../../../../../shared/utils/shared_preferences.dart';
+import '../../../../../shared/widgets/coptix_app_bar.dart';
 
 class ChangeAppLanguageScreen extends StatefulWidget {
   const ChangeAppLanguageScreen({super.key});
@@ -41,13 +42,13 @@ class _ChangeAppLanguageScreenState extends State<ChangeAppLanguageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-            AppLocalizations.of(context).translate(LocalizationKey.language)),
+      appBar: CoptixAppBar(
+        title: AppLocalizations.of(context).translate(LocalizationKey.language),
+        showingBackButton: true,
       ),
       body: CoptixContainer(
         child: Container(
-            margin: const EdgeInsets.all(Dimens.screenMargin),
+            margin: EdgeInsets.all(Dimens.screenMargin),
             child: screenContent()),
       ),
     );
@@ -64,7 +65,7 @@ class _ChangeAppLanguageScreenState extends State<ChangeAppLanguageScreen> {
               selectedOption: _selectedLanguage),
         ),
         Container(
-          margin: const EdgeInsets.only(bottom: Dimens.doubleScreenMargin),
+          margin: EdgeInsets.only(bottom: Dimens.doubleScreenMargin),
           child: ElevatedButton(
             onPressed: saveAndBack,
             child: Text(
