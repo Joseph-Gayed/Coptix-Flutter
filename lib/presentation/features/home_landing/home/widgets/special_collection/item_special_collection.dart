@@ -1,3 +1,4 @@
+import 'package:coptix/main.dart';
 import 'package:coptix/shared/enums/collection_display_type.dart';
 import 'package:coptix/shared/theme/dimens.dart';
 import 'package:coptix/shared/utils/constants.dart';
@@ -60,7 +61,7 @@ class _ItemSpecialCollectionState extends State<ItemSpecialCollection> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.only(
+      margin: EdgeInsets.only(
           left: Dimens.screenMargin,
           right: Dimens.screenMargin,
           bottom: HomeDimens.categoriesVerticalMargin),
@@ -69,7 +70,9 @@ class _ItemSpecialCollectionState extends State<ItemSpecialCollection> {
         children: [
           // Gradiant Layer
           Image.asset(
-            "${imagesPath}special_gradiant_layer.png",
+            MyApp.isRtl(context)
+                ? "${imagesPath}special_gradiant_layer_ar.png"
+                : "${imagesPath}special_gradiant_layer_en.png",
             fit: BoxFit.fill,
             height: HomeDimens.specialCollectionHeight,
             width: double.infinity,
@@ -90,7 +93,7 @@ class _ItemSpecialCollectionState extends State<ItemSpecialCollection> {
     return Container(
       width: HomeDimens.specialTextContainerWidth,
       height: HomeDimens.displayTypeHeights[CollectionDisplayType.special],
-      margin: const EdgeInsets.symmetric(horizontal: Dimens.screenMargin),
+      margin: EdgeInsets.symmetric(horizontal: Dimens.screenMargin),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -103,7 +106,7 @@ class _ItemSpecialCollectionState extends State<ItemSpecialCollection> {
             overflow: TextOverflow.ellipsis,
           ),
           if (widget.uiCollection.clips.isNotEmpty)
-            const SizedBox(height: Dimens.screenMargin),
+            SizedBox(height: Dimens.screenMargin),
           Text(
             widget.uiCollection.clips[indexOfActiveItem].name,
             maxLines: 2,
