@@ -46,7 +46,7 @@ class DetailsTabsView extends StatelessWidget {
               labelStyle: body1TextStyle.copyWith(
                   fontWeight:
                       FontWeight.bold), // Style for the selected tab label
-              indicator: const UnderlineTabIndicator(
+              indicator: UnderlineTabIndicator(
                 borderSide: BorderSide(
                     width: Dimens.tabBarIndicatorHeight, color: secondaryColor),
                 insets: EdgeInsets.only(
@@ -69,7 +69,7 @@ class DetailsTabsView extends StatelessWidget {
                     onSeasonSelected: clipTabItem.onSeasonSelected!);
               } else if (clipTabItem.uiClips != null) {
                 return Padding(
-                  padding: const EdgeInsets.only(top: Dimens.screenMargin),
+                  padding: EdgeInsets.only(top: Dimens.screenMargin),
                   child: ClipsGrid(clips: clipTabItem.uiClips!),
                 );
               } else {

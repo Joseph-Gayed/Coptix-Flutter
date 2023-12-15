@@ -34,7 +34,6 @@ class DomainSeason {
         : 0;
     rate = jsonAsMap.containsKey("id") ? jsonAsMap['rate'] : 0;
     name = jsonAsMap.containsKey("name") ? jsonAsMap['name'] : "";
-    print("mapping season:$name");
     description =
         jsonAsMap.containsKey("description") ? jsonAsMap['description'] : "";
 
@@ -44,8 +43,6 @@ class DomainSeason {
         var domainEpisode = DomainClip.fromJson(episode);
         domainEpisode.contentType =
             MediaContentType.seriesEpisode.mediaContentTypeToJson();
-        print(
-            "mapping episode:${domainEpisode.name} , ${domainEpisode.contentType}");
         return domainEpisode;
       }).toList();
     } else {

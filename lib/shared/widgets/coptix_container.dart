@@ -10,7 +10,7 @@ class CoptixContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.only(
+        padding: EdgeInsets.only(
             top: Dimens.halfScreenMargin,
             left: Dimens.halfScreenMargin,
             right: Dimens.halfScreenMargin),

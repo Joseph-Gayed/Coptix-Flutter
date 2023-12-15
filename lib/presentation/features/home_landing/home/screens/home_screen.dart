@@ -115,8 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget buildCategoriesWidgets(List<UiCategory> categories) {
     return Container(
-      margin:
-          const EdgeInsets.only(bottom: HomeDimens.categoriesVerticalMargin),
+      margin: EdgeInsets.only(bottom: HomeDimens.categoriesVerticalMargin),
       child: CategoriesSingleSelectionChips(
           categories: categories, onCategorySelected: openCategory),
     );

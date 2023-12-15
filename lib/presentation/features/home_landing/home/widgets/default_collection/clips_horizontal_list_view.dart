@@ -26,8 +26,7 @@ class ClipsHorizontalListView extends StatelessWidget {
         itemCount: uiCollection.clips.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: Dimens.halfScreenMargin),
+            padding: EdgeInsets.symmetric(horizontal: Dimens.halfScreenMargin),
             child: ItemDefaultImageCard(
                 onItemClicked: onCardClicked,
                 uiClip: uiCollection.clips[index]),

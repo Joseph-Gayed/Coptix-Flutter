@@ -52,7 +52,7 @@ class HorizontalChips extends StatelessWidget {
     Color stateColor = isSelected ? selectedColor : notSelectedColor;
 
     return Container(
-      margin: const EdgeInsets.only(
+      margin: EdgeInsets.only(
           left: Dimens.screenMargin, right: Dimens.screenMargin),
       child: ChoiceChip(
         label: Text(
@@ -64,7 +64,7 @@ class HorizontalChips extends StatelessWidget {
         showCheckmark: false,
         selected: isSelected,
         color: MaterialStateProperty.all<Color>(Colors.transparent),
-        padding: const EdgeInsets.symmetric(horizontal: Dimens.screenMargin),
+        padding: EdgeInsets.symmetric(horizontal: Dimens.screenMargin),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(Dimens.cornerRadius),
           side: BorderSide(

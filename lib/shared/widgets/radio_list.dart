@@ -30,7 +30,7 @@ class RadioList extends StatelessWidget {
     return options.keys.map((optionTitle) {
       return Container(
         color: primaryColor,
-        margin: const EdgeInsets.only(
+        margin: EdgeInsets.only(
             top: Dimens.halfScreenMargin, bottom: Dimens.halfScreenMargin),
         child: RadioListTile(
           title: Text(optionTitle),

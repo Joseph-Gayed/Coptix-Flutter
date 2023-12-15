@@ -1,60 +1,83 @@
 import '../enums/collection_display_type.dart';
+import '../utils/app_configurations.dart';
 
-const designScreenFactor = 0.8;
+double designScreenFactor = 0.8 * (isTabletDimension ? 2 : 1);
+
+//banner :
+//https://picsum.photos/390/485
+//normal:
+//https://picsum.photos/250/140
+//vertical
+//https://picsum.photos/165/290
 
 class FontSizes {
-  //https://api.flutter.dev/flutter/material/TextTheme-class.html
-  static const double h4 = designScreenFactor * 34;
-  static const double h5 = designScreenFactor * 24;
-  static const double h6 = designScreenFactor * 20;
-  static const double subtitle1 = designScreenFactor * 16;
-  static const double subtitle2 = designScreenFactor * 14;
-  static const double body1 = designScreenFactor * 16;
-  static const double body2 = designScreenFactor * 14;
-  static const double button = designScreenFactor * 18;
-  static const double caption = designScreenFactor * 12;
-  static const double overline = designScreenFactor * 10;
+  static double h4 = designScreenFactor * 34;
+  static double h5 = designScreenFactor * 24;
+  static double h6 = designScreenFactor * 20;
+  static double subtitle1 = designScreenFactor * 16;
+  static double subtitle2 = designScreenFactor * 14;
+  static double body1 = designScreenFactor * 16;
+  static double body2 = designScreenFactor * 14;
+  static double button = designScreenFactor * 18;
+  static double caption = designScreenFactor * 12;
+  static double overline = designScreenFactor * 10;
 }
 
 class Dimens {
-  static const double screenMargin = designScreenFactor * 16;
-  static const double halfScreenMargin = screenMargin / 2;
-  static const double doubleScreenMargin = screenMargin * 2;
-  static const double appBarHeight = 48;
-  static const double bottomNavBarIconSize = 25;
-  static const double buttonsCornerRadius = 5;
-  static const double verticalDividerHeight = designScreenFactor * 31;
-  static const double verticalDividerWidth = designScreenFactor * 5;
-  static const double verticalDividerCornerRadius = designScreenFactor * 2.5;
-  static const double cornerRadius = designScreenFactor * 10;
-  static const double arrowIconSize = 20;
+  static double screenMargin = designScreenFactor * 16;
+  static double halfScreenMargin = screenMargin / 2;
+  static double doubleScreenMargin = screenMargin * 2;
+  static double appBarHeight = designScreenFactor * 56;
+  static double bottomNavBarIconSize = designScreenFactor * 25;
+  static double buttonsCornerRadius = designScreenFactor * 5;
+  static double verticalDividerHeight = designScreenFactor * 31;
+  static double verticalDividerWidth = designScreenFactor * 5;
+  static double verticalDividerCornerRadius = designScreenFactor * 2.5;
+  static double cornerRadius = designScreenFactor * 10;
+  static double arrowIconSize = designScreenFactor * 20;
+  static double indicatorDotsSize = designScreenFactor * 10;
+  static double gridSpacing = screenMargin;
+  static double detailsBannerMaskOpacity = 0.7;
+  static double tabBarIndicatorHeight = designScreenFactor * 4;
+  static double tabBarIndicatorMargin = designScreenFactor * 7;
+  static double backButtonSize = designScreenFactor * 60;
+  static double chipHeight = designScreenFactor * 40;
+  static double buttonHorizontalPadding = designScreenFactor * 6;
+  static double buttonVerticalPadding = designScreenFactor * 10;
 
-  static const double indicatorDotsSize = designScreenFactor * 10;
-  static const double gridSpacing = screenMargin;
-  static const double detailsBannerMaskOpacity = 0.7;
-  static const double tabBarIndicatorHeight = designScreenFactor * 7;
-  static const double tabBarIndicatorMargin = designScreenFactor * 7;
-  static const double backButtonSize = designScreenFactor * 60;
-  static const double chipHeight = designScreenFactor * 40;
-}
-
-class SplashDimens {
-  static const double logoMargin = 50 - Dimens.screenMargin;
-  static const double greetingMargin = 90 - Dimens.screenMargin;
-}
-
-class HomeDimens {
-  static const double collectionsVerticalMargin = designScreenFactor * 53;
-  static const double collectionTitleVerticalMargin = designScreenFactor * 16;
-  static const double categoriesVerticalMargin = designScreenFactor * 32;
-  static const double collectionTitleHorizontalMargin = designScreenFactor * 13;
-  static const Map<CollectionDisplayType, double> displayTypeWidths = {
+  static Map<CollectionDisplayType, double> displayTypeWidths = {
     CollectionDisplayType.banner: designScreenFactor * 385,
     CollectionDisplayType.normal: designScreenFactor * 250,
     CollectionDisplayType.vertical: designScreenFactor * 165,
     CollectionDisplayType.special: designScreenFactor * 165,
   };
-  static const Map<CollectionDisplayType, double> displayTypeHeights = {
+  static Map<CollectionDisplayType, double> displayTypeHeights = {
+    CollectionDisplayType.banner: designScreenFactor * 688,
+    CollectionDisplayType.normal: designScreenFactor * 140,
+    CollectionDisplayType.vertical: designScreenFactor * 294,
+    CollectionDisplayType.special: designScreenFactor * 294,
+  };
+}
+
+class SplashDimens {
+  static double logoMargin = (designScreenFactor * 50) - Dimens.screenMargin;
+  static double greetingMargin =
+      (designScreenFactor * 90) - Dimens.screenMargin;
+}
+
+class HomeDimens {
+  static double collectionsVerticalMargin = designScreenFactor * 53;
+  static double collectionTitleVerticalMargin = designScreenFactor * 16;
+  static double categoriesVerticalMargin = designScreenFactor * 32;
+  static double collectionTitleHorizontalMargin = designScreenFactor * 13;
+
+  static Map<CollectionDisplayType, double> displayTypeWidths = {
+    CollectionDisplayType.banner: designScreenFactor * 385,
+    CollectionDisplayType.normal: designScreenFactor * 250,
+    CollectionDisplayType.vertical: designScreenFactor * 165,
+    CollectionDisplayType.special: designScreenFactor * 165,
+  };
+  static Map<CollectionDisplayType, double> displayTypeHeights = {
     CollectionDisplayType.banner: designScreenFactor * 688,
     CollectionDisplayType.normal: designScreenFactor * 140,
     CollectionDisplayType.vertical: designScreenFactor * 294,
@@ -65,7 +88,7 @@ class HomeDimens {
       displayTypeHeights[CollectionDisplayType.banner]! *
       0.7;
 
-  static double featuredButtonsFontSize = designScreenFactor * 16;
+  static double featuredButtonsFontSize = FontSizes.subtitle1;
   static double specialVerticalPadding = designScreenFactor * 32;
   static double specialCollectionHeight = specialVerticalPadding +
       displayTypeHeights[CollectionDisplayType.special]!;
@@ -73,22 +96,13 @@ class HomeDimens {
 }
 
 class NewAdditionsDimens {
-  static const double cardWidth = designScreenFactor * 190;
-  static const double cardHeight = designScreenFactor * 290;
+  static double cardWidth = designScreenFactor * 190;
+  static double cardHeight = designScreenFactor * 290;
 }
 
-//banner :
-//https://picsum.photos/390/485
-//normal:
-//https://picsum.photos/250/140
-//vertical
-//https://picsum.photos/165/290
-
 class VideoDetailsDimens {
-  static const double bannerHeight = designScreenFactor * 250;
-  static const double shareIconSize = designScreenFactor * 20;
-  static const double shareButtonSize =
-      shareIconSize + (designScreenFactor * 9);
-
+  static double bannerHeight = designScreenFactor * 250;
+  static double shareIconSize = designScreenFactor * 20;
+  static double shareButtonSize = shareIconSize + (designScreenFactor * 9);
   static double gradientLayerHeight = designScreenFactor * bannerHeight * 0.2;
 }

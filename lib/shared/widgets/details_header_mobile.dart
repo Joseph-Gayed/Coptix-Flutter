@@ -73,7 +73,7 @@ class DetailsHeaderMobile extends StatelessWidget {
             )
           ],
         ),
-        const SizedBox(
+        SizedBox(
           height: Dimens.halfScreenMargin, // <-- SEE HERE
         ),
 
@@ -83,7 +83,7 @@ class DetailsHeaderMobile extends StatelessWidget {
             "${AppLocalizations.of(context).translate(LocalizationKey.season)}: ${uiClip.currentSeason!.name}",
             style: body2TextStyle.copyWith(fontWeight: FontWeight.bold),
           ),
-        const SizedBox(
+        SizedBox(
           height: Dimens.halfScreenMargin, // <-- SEE HERE
         ),
 
@@ -92,7 +92,7 @@ class DetailsHeaderMobile extends StatelessWidget {
           uiClip.name,
           style: headTextStyle,
         ),
-        const SizedBox(
+        SizedBox(
           height: Dimens.halfScreenMargin, // <-- SEE HERE
         ),
 
@@ -101,7 +101,7 @@ class DetailsHeaderMobile extends StatelessWidget {
           uiClip.description,
           style: body2TextStyle,
         ),
-        const SizedBox(
+        SizedBox(
           height: Dimens.halfScreenMargin, // <-- SEE HERE
         ),
 
@@ -110,7 +110,7 @@ class DetailsHeaderMobile extends StatelessWidget {
             uiClip: uiClip,
             onPlayNowClicked: onPlayNowClicked,
             onAddToFavoritesClicked: onAddToFavoritesClicked),
-        const SizedBox(
+        SizedBox(
           height: Dimens.halfScreenMargin, // <-- SEE HERE
         ),
       ],
@@ -124,8 +124,8 @@ class DetailsHeaderMobile extends StatelessWidget {
           shape: const CircleBorder(),
         ),
         onPressed: share,
-        child: const ImageIcon(
-          AssetImage("${imagesPath}ic_share.png"),
+        child: ImageIcon(
+          const AssetImage("${imagesPath}ic_share.png"),
           color: lightColor,
           size: VideoDetailsDimens.shareIconSize,
         ));

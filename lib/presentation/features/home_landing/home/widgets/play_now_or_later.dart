@@ -26,6 +26,7 @@ class PlayNowOrLater extends StatelessWidget {
         //playNow
         Expanded(
           child: ElevatedButton.icon(
+              style: secondaryButtonStyle,
               onPressed: () {
                 onPlayNowClicked(uiClip);
               },
@@ -37,7 +38,7 @@ class PlayNowOrLater extends StatelessWidget {
               )),
         ),
 
-        const SizedBox(
+        SizedBox(
           width: Dimens.screenMargin,
         ),
         //Add to myList

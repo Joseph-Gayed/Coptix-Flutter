@@ -9,7 +9,6 @@ class DetailsRequestParams {
 
 extension DetailsRequestParamsExt on DetailsRequestParams {
   bool isValidRequest() {
-    print(contentType);
     return contentId.isNotEmpty &&
         (allowedContentTypesForClipDetailsApi.contains(contentType) ||
             allowedContentTypesForSeriesDetailsApi.contains(contentType));

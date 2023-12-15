@@ -16,16 +16,16 @@ var appTheme = ThemeData(
       fillColor: MaterialStateProperty.all<Color>(secondaryColor),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(style: secondaryButtonStyle),
-    textTheme: const TextTheme(labelLarge: buttonTextStyle),
+    textTheme: TextTheme(labelLarge: buttonTextStyle),
     useMaterial3: true);
 
-const TextStyle headTextStyle = TextStyle(
+TextStyle headTextStyle = TextStyle(
     fontSize: FontSizes.h5,
     fontWeight: FontWeight.bold,
     color: lightColor,
     fontFamily: appFontFamily);
 
-const TextStyle titleTextStyle = TextStyle(
+TextStyle titleTextStyle = TextStyle(
     fontSize: FontSizes.h6,
     fontWeight: FontWeight.bold,
     color: lightColor,
@@ -34,24 +34,27 @@ const TextStyle titleTextStyle = TextStyle(
 TextStyle subTitleTextStyle =
     titleTextStyle.copyWith(fontSize: FontSizes.subtitle1);
 
-const TextStyle body2TextStyle = TextStyle(
+TextStyle body2TextStyle = TextStyle(
     fontSize: FontSizes.body2, color: lightColor, fontFamily: appFontFamily);
 
-const TextStyle body1TextStyle = TextStyle(
+TextStyle body1TextStyle = TextStyle(
     fontSize: FontSizes.body1, color: lightColor, fontFamily: appFontFamily);
 
-const TextStyle captionTextStyle = TextStyle(
+TextStyle captionTextStyle = TextStyle(
     fontSize: FontSizes.caption, color: lightColor, fontFamily: appFontFamily);
 
-const TextStyle buttonTextStyle = TextStyle(
+TextStyle buttonTextStyle = TextStyle(
     fontSize: FontSizes.button,
     fontFamily: appFontFamily,
     fontWeight: FontWeight.w700);
 
-ButtonStyle primaryButtonStyle = ButtonStyle(
+ButtonStyle appButtonStyle = ButtonStyle(
   backgroundColor:
       MaterialStateProperty.all<Color>(primaryButtonBackgroundColor),
   foregroundColor: MaterialStateProperty.all<Color>(lightColor),
+  padding: MaterialStateProperty.all<EdgeInsetsGeometry>(EdgeInsets.symmetric(
+      horizontal: Dimens.buttonHorizontalPadding,
+      vertical: Dimens.buttonVerticalPadding)),
   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
     RoundedRectangleBorder(
       borderRadius:
@@ -60,7 +63,13 @@ ButtonStyle primaryButtonStyle = ButtonStyle(
   ),
 );
 
-ButtonStyle secondaryButtonStyle = primaryButtonStyle.copyWith(
+ButtonStyle primaryButtonStyle = appButtonStyle.copyWith(
+  backgroundColor:
+      MaterialStateProperty.all<Color>(primaryButtonBackgroundColor),
+  foregroundColor: MaterialStateProperty.all<Color>(lightColor),
+);
+
+ButtonStyle secondaryButtonStyle = appButtonStyle.copyWith(
   backgroundColor: MaterialStateProperty.all<Color>(secondaryColor),
   foregroundColor: MaterialStateProperty.all<Color>(primaryColor),
 );

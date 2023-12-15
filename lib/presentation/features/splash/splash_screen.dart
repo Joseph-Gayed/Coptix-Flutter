@@ -61,12 +61,12 @@ class _SplashScreenState extends State<SplashScreen> {
                   child: const Text("Mock"))),
         Expanded(
             child: Container(
-          padding: const EdgeInsets.only(
+          padding: EdgeInsets.only(
               left: SplashDimens.logoMargin, right: SplashDimens.logoMargin),
           child: Image.asset("${imagesPath}logo_name.png"),
         )),
         Container(
-          padding: const EdgeInsets.only(bottom: SplashDimens.greetingMargin),
+          padding: EdgeInsets.only(bottom: SplashDimens.greetingMargin),
           child: Text(
             AppLocalizations.of(context).translate(LocalizationKey.welcome),
             style: titleTextStyle,

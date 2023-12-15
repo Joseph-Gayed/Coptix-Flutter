@@ -23,8 +23,7 @@ class ItemDefaultCollection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin:
-            const EdgeInsets.only(bottom: HomeDimens.collectionsVerticalMargin),
+        margin: EdgeInsets.only(bottom: HomeDimens.collectionsVerticalMargin),
         child: widgetContent(context));
   }
 
@@ -34,14 +33,14 @@ class ItemDefaultCollection extends StatelessWidget {
       children: [
         //Title Row
         Container(
-          margin: const EdgeInsets.only(
-              bottom: HomeDimens.collectionTitleVerticalMargin),
+          margin:
+              EdgeInsets.only(bottom: HomeDimens.collectionTitleVerticalMargin),
           child: Row(
             children: [
               Container(
                 width: Dimens.verticalDividerWidth,
                 height: Dimens.verticalDividerHeight,
-                margin: const EdgeInsets.symmetric(
+                margin: EdgeInsets.symmetric(
                     horizontal: HomeDimens.collectionTitleHorizontalMargin),
                 decoration: BoxDecoration(
                   borderRadius:
@@ -61,7 +60,7 @@ class ItemDefaultCollection extends StatelessWidget {
                   // Navigate to SectionList screen
                 },
                 child: Container(
-                  padding: const EdgeInsets.all(Dimens.halfScreenMargin),
+                  padding: EdgeInsets.all(Dimens.halfScreenMargin),
                   child: Image.asset(
                     MyApp.isRtl(context)
                         ? '${imagesPath}ic_arrow_left.png'
