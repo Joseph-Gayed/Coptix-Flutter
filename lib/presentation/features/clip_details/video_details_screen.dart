@@ -8,8 +8,8 @@ import '../../../shared/utils/localization/app_localizations_delegate.dart';
 import '../../../shared/utils/localization/localized_content.dart';
 import '../../../shared/utils/navigation/navigation_args.dart';
 import '../../../shared/utils/navigation/shared_navigation.dart';
+import '../../../shared/widgets/details_header/details_header.dart';
 import '../../../shared/widgets/details_tab_view.dart';
-import '../../../shared/widgets/details_header_mobile.dart';
 import '../../model/ui_clip.dart';
 import '../error_screen/not_found_screen.dart';
 import 'cubit/video_details_cubit.dart';
@@ -73,7 +73,7 @@ class _VideoDetailsScreenState extends State<VideoDetailsScreen> {
     return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(
-          child: DetailsHeaderMobile(
+          child: DetailsHeader(
               uiClip: state.uiClip,
               onPlayNowClicked: openVideoPlayer,
               onAddToFavoritesClicked: addToFavorites),

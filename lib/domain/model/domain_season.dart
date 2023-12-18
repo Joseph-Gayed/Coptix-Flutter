@@ -1,11 +1,6 @@
-import 'dart:convert';
 
 import 'package:coptix/domain/model/domain_clip.dart';
 import 'package:coptix/shared/enums/content_type.dart';
-
-DomainSeason seasonFromJson(String str) =>
-    DomainSeason.fromJson(json.decode(str));
-String seasonToJson(DomainSeason data) => json.encode(data.toJson());
 
 class DomainSeason {
   num? id;

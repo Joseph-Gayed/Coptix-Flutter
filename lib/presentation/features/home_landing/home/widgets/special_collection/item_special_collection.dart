@@ -62,8 +62,8 @@ class _ItemSpecialCollectionState extends State<ItemSpecialCollection> {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.only(
-          left: Dimens.screenMargin,
-          right: Dimens.screenMargin,
+          left: Dimens.screenMarginH,
+          right: Dimens.screenMarginH,
           bottom: HomeDimens.categoriesVerticalMargin),
       child: Stack(
         alignment: Alignment.center,
@@ -93,7 +93,7 @@ class _ItemSpecialCollectionState extends State<ItemSpecialCollection> {
     return Container(
       width: HomeDimens.specialTextContainerWidth,
       height: HomeDimens.displayTypeHeights[CollectionDisplayType.special],
-      margin: EdgeInsets.symmetric(horizontal: Dimens.screenMargin),
+      margin: EdgeInsets.symmetric(horizontal: Dimens.screenMarginH),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -106,7 +106,7 @@ class _ItemSpecialCollectionState extends State<ItemSpecialCollection> {
             overflow: TextOverflow.ellipsis,
           ),
           if (widget.uiCollection.clips.isNotEmpty)
-            SizedBox(height: Dimens.screenMargin),
+            SizedBox(height: Dimens.halfScreenMarginV),
           Text(
             widget.uiCollection.clips[indexOfActiveItem].name,
             maxLines: 2,

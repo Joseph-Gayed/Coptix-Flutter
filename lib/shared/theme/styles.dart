@@ -57,8 +57,7 @@ ButtonStyle appButtonStyle = ButtonStyle(
       vertical: Dimens.buttonVerticalPadding)),
   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
     RoundedRectangleBorder(
-      borderRadius:
-          BorderRadius.circular(Dimens.buttonsCornerRadius), // Corner radius
+      borderRadius: BorderRadius.circular(Dimens.cornerRadius), // Corner radius
     ),
   ),
 );

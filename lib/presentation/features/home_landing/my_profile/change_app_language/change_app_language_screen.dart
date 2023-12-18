@@ -48,7 +48,9 @@ class _ChangeAppLanguageScreenState extends State<ChangeAppLanguageScreen> {
       ),
       body: CoptixContainer(
         child: Container(
-            margin: EdgeInsets.all(Dimens.screenMargin),
+            margin: EdgeInsets.symmetric(
+                horizontal: Dimens.screenMarginH,
+                vertical: Dimens.screenMarginV),
             child: screenContent()),
       ),
     );
@@ -65,7 +67,7 @@ class _ChangeAppLanguageScreenState extends State<ChangeAppLanguageScreen> {
               selectedOption: _selectedLanguage),
         ),
         Container(
-          margin: EdgeInsets.only(bottom: Dimens.doubleScreenMargin),
+          margin: EdgeInsets.only(bottom: Dimens.doubleScreenMarginH),
           child: ElevatedButton(
             onPressed: saveAndBack,
             child: Text(

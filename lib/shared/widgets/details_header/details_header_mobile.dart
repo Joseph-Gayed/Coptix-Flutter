@@ -4,24 +4,24 @@ import 'package:coptix/shared/utils/localization/localized_content.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 
-import '../../presentation/model/ui_clip.dart';
-import '../theme/colors.dart';
-import '../theme/dimens.dart';
-import '../utils/constants.dart';
-import 'safe_network_image.dart';
-import '../../presentation/features/home_landing/home/widgets/play_now_or_later.dart';
+import '../../../presentation/model/ui_clip.dart';
+import '../../theme/colors.dart';
+import '../../theme/dimens.dart';
+import '../../utils/constants.dart';
+import '../safe_network_image.dart';
+import '../../../presentation/features/home_landing/home/widgets/play_now_or_later.dart';
 
 class DetailsHeaderMobile extends StatelessWidget {
+  final UiClip uiClip;
+  final Function(UiClip) onPlayNowClicked;
+  final Function(UiClip) onAddToFavoritesClicked;
+
   const DetailsHeaderMobile({
     super.key,
     required this.uiClip,
     required this.onPlayNowClicked,
     required this.onAddToFavoritesClicked,
   });
-
-  final UiClip uiClip;
-  final Function(UiClip) onPlayNowClicked;
-  final Function(UiClip) onAddToFavoritesClicked;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class DetailsHeaderMobile extends StatelessWidget {
             SafeNetworkImage(
                 imagePath: uiClip.getImagePath(),
                 width: double.infinity,
-                height: VideoDetailsDimens.bannerHeight),
+                height: VideoDetailsDimens.bannerHeightMobile),
 
             //Crosses layer Mask
             Opacity(
@@ -42,7 +42,7 @@ class DetailsHeaderMobile extends StatelessWidget {
               child: Image.asset(
                 "${imagesPath}details_banner_mask.png",
                 width: double.infinity,
-                height: VideoDetailsDimens.bannerHeight,
+                height: VideoDetailsDimens.bannerHeightMobile,
                 fit: BoxFit.fill,
               ),
             ),
@@ -53,7 +53,7 @@ class DetailsHeaderMobile extends StatelessWidget {
               left: 0,
               right: 0,
               child: Container(
-                height: VideoDetailsDimens.gradientLayerHeight,
+                height: VideoDetailsDimens.gradientLayerHeightMobile,
                 decoration: const BoxDecoration(
                     gradient: LinearGradient(
                   begin: Alignment.bottomCenter,
@@ -74,7 +74,7 @@ class DetailsHeaderMobile extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: Dimens.halfScreenMargin, // <-- SEE HERE
+          height: Dimens.halfScreenMarginH, // <-- SEE HERE
         ),
 
         if (uiClip.currentSeason != null)
@@ -84,25 +84,27 @@ class DetailsHeaderMobile extends StatelessWidget {
             style: body2TextStyle.copyWith(fontWeight: FontWeight.bold),
           ),
         SizedBox(
-          height: Dimens.halfScreenMargin, // <-- SEE HERE
+          height: Dimens.halfScreenMarginH, // <-- SEE HERE
         ),
 
         //Clip/Series Name
         Text(
           uiClip.name,
+          maxLines: 2,
           style: headTextStyle,
         ),
         SizedBox(
-          height: Dimens.halfScreenMargin, // <-- SEE HERE
+          height: Dimens.halfScreenMarginH, // <-- SEE HERE
         ),
 
         //Clip/Series description
         Text(
           uiClip.description,
-          style: body2TextStyle,
+          maxLines: 2,
+          style: body1TextStyle,
         ),
         SizedBox(
-          height: Dimens.halfScreenMargin, // <-- SEE HERE
+          height: Dimens.halfScreenMarginH, // <-- SEE HERE
         ),
 
         //Action Buttons
@@ -111,7 +113,7 @@ class DetailsHeaderMobile extends StatelessWidget {
             onPlayNowClicked: onPlayNowClicked,
             onAddToFavoritesClicked: onAddToFavoritesClicked),
         SizedBox(
-          height: Dimens.halfScreenMargin, // <-- SEE HERE
+          height: Dimens.halfScreenMarginH, // <-- SEE HERE
         ),
       ],
     );

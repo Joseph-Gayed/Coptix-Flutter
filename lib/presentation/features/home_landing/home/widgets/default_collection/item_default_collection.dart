@@ -43,8 +43,7 @@ class ItemDefaultCollection extends StatelessWidget {
                 margin: EdgeInsets.symmetric(
                     horizontal: HomeDimens.collectionTitleHorizontalMargin),
                 decoration: BoxDecoration(
-                  borderRadius:
-                      BorderRadius.circular(Dimens.verticalDividerCornerRadius),
+                  borderRadius: BorderRadius.circular(Dimens.cornerRadius),
                   color: secondaryColor,
                 ),
               ),
@@ -60,7 +59,7 @@ class ItemDefaultCollection extends StatelessWidget {
                   // Navigate to SectionList screen
                 },
                 child: Container(
-                  padding: EdgeInsets.all(Dimens.halfScreenMargin),
+                  padding: EdgeInsets.all(Dimens.halfScreenMarginH),
                   child: Image.asset(
                     MyApp.isRtl(context)
                         ? '${imagesPath}ic_arrow_left.png'

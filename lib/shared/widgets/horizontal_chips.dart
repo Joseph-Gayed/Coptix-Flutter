@@ -53,7 +53,7 @@ class HorizontalChips extends StatelessWidget {
 
     return Container(
       margin: EdgeInsets.only(
-          left: Dimens.screenMargin, right: Dimens.screenMargin),
+          left: Dimens.screenMarginH, right: Dimens.screenMarginH),
       child: ChoiceChip(
         label: Text(
           chips[index].title,
@@ -64,7 +64,7 @@ class HorizontalChips extends StatelessWidget {
         showCheckmark: false,
         selected: isSelected,
         color: MaterialStateProperty.all<Color>(Colors.transparent),
-        padding: EdgeInsets.symmetric(horizontal: Dimens.screenMargin),
+        padding: EdgeInsets.symmetric(horizontal: Dimens.screenMarginH),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(Dimens.cornerRadius),
           side: BorderSide(

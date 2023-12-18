@@ -1,5 +1,5 @@
 import 'package:coptix/presentation/model/ui_season.dart';
-import 'package:coptix/shared/extensions/list.dart';
+import 'package:coptix/shared/extensions/list_ext.dart';
 import 'package:coptix/shared/widgets/horizontal_chips.dart';
 import 'package:flutter/material.dart';
 

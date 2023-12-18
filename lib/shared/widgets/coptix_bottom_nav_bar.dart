@@ -1,4 +1,5 @@
 import 'package:coptix/shared/theme/colors.dart';
+import 'package:coptix/shared/theme/dimens.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/localization/app_localizations_delegate.dart';
@@ -14,9 +15,13 @@ class CoptixBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      showUnselectedLabels: true,
+      showSelectedLabels: true,
       currentIndex: selectedIndex,
       selectedItemColor: secondaryColor,
       unselectedItemColor: inActiveColor,
+      selectedFontSize: FontSizes.body2,
+      unselectedFontSize: FontSizes.body2,
       onTap: onIemSelected,
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(

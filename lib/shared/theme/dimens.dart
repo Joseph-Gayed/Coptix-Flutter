@@ -1,7 +1,9 @@
-import '../enums/collection_display_type.dart';
-import '../utils/app_configurations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-double designScreenFactor = 0.8 * (isTabletDimension ? 2 : 1);
+import '../enums/collection_display_type.dart';
+
+double dimensDesignScreenFactor = 1;
+double fontsDesignScreenFactor = 1;
 
 //banner :
 //https://picsum.photos/390/485
@@ -11,98 +13,92 @@ double designScreenFactor = 0.8 * (isTabletDimension ? 2 : 1);
 //https://picsum.photos/165/290
 
 class FontSizes {
-  static double h4 = designScreenFactor * 34;
-  static double h5 = designScreenFactor * 24;
-  static double h6 = designScreenFactor * 20;
-  static double subtitle1 = designScreenFactor * 16;
-  static double subtitle2 = designScreenFactor * 14;
-  static double body1 = designScreenFactor * 16;
-  static double body2 = designScreenFactor * 14;
-  static double button = designScreenFactor * 18;
-  static double caption = designScreenFactor * 12;
-  static double overline = designScreenFactor * 10;
+  static double h4 = (34).sp;
+  static double h5 = (24).sp;
+  static double h6 = (20).sp;
+  static double subtitle1 = (16).sp;
+  static double subtitle2 = (14).sp;
+  static double body1 = (18).sp;
+  static double body2 = (14).sp;
+  static double button = (18).sp;
+  static double caption = (12).sp;
+  static double overline = (10).sp;
 }
 
 class Dimens {
-  static double screenMargin = designScreenFactor * 16;
-  static double halfScreenMargin = screenMargin / 2;
-  static double doubleScreenMargin = screenMargin * 2;
-  static double appBarHeight = designScreenFactor * 56;
-  static double bottomNavBarIconSize = designScreenFactor * 25;
-  static double buttonsCornerRadius = designScreenFactor * 5;
-  static double verticalDividerHeight = designScreenFactor * 31;
-  static double verticalDividerWidth = designScreenFactor * 5;
-  static double verticalDividerCornerRadius = designScreenFactor * 2.5;
-  static double cornerRadius = designScreenFactor * 10;
-  static double arrowIconSize = designScreenFactor * 20;
-  static double indicatorDotsSize = designScreenFactor * 10;
-  static double gridSpacing = screenMargin;
+  static double screenMarginH = (20).w;
+  static double halfScreenMarginH = (screenMarginH / 2).w;
+  static double doubleScreenMarginH = (screenMarginH * 2).w;
+  static double screenMarginV = (20).h;
+  static double halfScreenMarginV = (screenMarginV / 2).h;
+  static double doubleScreenMarginV = (screenMarginV * 2).h;
+  static double appBarHeight = (75).h;
+  static double appBarIconHeight = appBarHeight - 15;
+  static double bottomNavBarIconSize = (25).h;
+  static double verticalDividerHeight = (31).h;
+  static double verticalDividerWidth = (5).w;
+  static double cornerRadius = (7).h;
+  static double arrowIconSize = (20).w;
+  static double indicatorDotsSize = (10).w;
+  static double gridSpacing = screenMarginH;
   static double detailsBannerMaskOpacity = 0.7;
-  static double tabBarIndicatorHeight = designScreenFactor * 4;
-  static double tabBarIndicatorMargin = designScreenFactor * 7;
-  static double backButtonSize = designScreenFactor * 60;
-  static double chipHeight = designScreenFactor * 40;
-  static double buttonHorizontalPadding = designScreenFactor * 6;
-  static double buttonVerticalPadding = designScreenFactor * 10;
+  static double tabBarIndicatorHeight = (4).h;
+  static double tabBarIndicatorMargin = (7).h;
+  static double backButtonSize = 30.w;
+  static double chipHeight = (40).h;
+  static double buttonHorizontalPadding = (6).w;
+  static double buttonVerticalPadding = (10).h;
 
-  static Map<CollectionDisplayType, double> displayTypeWidths = {
-    CollectionDisplayType.banner: designScreenFactor * 385,
-    CollectionDisplayType.normal: designScreenFactor * 250,
-    CollectionDisplayType.vertical: designScreenFactor * 165,
-    CollectionDisplayType.special: designScreenFactor * 165,
-  };
-  static Map<CollectionDisplayType, double> displayTypeHeights = {
-    CollectionDisplayType.banner: designScreenFactor * 688,
-    CollectionDisplayType.normal: designScreenFactor * 140,
-    CollectionDisplayType.vertical: designScreenFactor * 294,
-    CollectionDisplayType.special: designScreenFactor * 294,
-  };
+  static double buttonIconSize = 19.r;
 }
 
 class SplashDimens {
-  static double logoMargin = (designScreenFactor * 50) - Dimens.screenMargin;
-  static double greetingMargin =
-      (designScreenFactor * 90) - Dimens.screenMargin;
+  static double logoMargin = (50) - Dimens.screenMarginH;
+  static double greetingMargin = (90) - Dimens.screenMarginH;
 }
 
 class HomeDimens {
-  static double collectionsVerticalMargin = designScreenFactor * 53;
-  static double collectionTitleVerticalMargin = designScreenFactor * 16;
-  static double categoriesVerticalMargin = designScreenFactor * 32;
-  static double collectionTitleHorizontalMargin = designScreenFactor * 13;
-
   static Map<CollectionDisplayType, double> displayTypeWidths = {
-    CollectionDisplayType.banner: designScreenFactor * 385,
-    CollectionDisplayType.normal: designScreenFactor * 250,
-    CollectionDisplayType.vertical: designScreenFactor * 165,
-    CollectionDisplayType.special: designScreenFactor * 165,
+    CollectionDisplayType.banner: (388).w,
+    CollectionDisplayType.normal: (250).w,
+    CollectionDisplayType.vertical: (165).w,
+    CollectionDisplayType.special: (166).w,
   };
   static Map<CollectionDisplayType, double> displayTypeHeights = {
-    CollectionDisplayType.banner: designScreenFactor * 688,
-    CollectionDisplayType.normal: designScreenFactor * 140,
-    CollectionDisplayType.vertical: designScreenFactor * 294,
-    CollectionDisplayType.special: designScreenFactor * 294,
+    CollectionDisplayType.banner: (687).h,
+    CollectionDisplayType.normal: (140).h,
+    CollectionDisplayType.vertical: (294).h,
+    CollectionDisplayType.special: (292).h,
   };
 
-  static double featuredGradientLayerHeight = designScreenFactor *
-      displayTypeHeights[CollectionDisplayType.banner]! *
-      0.7;
+  static double featuredGradientLayerHeight =
+      (displayTypeHeights[CollectionDisplayType.banner]!).h * 0.7;
 
-  static double featuredButtonsFontSize = FontSizes.subtitle1;
-  static double specialVerticalPadding = designScreenFactor * 32;
+  static double featuredDotsHeight = 41.h;
+
+  static double specialVerticalPadding = (32).h;
   static double specialCollectionHeight = specialVerticalPadding +
       displayTypeHeights[CollectionDisplayType.special]!;
-  static double specialTextContainerWidth = designScreenFactor * 195;
+  static double specialTextContainerWidth = (195).w;
+
+  static double collectionsVerticalMargin = (53).h;
+  static double collectionTitleVerticalMargin = (16).h;
+  static double categoriesVerticalMargin = (21).h;
+  static double collectionTitleHorizontalMargin = (13).w;
 }
 
 class NewAdditionsDimens {
-  static double cardWidth = designScreenFactor * 190;
-  static double cardHeight = designScreenFactor * 290;
+  static double cardWidth = (190).w;
+  static double cardHeight = (290).h;
 }
 
 class VideoDetailsDimens {
-  static double bannerHeight = designScreenFactor * 250;
-  static double shareIconSize = designScreenFactor * 20;
-  static double shareButtonSize = shareIconSize + (designScreenFactor * 9);
-  static double gradientLayerHeight = designScreenFactor * bannerHeight * 0.2;
+  static double bannerHeightMobile = (250).h;
+  static double bannerHeightTablet = (350).h;
+  static double halfBannerHeightTablet = bannerHeightTablet / 2;
+  static double shareIconSize = (20).h;
+  static double shareButtonSize = shareIconSize + ((9).w);
+  static double gradientLayerHeightMobile = (bannerHeightMobile * 0.2).h;
+
+  static double gradientLayerHeightTablet = (bannerHeightTablet * 0.2).h;
 }

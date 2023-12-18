@@ -1,7 +1,6 @@
 import 'package:coptix/shared/utils/localization/app_localizations_delegate.dart';
 import 'package:coptix/shared/utils/localization/localized_content.dart';
 import 'package:coptix/shared/widgets/details_tab_view.dart';
-import 'package:coptix/shared/widgets/details_header_mobile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,6 +10,7 @@ import '../../../shared/theme/colors.dart';
 import '../../../shared/utils/navigation/navigation_args.dart';
 import '../../../shared/utils/navigation/shared_navigation.dart';
 import '../../../shared/widgets/coptix_app_bar.dart';
+import '../../../shared/widgets/details_header/details_header.dart';
 import '../error_screen/not_found_screen.dart';
 import 'cubit/series_details_cubit.dart';
 
@@ -80,7 +80,7 @@ class _SeriesDetailsScreenState extends State<SeriesDetailsScreen> {
     return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(
-          child: DetailsHeaderMobile(
+          child: DetailsHeader(
               uiClip: state.uiClip,
               onPlayNowClicked: openVideoPlayer,
               onAddToFavoritesClicked: addToFavorites),

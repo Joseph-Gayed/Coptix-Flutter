@@ -1,6 +1,6 @@
 import 'package:coptix/presentation/model/ui_clip_image.dart';
 import 'package:coptix/presentation/model/ui_season.dart';
-import 'package:coptix/shared/extensions/list.dart';
+import 'package:coptix/shared/extensions/list_ext.dart';
 
 import '../../../../../shared/enums/collection_display_type.dart';
 import '../../../../../shared/enums/content_type.dart';

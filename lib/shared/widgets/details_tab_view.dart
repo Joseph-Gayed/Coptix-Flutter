@@ -49,15 +49,11 @@ class DetailsTabsView extends StatelessWidget {
               indicator: UnderlineTabIndicator(
                 borderSide: BorderSide(
                     width: Dimens.tabBarIndicatorHeight, color: secondaryColor),
-                insets: EdgeInsets.only(
-                    bottom:
-                        Dimens.halfScreenMargin), // Adjust vertical space here
               ),
               indicatorSize: TabBarIndicatorSize.label,
-              indicatorColor: secondaryColor,
-              tabs: detailsTabs
-                  .map((clipsTabItem) => Tab(text: clipsTabItem.tabName))
-                  .toList()),
+              tabs: detailsTabs.map((clipsTabItem) {
+                return Text(clipsTabItem.tabName, style: titleTextStyle);
+              }).toList()),
           Expanded(
             child: TabBarView(
                 children: detailsTabs.map((clipTabItem) {
@@ -69,7 +65,7 @@ class DetailsTabsView extends StatelessWidget {
                     onSeasonSelected: clipTabItem.onSeasonSelected!);
               } else if (clipTabItem.uiClips != null) {
                 return Padding(
-                  padding: EdgeInsets.only(top: Dimens.screenMargin),
+                  padding: EdgeInsets.only(top: Dimens.screenMarginV),
                   child: ClipsGrid(clips: clipTabItem.uiClips!),
                 );
               } else {

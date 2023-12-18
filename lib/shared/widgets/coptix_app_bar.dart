@@ -13,7 +13,18 @@ class CoptixAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: title.isNotEmpty ? getAppBarText() : getAppBarIcon(),
+      title: getAppBarContent(),
+    );
+  }
+
+  Widget getAppBarContent() {
+    return Container(
+      height: Dimens.appBarHeight,
+      alignment: Alignment.center,
+      child: Row(children: [
+        Expanded(child: title.isNotEmpty ? getAppBarText() : getAppBarIcon()),
+        if (showingBackButton) Container(width: Dimens.backButtonSize),
+      ]),
     );
   }
 
@@ -24,19 +35,12 @@ class CoptixAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  Row getAppBarIcon() {
-    return Row(children: [
-      Expanded(
-        child: Center(
-          child: Image.asset(
-            height: Dimens.appBarHeight,
-            '${imagesPath}logo_name.png',
-            // Add width or fit properties as required
-          ),
-        ),
-      ),
-      if (showingBackButton) SizedBox(width: Dimens.backButtonSize),
-    ]);
+  Widget getAppBarIcon() {
+    return Image.asset(
+      height: Dimens.appBarIconHeight,
+      '${imagesPath}logo_name.png',
+      // Add width or fit properties as required
+    );
   }
 
   @override

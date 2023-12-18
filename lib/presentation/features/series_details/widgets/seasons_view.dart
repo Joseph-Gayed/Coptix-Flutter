@@ -28,8 +28,8 @@ class SeasonsView extends StatelessWidget {
           child: Column(
             children: [
               Padding(
-                padding:
-                    EdgeInsets.symmetric(vertical: Dimens.halfScreenMargin),
+                padding: EdgeInsets.symmetric(
+                    vertical: HomeDimens.categoriesVerticalMargin),
                 child: SeasonsChips(
                     seasons: seasons,
                     selectedSeason: selectedSeason,
@@ -37,10 +37,8 @@ class SeasonsView extends StatelessWidget {
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(
-                      top: Dimens.screenMargin,
-                      left: Dimens.screenMargin,
-                      right: Dimens.screenMargin),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: Dimens.screenMarginH),
                   child: ClipsGrid(clips: selectedSeason.episodes),
                 ),
               ),

@@ -45,29 +45,35 @@ class ItemFeaturedBanner extends StatelessWidget {
 
         // Item Details
         Positioned(
-          bottom: Dimens.doubleScreenMargin,
+          bottom: 0,
           left: 0,
           right: 0,
           child: Container(
-            margin: EdgeInsets.all(Dimens.screenMargin),
+            margin: EdgeInsets.symmetric(
+                horizontal: Dimens.screenMarginH,
+                vertical: HomeDimens.featuredDotsHeight),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Movie Name
-                Container(
-                  margin: EdgeInsets.only(bottom: Dimens.screenMargin),
+                SizedBox(
                   width: double.infinity, // Constrain width to parent width
                   child: Text(
                     uiClip.name,
+                    maxLines: 2,
+                    textAlign: TextAlign.center,
                     style: headTextStyle,
                   ),
                 ),
 
+                SizedBox(height: Dimens.screenMarginV),
                 // Buttons
                 PlayNowOrLater(
-                    uiClip: uiClip,
-                    onPlayNowClicked: onPlayNowClicked,
-                    onAddToFavoritesClicked: onAddToFavoritesClicked),
+                  uiClip: uiClip,
+                  onPlayNowClicked: onPlayNowClicked,
+                  onAddToFavoritesClicked: onAddToFavoritesClicked,
+                  isFeaturedBanner: true,
+                ),
               ],
             ),
           ),

@@ -1,4 +1,3 @@
-import 'package:coptix/shared/theme/dimens.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/constants.dart';
@@ -10,10 +9,10 @@ class CoptixContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.only(
-            top: Dimens.halfScreenMargin,
-            left: Dimens.halfScreenMargin,
-            right: Dimens.halfScreenMargin),
+        // padding: EdgeInsets.only(
+        //     top: Dimens.halfScreenMarginV,
+        //     left: Dimens.halfScreenMarginH,
+        //     right: Dimens.halfScreenMarginH),
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("${imagesPath}screens_background.png"),

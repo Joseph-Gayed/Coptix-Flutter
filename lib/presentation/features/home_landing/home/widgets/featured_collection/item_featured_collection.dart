@@ -28,10 +28,8 @@ class _ItemFeaturedCollectionState extends State<ItemFeaturedCollection> {
     return Container(
       width: double.infinity,
       height: HomeDimens.displayTypeHeights[widget.uiCollection.displayType],
-      margin: EdgeInsets.only(
-          left: Dimens.screenMargin,
-          right: Dimens.screenMargin,
-          bottom: HomeDimens.categoriesVerticalMargin),
+      margin: EdgeInsets.symmetric(
+          horizontal: Dimens.screenMarginH, vertical: Dimens.screenMarginV),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(Dimens.cornerRadius),
         child: Stack(
@@ -55,7 +53,7 @@ class _ItemFeaturedCollectionState extends State<ItemFeaturedCollection> {
 
             // Carousel Indicator Dots
             Positioned(
-              bottom: Dimens.screenMargin,
+              bottom: 0.5 * HomeDimens.featuredDotsHeight,
               left: 0,
               right: 0,
               child: Row(
