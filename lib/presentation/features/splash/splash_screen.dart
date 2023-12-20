@@ -68,7 +68,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Container(
           padding: EdgeInsets.only(bottom: SplashDimens.greetingMargin),
           child: Text(
-            AppLocalizations.of(context).translate(LocalizationKey.welcome),
+            LocalizationKey.welcome.tr(),
             style: titleTextStyle,
           ),
         ),

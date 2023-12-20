@@ -43,7 +43,7 @@ class _ChangeAppLanguageScreenState extends State<ChangeAppLanguageScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CoptixAppBar(
-        title: AppLocalizations.of(context).translate(LocalizationKey.language),
+        title: LocalizationKey.language.tr(),
         showingBackButton: true,
       ),
       body: CoptixContainer(
@@ -71,7 +71,7 @@ class _ChangeAppLanguageScreenState extends State<ChangeAppLanguageScreen> {
           child: ElevatedButton(
             onPressed: saveAndBack,
             child: Text(
-              AppLocalizations.of(context).translate(LocalizationKey.save),
+              LocalizationKey.save.tr(),
               style: buttonTextStyle,
             ),
           ),

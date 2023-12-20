@@ -17,8 +17,7 @@ class _SearchScreenState extends State<SearchScreen> {
     // Your Landing Screen implementation goes here
     return Scaffold(
       body: CoptixContainer(
-        child: Text(
-            AppLocalizations.of(context).translate(LocalizationKey.search),
+        child: Text(LocalizationKey.search.tr(),
             style: const TextStyle(fontSize: 24)),
       ),
     );

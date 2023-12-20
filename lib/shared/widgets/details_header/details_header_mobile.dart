@@ -1,5 +1,4 @@
 import 'package:coptix/shared/theme/styles.dart';
-import 'package:coptix/shared/utils/localization/app_localizations_delegate.dart';
 import 'package:coptix/shared/utils/localization/localized_content.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
@@ -80,7 +79,7 @@ class DetailsHeaderMobile extends StatelessWidget {
         if (uiClip.currentSeason != null)
           //current season
           Text(
-            "${AppLocalizations.of(context).translate(LocalizationKey.season)}: ${uiClip.currentSeason!.name}",
+            "${LocalizationKey.season}: ${uiClip.currentSeason!.name}",
             style: body2TextStyle.copyWith(fontWeight: FontWeight.bold),
           ),
         SizedBox(

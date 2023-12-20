@@ -45,7 +45,7 @@ class PlayNowOrLater extends StatelessWidget {
                 size: Dimens.buttonIconSize,
               ),
               label: Text(
-                AppLocalizations.of(context).translate(LocalizationKey.playNow),
+                LocalizationKey.playNow.tr(),
                 textAlign: TextAlign.center,
                 style: buttonTextStyle,
               )),
