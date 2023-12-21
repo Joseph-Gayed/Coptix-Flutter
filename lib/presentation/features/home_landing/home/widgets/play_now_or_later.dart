@@ -52,7 +52,7 @@ class PlayNowOrLater extends StatelessWidget {
         ),
 
         SizedBox(
-          width: Dimens.halfScreenMarginH,
+          width: Dimens.itemsHorizontalMargin,
         ),
         //Add to myList
         Expanded(

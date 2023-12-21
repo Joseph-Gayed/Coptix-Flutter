@@ -8,7 +8,7 @@ const String appFontFamily = "AvenirArabic";
 final appColorScheme = const ColorScheme.dark().copyWith(
     primary: primaryColor, background: primaryColor, surface: primaryColor);
 
-var appTheme = ThemeData(
+ThemeData appTheme = ThemeData(
     // This is the theme of your application.
     colorScheme: appColorScheme,
     fontFamily: appFontFamily,
@@ -17,36 +17,32 @@ var appTheme = ThemeData(
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(style: secondaryButtonStyle),
     textTheme: TextTheme(labelLarge: buttonTextStyle),
+    inputDecorationTheme: inputDecorationTheme,
+    textSelectionTheme: const TextSelectionThemeData(cursorColor: lightColor),
     useMaterial3: true);
 
-TextStyle headTextStyle = TextStyle(
-    fontSize: FontSizes.h5,
-    fontWeight: FontWeight.bold,
+TextStyle lightTextStyle = const TextStyle(
     color: lightColor,
+    fontWeight: FontWeight.normal,
     fontFamily: appFontFamily);
 
-TextStyle titleTextStyle = TextStyle(
-    fontSize: FontSizes.h6,
-    fontWeight: FontWeight.bold,
-    color: lightColor,
-    fontFamily: appFontFamily);
+TextStyle darkTextStyle = lightTextStyle.copyWith(color: darkColor);
+
+TextStyle headTextStyle = lightTextStyle.copyWith(
+    fontSize: FontSizes.h5, fontWeight: FontWeight.bold);
+
+TextStyle titleTextStyle = headTextStyle.copyWith(fontSize: FontSizes.h6);
 
 TextStyle subTitleTextStyle =
-    titleTextStyle.copyWith(fontSize: FontSizes.subtitle1);
+    headTextStyle.copyWith(fontSize: FontSizes.subtitle1);
 
-TextStyle body2TextStyle = TextStyle(
-    fontSize: FontSizes.body2, color: lightColor, fontFamily: appFontFamily);
+TextStyle body2TextStyle = lightTextStyle.copyWith(fontSize: FontSizes.body2);
+TextStyle body1TextStyle = lightTextStyle.copyWith(fontSize: FontSizes.body1);
+TextStyle captionTextStyle =
+    lightTextStyle.copyWith(fontSize: FontSizes.caption);
 
-TextStyle body1TextStyle = TextStyle(
-    fontSize: FontSizes.body1, color: lightColor, fontFamily: appFontFamily);
-
-TextStyle captionTextStyle = TextStyle(
-    fontSize: FontSizes.caption, color: lightColor, fontFamily: appFontFamily);
-
-TextStyle buttonTextStyle = TextStyle(
-    fontSize: FontSizes.button,
-    fontFamily: appFontFamily,
-    fontWeight: FontWeight.w700);
+TextStyle buttonTextStyle = lightTextStyle.copyWith(
+    fontSize: FontSizes.button, fontWeight: FontWeight.w700);
 
 ButtonStyle appButtonStyle = ButtonStyle(
   backgroundColor:
@@ -72,3 +68,28 @@ ButtonStyle secondaryButtonStyle = appButtonStyle.copyWith(
   backgroundColor: MaterialStateProperty.all<Color>(secondaryColor),
   foregroundColor: MaterialStateProperty.all<Color>(primaryColor),
 );
+
+TextStyle inputTextStyle = lightTextStyle.copyWith(
+    fontSize: FontSizes.subtitle1, fontWeight: FontWeight.bold);
+
+InputDecorationTheme inputDecorationTheme = InputDecorationTheme(
+  border: const OutlineInputBorder(),
+  floatingLabelStyle: inputTextStyle,
+  labelStyle: inputTextStyle.copyWith(fontWeight: FontWeight.normal),
+  filled: true,
+  focusColor: secondaryColor,
+  fillColor: inputBgColor,
+  contentPadding: EdgeInsets.symmetric(
+      vertical: Dimens.halfScreenMarginV,
+      horizontal: Dimens.halfScreenMarginH), // Adjust the padding here
+
+  focusedBorder: OutlineInputBorder(
+    borderSide:
+        BorderSide(width: AuthDimens.borderWidth, color: secondaryColor),
+  ),
+);
+
+TextStyle underlineSecondaryTextStyle = const TextStyle(
+    color: secondaryColor,
+    decoration: TextDecoration.underline,
+    decorationColor: secondaryColor);

@@ -88,7 +88,7 @@ class _MyAppState extends State<MyApp> {
           theme: appTheme,
           navigatorKey: rootNavigatorKey,
           debugShowCheckedModeBanner: false,
-          initialRoute: AppRouter.splash,
+          initialRoute: AppRouter.startup,
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,

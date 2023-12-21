@@ -1,8 +1,12 @@
+import 'package:coptix/presentation/features/auth/forget_password/forget_password_screen.dart';
+import 'package:coptix/presentation/features/auth/login/login_screen.dart';
 import 'package:coptix/presentation/features/home_landing/home/screens/category_screen.dart';
+import 'package:coptix/shared/extensions/context_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/di/injection_container.dart';
+import '../../../presentation/features/auth/signup/signup_screen.dart';
 import '../../../presentation/features/clip_details/cubit/video_details_cubit.dart';
 import '../../../presentation/features/error_screen/not_found_screen.dart';
 import '../../../presentation/features/home_landing/home/screens/collection_screen.dart';
@@ -22,8 +26,7 @@ class AppRouter {
   factory AppRouter() {
     return _instance;
   }
-
-  static const String notFound = "/notFound";
+  static String startup = splash;
   static const String splash = "/splash";
   static const String homeLanding = "/home_landing";
   static const String changeAppLanguage = "/change_app_language";
@@ -37,10 +40,14 @@ class AppRouter {
   static const String play = "/play";
   static const String videoPlayer = "/video_player";
   static const String category = "/category";
+  static const String login = "/login";
+  static const String signup = "/signup";
+  static const String forgetPassword = "/forgetPassword";
+
+  static const String notFound = "/notFound";
 
   Map<String, WidgetBuilder> getAppRoutes(BuildContext context) {
     return {
-      notFound: (context) => const NotFoundScreen(),
       splash: (context) => const SplashScreen(),
       homeLanding: (context) => const HomeLandingScreen(),
       changeAppLanguage: (context) => const ChangeAppLanguageScreen(),
@@ -54,17 +61,15 @@ class AppRouter {
       play: (context) => _getVideoDetailsScreen(context),
       videoPlayer: (context) => _getVideoPlayerScreen(context),
       category: (context) => _getCategoryScreen(context),
+      login: (context) => const LoginScreen(),
+      signup: (context) => const SignupScreen(),
+      forgetPassword: (context) => const ForgetPasswordScreen(),
+      notFound: (context) => const NotFoundScreen(),
     };
   }
 
-  Map<String, dynamic>? _getNavArgs(BuildContext context) {
-    final Map<String, dynamic>? arguments =
-        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
-    return arguments;
-  }
-
   Widget _getCollectionDetailsScreen(BuildContext context) {
-    Map<String, dynamic>? arguments = _getNavArgs(context);
+    Map<String, dynamic>? arguments = context.getNavArgs();
     if (arguments == null) {
       return const NotFoundScreen();
     }
@@ -72,7 +77,7 @@ class AppRouter {
   }
 
   Widget _getSeasonDetailsScreen(BuildContext context) {
-    Map<String, dynamic>? arguments = _getNavArgs(context);
+    Map<String, dynamic>? arguments = context.getNavArgs();
     if (arguments == null) {
       return const NotFoundScreen();
     }
@@ -80,7 +85,7 @@ class AppRouter {
   }
 
   Widget _getSeriesDetailsScreen(BuildContext context) {
-    Map<String, dynamic>? arguments = _getNavArgs(context);
+    Map<String, dynamic>? arguments = context.getNavArgs();
     if (arguments == null) {
       return const NotFoundScreen();
     }
@@ -93,7 +98,7 @@ class AppRouter {
   }
 
   Widget _getVideoDetailsScreen(BuildContext context) {
-    Map<String, dynamic>? arguments = _getNavArgs(context);
+    Map<String, dynamic>? arguments = context.getNavArgs();
     if (arguments == null) {
       return const NotFoundScreen();
     }
@@ -104,7 +109,7 @@ class AppRouter {
   }
 
   Widget _getVideoPlayerScreen(BuildContext context) {
-    Map<String, dynamic>? arguments = _getNavArgs(context);
+    Map<String, dynamic>? arguments = context.getNavArgs();
     if (arguments == null) {
       return const NotFoundScreen();
     }
@@ -112,7 +117,7 @@ class AppRouter {
   }
 
   Widget _getCategoryScreen(BuildContext context) {
-    Map<String, dynamic>? arguments = _getNavArgs(context);
+    Map<String, dynamic>? arguments = context.getNavArgs();
     if (arguments == null) {
       return const NotFoundScreen();
     }

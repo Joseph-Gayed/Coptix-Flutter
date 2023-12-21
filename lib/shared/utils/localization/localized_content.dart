@@ -18,7 +18,6 @@ class LocalizationKey {
   static const String season = "season";
   static const String episodes = "episodes";
   static const String related = "related";
-//================================================
   static const String success = "success";
   static const String noContent = "noContent";
   static const String badRequest = "badRequest";
@@ -33,6 +32,25 @@ class LocalizationKey {
   static const String cacheError = "cacheError";
   static const String noInternetConnection = "noInternetConnection";
   static const String unKnownError = "defaultError";
+
+  static const String emailOrMobile = "emailOrMobile";
+  static const String password = "password";
+  static const String login = "login";
+  static const String loginWith = "loginWith";
+  static const String signup = "signup";
+  static const String noAccount = "noAccount";
+  static const String haveAccount = "haveAccount";
+  static const String savePassword = "savePassword";
+  static const String forgetPassword = "forgetPassword";
+  static const String firstName = "firstName";
+  static const String lastName = "lastName";
+  static const String email = "email";
+  static const String mobile = "mobile";
+  static const String confirmPassword = "confirmPassword";
+  static const String forgetPasswordTitle = "forgetPasswordTitle";
+  static const String forgetPasswordDescription = "forgetPasswordDescription";
+  static const String sendTheLink = "sendTheLink";
+  static const String backToLogin = "backToLogin";
 }
 
 const Map<String, Map<String, String>> localizedContent = {
@@ -58,7 +76,6 @@ const Map<String, String> englishContent = {
   LocalizationKey.season: "Season",
   LocalizationKey.episodes: "Episodes",
   LocalizationKey.related: "Related",
-  //================================================
   LocalizationKey.success: "success",
   LocalizationKey.noContent: "noContent",
   LocalizationKey.badRequest: "badRequest",
@@ -73,12 +90,31 @@ const Map<String, String> englishContent = {
   LocalizationKey.cacheError: "cacheError",
   LocalizationKey.noInternetConnection: "noInternetConnection",
   LocalizationKey.unKnownError: "defaultError",
+  LocalizationKey.emailOrMobile: "emailOrMobile",
+  LocalizationKey.password: "password",
+  LocalizationKey.login: "login",
+  LocalizationKey.loginWith: "loginWith",
+  LocalizationKey.noAccount: "Do you Have account? ",
+  LocalizationKey.haveAccount: "Don't Have account? ",
+  LocalizationKey.signup: "signup",
+  LocalizationKey.savePassword: "savePassword",
+  LocalizationKey.forgetPassword: "forgetPassword",
+  LocalizationKey.firstName: "firstName",
+  LocalizationKey.lastName: "lastName",
+  LocalizationKey.email: "email",
+  LocalizationKey.mobile: "mobile",
+  LocalizationKey.confirmPassword: "confirmPassword",
+  LocalizationKey.forgetPasswordTitle: "Forgot your password?",
+  LocalizationKey.forgetPasswordDescription:
+      "Please enter your registered email to receive a link to reset password.",
+  LocalizationKey.sendTheLink: "Send the link",
+  LocalizationKey.backToLogin: "Back to login",
 };
 
 const Map<String, String> arabicContent = {
   LocalizationKey.welcome: "أهلاً بك في تطبيق كوبتكس",
   LocalizationKey.home: "الرئيسية",
-  LocalizationKey.newAdditions: "الإضافات الجديدة",
+  LocalizationKey.newAdditions: "احدث الإضافات",
   LocalizationKey.search: "بحث",
   LocalizationKey.profile: "حسابي",
   LocalizationKey.save: "حفظ",
@@ -92,21 +128,39 @@ const Map<String, String> arabicContent = {
   LocalizationKey.season: "الموسم",
   LocalizationKey.episodes: "الحلقات",
   LocalizationKey.related: "ذات صلة",
-  //================================================
-  LocalizationKey.success: "success",
-  LocalizationKey.noContent: "noContent",
-  LocalizationKey.badRequest: "badRequest",
-  LocalizationKey.unAuthorised: "unAuthorised",
-  LocalizationKey.forbidden: "forbidden",
-  LocalizationKey.internalServerError: "internalServerError",
+  LocalizationKey.success: "نجاح",
+  LocalizationKey.noContent: "لا يوجد محتوي",
+  LocalizationKey.badRequest: "يرجي مراجعة البيانات",
+  LocalizationKey.unAuthorised: "غير مسموح",
+  LocalizationKey.forbidden: "خطا",
+  LocalizationKey.internalServerError: "حدث خطا ما",
   LocalizationKey.notFound: "لا يوجد اي شي",
-  LocalizationKey.cancel: "cancel",
-  LocalizationKey.connectTimeout: "connectTimeout",
-  LocalizationKey.receiveTimeout: "receiveTimeout",
-  LocalizationKey.sendTimeout: "sendTimeout",
-  LocalizationKey.cacheError: "cacheError",
-  LocalizationKey.noInternetConnection: "noInternetConnection",
-  LocalizationKey.unKnownError: "defaultError",
+  LocalizationKey.cancel: "الغاء",
+  LocalizationKey.connectTimeout: "انتهي الوقت",
+  LocalizationKey.receiveTimeout: "انتهي الوقت",
+  LocalizationKey.sendTimeout: "انتهي الوقت",
+  LocalizationKey.cacheError: "خطا",
+  LocalizationKey.noInternetConnection: "لا يوجد اتصال بالانترنت",
+  LocalizationKey.unKnownError: "خطا",
+  LocalizationKey.emailOrMobile: "البريد الإلكتروني أو رقم الهاتف",
+  LocalizationKey.password: "كلمة المرور",
+  LocalizationKey.login: "تسجيل دخول",
+  LocalizationKey.loginWith: "أو تسجيل الدخول مع",
+  LocalizationKey.signup: " تسجل جديد",
+  LocalizationKey.noAccount: "ليس لديك حساب؟ ",
+  LocalizationKey.haveAccount: "هل لديك حساب؟ ",
+  LocalizationKey.savePassword: "حفظ كلمة المرور",
+  LocalizationKey.forgetPassword: "نسيت كلمة السر؟",
+  LocalizationKey.firstName: "الاسم الأول",
+  LocalizationKey.lastName: "الاسم الأخير",
+  LocalizationKey.email: "البريد الإلكتروني",
+  LocalizationKey.mobile: "رقم الهاتف",
+  LocalizationKey.confirmPassword: "تأكيد كلمة المرور",
+  LocalizationKey.forgetPasswordTitle: "نسيت كلمة السر الخاصة بك؟",
+  LocalizationKey.forgetPasswordDescription:
+      "أدخل بريدك الإلكتروني المسجل أدناه \n لتتلقى تعليمات إعادة ضبط كلمة المرور",
+  LocalizationKey.sendTheLink: "أرسل الرابط",
+  LocalizationKey.backToLogin: "العودة لتسجيل الدخول",
 };
 
 const Map<String, String> frenchContent = {
@@ -126,7 +180,6 @@ const Map<String, String> frenchContent = {
   LocalizationKey.season: "Saison",
   LocalizationKey.episodes: "Épisodes",
   LocalizationKey.related: "En rapport",
-  //================================================
   LocalizationKey.success: "success",
   LocalizationKey.noContent: "noContent",
   LocalizationKey.badRequest: "badRequest",
@@ -141,4 +194,23 @@ const Map<String, String> frenchContent = {
   LocalizationKey.cacheError: "cacheError",
   LocalizationKey.noInternetConnection: "noInternetConnection",
   LocalizationKey.unKnownError: "defaultError",
+  LocalizationKey.emailOrMobile: "emailOrMobile",
+  LocalizationKey.password: "password",
+  LocalizationKey.login: "login",
+  LocalizationKey.loginWith: "loginWith",
+  LocalizationKey.noAccount: "Do you Have account? ",
+  LocalizationKey.haveAccount: "Don't Have account? ",
+  LocalizationKey.signup: "signup",
+  LocalizationKey.savePassword: "savePassword",
+  LocalizationKey.forgetPassword: "forgetPassword",
+  LocalizationKey.firstName: "firstName",
+  LocalizationKey.lastName: "lastName",
+  LocalizationKey.email: "email",
+  LocalizationKey.mobile: "mobile",
+  LocalizationKey.confirmPassword: "confirmPassword",
+  LocalizationKey.forgetPasswordTitle: "Forgot your password?",
+  LocalizationKey.forgetPasswordDescription:
+      "Please enter your registered email to receive a link to reset password.",
+  LocalizationKey.sendTheLink: "Send the link",
+  LocalizationKey.backToLogin: "Back to login",
 };

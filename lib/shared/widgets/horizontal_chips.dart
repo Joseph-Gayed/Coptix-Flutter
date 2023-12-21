@@ -37,7 +37,8 @@ class HorizontalChips extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+        margin: EdgeInsets.symmetric(horizontal: Dimens.screenMarginH),
         height: Dimens.chipHeight,
         child: ListView.builder(
             scrollDirection: Axis.horizontal,
@@ -52,8 +53,8 @@ class HorizontalChips extends StatelessWidget {
     Color stateColor = isSelected ? selectedColor : notSelectedColor;
 
     return Container(
-      margin: EdgeInsets.only(
-          left: Dimens.screenMarginH, right: Dimens.screenMarginH),
+      margin:
+          EdgeInsets.symmetric(horizontal: Dimens.itemsHalfHorizontalMargin),
       child: ChoiceChip(
         label: Text(
           chips[index].title,

@@ -50,6 +50,9 @@ class Dimens {
   static double buttonVerticalPadding = (10).h;
 
   static double buttonIconSize = 19.r;
+
+  static double itemsHorizontalMargin = (10).w;
+  static double itemsHalfHorizontalMargin = itemsHorizontalMargin / 2;
 }
 
 class SplashDimens {
@@ -79,7 +82,7 @@ class HomeDimens {
   static double specialVerticalPadding = (32).h;
   static double specialCollectionHeight = specialVerticalPadding +
       displayTypeHeights[CollectionDisplayType.special]!;
-  static double specialTextContainerWidth = (195).w;
+  static double specialTextContainerWidth = (215).w;
 
   static double collectionsVerticalMargin = (53).h;
   static double collectionTitleVerticalMargin = (16).h;
@@ -99,6 +102,9 @@ class VideoDetailsDimens {
   static double shareIconSize = (20).h;
   static double shareButtonSize = shareIconSize + ((9).w);
   static double gradientLayerHeightMobile = (bannerHeightMobile * 0.2).h;
-
   static double gradientLayerHeightTablet = (bannerHeightTablet * 0.2).h;
+}
+
+class AuthDimens {
+  static double borderWidth = (2).w;
 }
