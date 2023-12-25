@@ -31,7 +31,7 @@ class _NewAdditionsScreenState extends State<NewAdditionsScreen> {
   }
 
   Future<void> getData() async {
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 0));
     setState(() {
       clips = FakeData.newAdditions5Clips;
     });

@@ -15,4 +15,8 @@ class ApiNames {
   static const String home = "home";
   static const String clipDetails = "clips";
   static const String seriesDetails = "series";
+
+  static const String login = "users/login";
+  static const String signup = "users/register";
+  static const String forgetPassword = "users/passwords/forget";
 }

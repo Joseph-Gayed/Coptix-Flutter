@@ -3,12 +3,15 @@ import 'package:coptix/shared/theme/styles.dart';
 import 'package:coptix/shared/utils/localization/app_localizations_delegate.dart';
 import 'package:coptix/shared/utils/navigation/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../shared/theme/dimens.dart';
 import '../../../../shared/utils/localization/localized_content.dart';
 import '../../../../shared/utils/navigation/navigation_args.dart';
 import '../../../../shared/widgets/coptix_text_form_field.dart';
-import '../auth_container.dart';
+import '../common/auth_container.dart';
+import '../common/cubit/auth_cubit.dart';
+import '../common/form_fields.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -22,16 +25,30 @@ class _SignupScreenState extends State<SignupScreen> {
 
   final TextEditingController firstNameController = TextEditingController();
 
-  final TextEditingController lastNameController = TextEditingController();
-
   final TextEditingController emailController = TextEditingController();
 
   final TextEditingController mobileController = TextEditingController();
 
   final TextEditingController passwordController = TextEditingController();
 
-  final TextEditingController confirmPasswordController =
+  final TextEditingController passwordConfirmationController =
       TextEditingController();
+
+  late AuthCubit authCubit;
+  late Map<String, TextEditingController> textControllers;
+
+  @override
+  void initState() {
+    super.initState();
+    authCubit = BlocProvider.of<AuthCubit>(context);
+    textControllers = {
+      FormFieldKeys.name: firstNameController,
+      FormFieldKeys.email: emailController,
+      FormFieldKeys.mobile: mobileController,
+      FormFieldKeys.password: passwordController,
+      FormFieldKeys.passwordConfirmation: passwordConfirmationController,
+    };
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +57,14 @@ class _SignupScreenState extends State<SignupScreen> {
 
     return AuthContainer(
       screenContent: signupForm(),
+      appBarTitle: shouldShowAppBar ? LocalizationKey.signup.tr() : null,
     );
   }
 
   Widget signupForm() {
+    Map<String, CoptixTextFormField> signupFormFields =
+        getSignupFormFields(textControllers);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
@@ -81,59 +102,32 @@ class _SignupScreenState extends State<SignupScreen> {
           height: Dimens.screenMarginV,
         ),
 
-        //First Name
-        CoptixTextFormField(
-            controller: firstNameController,
-            labelText: LocalizationKey.firstName.tr()),
-        SizedBox(
-          height: Dimens.screenMarginV,
-        ),
-
-        //Last Name
-        CoptixTextFormField(
-          controller: lastNameController,
-          labelText: LocalizationKey.lastName.tr(),
-        ),
+        //Name
+        signupFormFields[FormFieldKeys.name]!,
         SizedBox(
           height: Dimens.screenMarginV,
         ),
 
         //Email
-        CoptixTextFormField(
-          controller: emailController,
-          labelText: LocalizationKey.email.tr(),
-          keyboardType: TextInputType.emailAddress,
-        ),
+        signupFormFields[FormFieldKeys.email]!,
         SizedBox(
           height: Dimens.screenMarginV,
         ),
 
         //Mobile
-        CoptixTextFormField(
-          controller: mobileController,
-          labelText: LocalizationKey.mobile.tr(),
-          keyboardType: TextInputType.phone,
-        ),
+        signupFormFields[FormFieldKeys.mobile]!,
         SizedBox(
           height: Dimens.screenMarginV,
         ),
 
         //Password
-        CoptixTextFormField(
-          controller: passwordController,
-          labelText: LocalizationKey.password.tr(),
-          isPassword: true,
-        ),
+        signupFormFields[FormFieldKeys.password]!,
         SizedBox(
           height: Dimens.screenMarginV,
         ),
 
         //Password Confirmation
-        CoptixTextFormField(
-          controller: confirmPasswordController,
-          labelText: LocalizationKey.confirmPassword.tr(),
-          isPassword: true,
-        ),
+        signupFormFields[FormFieldKeys.passwordConfirmation]!,
         SizedBox(
           height: Dimens.screenMarginV,
         ),
@@ -141,21 +135,32 @@ class _SignupScreenState extends State<SignupScreen> {
         //Signup Button
         ElevatedButton(
           onPressed: () {
-            // Implement signup functionality here
-            // Access the entered values using the controllers
-            String firstName = firstNameController.text;
-            String lastName = lastNameController.text;
-            String email = emailController.text;
-            String mobile = mobileController.text;
-            String password = passwordController.text;
-            String confirmPassword = confirmPasswordController.text;
-
-            // Validate and process the signup data
-            // Add your validation and signup logic here
+            signUpButtonClicked(signupFormFields);
           },
           child: Text(LocalizationKey.signup.tr()),
         ),
       ],
     );
+  }
+
+  void signUpButtonClicked(Map<String, CoptixTextFormField> formFields) {
+    bool areAllInputsValid = validateAllFormFields(context, formFields);
+
+    bool isPasswordMatchingConfirmation =
+        passwordController.text == passwordConfirmationController.text;
+
+    if (!isPasswordMatchingConfirmation) {
+      context.showToast(
+        message: LocalizationKey.passwordConfirmationValidation.tr(),
+      );
+    }
+
+    if (areAllInputsValid & isPasswordMatchingConfirmation) {
+      authCubit.signup(
+          name: firstNameController.text,
+          mobile: mobileController.text,
+          email: emailController.text,
+          password: passwordController.text);
+    }
   }
 }

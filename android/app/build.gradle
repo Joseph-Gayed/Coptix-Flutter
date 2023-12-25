@@ -42,7 +42,7 @@ android {
 
     defaultConfig {
         applicationId "com.ovp.coptix"
-        minSdkVersion flutter.minSdkVersion
+        minSdkVersion 26
         targetSdkVersion flutter.targetSdkVersion
         versionCode appVersionCode.toInteger()
         versionName appVersionName.replaceAll("'", "")

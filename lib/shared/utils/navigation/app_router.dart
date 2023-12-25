@@ -6,13 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/di/injection_container.dart';
+import '../../../presentation/features/auth/common/cubit/auth_cubit.dart';
 import '../../../presentation/features/auth/signup/signup_screen.dart';
 import '../../../presentation/features/clip_details/cubit/video_details_cubit.dart';
+import '../../../presentation/features/clip_details/video_details_screen.dart';
 import '../../../presentation/features/error_screen/not_found_screen.dart';
 import '../../../presentation/features/home_landing/home/screens/collection_screen.dart';
 import '../../../presentation/features/home_landing/home_landing_screen.dart';
 import '../../../presentation/features/home_landing/my_profile/change_app_language/change_app_language_screen.dart';
-import '../../../presentation/features/clip_details/video_details_screen.dart';
 import '../../../presentation/features/season_details/season_details_screen.dart';
 import '../../../presentation/features/series_details/cubit/series_details_cubit.dart';
 import '../../../presentation/features/series_details/series_details_screen.dart';
@@ -22,6 +23,7 @@ import '../../../presentation/features/video_player/video_player_screen.dart';
 class AppRouter {
   AppRouter._privateConstructor();
   static final AppRouter _instance = AppRouter._privateConstructor();
+  static AppRouter get instance => _instance;
 
   factory AppRouter() {
     return _instance;
@@ -43,13 +45,12 @@ class AppRouter {
   static const String login = "/login";
   static const String signup = "/signup";
   static const String forgetPassword = "/forgetPassword";
-
   static const String notFound = "/notFound";
 
   Map<String, WidgetBuilder> getAppRoutes(BuildContext context) {
     return {
       splash: (context) => const SplashScreen(),
-      homeLanding: (context) => const HomeLandingScreen(),
+      homeLanding: (context) => _getHomeLandingScreen(context),
       changeAppLanguage: (context) => const ChangeAppLanguageScreen(),
       collection: (context) => _getCollectionDetailsScreen(context),
       season: (context) => _getSeasonDetailsScreen(context),
@@ -61,11 +62,17 @@ class AppRouter {
       play: (context) => _getVideoDetailsScreen(context),
       videoPlayer: (context) => _getVideoPlayerScreen(context),
       category: (context) => _getCategoryScreen(context),
-      login: (context) => const LoginScreen(),
-      signup: (context) => const SignupScreen(),
-      forgetPassword: (context) => const ForgetPasswordScreen(),
-      notFound: (context) => const NotFoundScreen(),
+      login: (context) => getAuthScreen(context, const LoginScreen()),
+      signup: (context) => getAuthScreen(context, const SignupScreen()),
+      forgetPassword: (context) =>
+          getAuthScreen(context, const ForgetPasswordScreen()),
+      notFound: (context) => getAuthScreen(context, const NotFoundScreen()),
     };
+  }
+
+  Widget _getHomeLandingScreen(BuildContext context) {
+    Map<String, dynamic>? arguments = context.getNavArgs();
+    return HomeLandingScreen(arguments: arguments);
   }
 
   Widget _getCollectionDetailsScreen(BuildContext context) {
@@ -122,5 +129,12 @@ class AppRouter {
       return const NotFoundScreen();
     }
     return CategoryScreen(arguments: arguments);
+  }
+
+  Widget getAuthScreen(BuildContext context, Widget screen) {
+    return BlocProvider<AuthCubit>(
+      create: (context) => getIt(),
+      child: screen,
+    );
   }
 }

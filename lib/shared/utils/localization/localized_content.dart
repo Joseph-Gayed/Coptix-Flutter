@@ -42,15 +42,24 @@ class LocalizationKey {
   static const String haveAccount = "haveAccount";
   static const String savePassword = "savePassword";
   static const String forgetPassword = "forgetPassword";
+  static const String name = "Name";
   static const String firstName = "firstName";
   static const String lastName = "lastName";
   static const String email = "email";
   static const String mobile = "mobile";
-  static const String confirmPassword = "confirmPassword";
+  static const String passwordConfirmation = "confirmPassword";
   static const String forgetPasswordTitle = "forgetPasswordTitle";
   static const String forgetPasswordDescription = "forgetPasswordDescription";
   static const String sendTheLink = "sendTheLink";
   static const String backToLogin = "backToLogin";
+
+  static const String emailValidation = "emailValidation";
+  static const String passwordValidation = "passwordValidation";
+  static const String passwordConfirmationValidation =
+      "passwordConfirmationValidation";
+  static const String mobileValidation = "mobileValidation";
+  static const String required = "required";
+  static const String checkYourMail = "checkYourMail";
 }
 
 const Map<String, Map<String, String>> localizedContent = {
@@ -99,16 +108,25 @@ const Map<String, String> englishContent = {
   LocalizationKey.signup: "signup",
   LocalizationKey.savePassword: "savePassword",
   LocalizationKey.forgetPassword: "forgetPassword",
+  LocalizationKey.name: "Name",
   LocalizationKey.firstName: "firstName",
   LocalizationKey.lastName: "lastName",
   LocalizationKey.email: "email",
   LocalizationKey.mobile: "mobile",
-  LocalizationKey.confirmPassword: "confirmPassword",
+  LocalizationKey.passwordConfirmation: "confirmPassword",
   LocalizationKey.forgetPasswordTitle: "Forgot your password?",
   LocalizationKey.forgetPasswordDescription:
       "Please enter your registered email to receive a link to reset password.",
   LocalizationKey.sendTheLink: "Send the link",
   LocalizationKey.backToLogin: "Back to login",
+  LocalizationKey.emailValidation: "Please enter an email with a valid format!",
+  LocalizationKey.passwordValidation:
+      "Please enter an password with a valid format!",
+  LocalizationKey.passwordConfirmationValidation:
+      "Password and password confirmation are not identical!",
+  LocalizationKey.mobileValidation: "Please enter mobile with a valid format!",
+  LocalizationKey.required: "This field is Required!",
+  LocalizationKey.checkYourMail: "Please check your email!",
 };
 
 const Map<String, String> arabicContent = {
@@ -151,16 +169,24 @@ const Map<String, String> arabicContent = {
   LocalizationKey.haveAccount: "هل لديك حساب؟ ",
   LocalizationKey.savePassword: "حفظ كلمة المرور",
   LocalizationKey.forgetPassword: "نسيت كلمة السر؟",
+  LocalizationKey.name: "الاسم",
   LocalizationKey.firstName: "الاسم الأول",
   LocalizationKey.lastName: "الاسم الأخير",
   LocalizationKey.email: "البريد الإلكتروني",
   LocalizationKey.mobile: "رقم الهاتف",
-  LocalizationKey.confirmPassword: "تأكيد كلمة المرور",
+  LocalizationKey.passwordConfirmation: "تأكيد كلمة المرور",
   LocalizationKey.forgetPasswordTitle: "نسيت كلمة السر الخاصة بك؟",
   LocalizationKey.forgetPasswordDescription:
       "أدخل بريدك الإلكتروني المسجل أدناه \n لتتلقى تعليمات إعادة ضبط كلمة المرور",
   LocalizationKey.sendTheLink: "أرسل الرابط",
   LocalizationKey.backToLogin: "العودة لتسجيل الدخول",
+  LocalizationKey.emailValidation: "يرجي ادخال البريد الالكتروني بشكل صحيح!",
+  LocalizationKey.passwordValidation: "يرجي ادخال كلمة المرور بشكل صحيح!",
+  LocalizationKey.passwordConfirmationValidation:
+      "كلمة المرور و تأكيد كلمة المرور غير متطابقين!",
+  LocalizationKey.mobileValidation: "يرجي ادخال رقم الهاتف بشكل صحيح!",
+  LocalizationKey.required: "هذا الحقل مطلوب!",
+  LocalizationKey.checkYourMail: "يرجي الذهاب لصندوق البريد الالكتروني للتفقد.",
 };
 
 const Map<String, String> frenchContent = {
@@ -203,14 +229,23 @@ const Map<String, String> frenchContent = {
   LocalizationKey.signup: "signup",
   LocalizationKey.savePassword: "savePassword",
   LocalizationKey.forgetPassword: "forgetPassword",
+  LocalizationKey.name: "Name",
   LocalizationKey.firstName: "firstName",
   LocalizationKey.lastName: "lastName",
   LocalizationKey.email: "email",
   LocalizationKey.mobile: "mobile",
-  LocalizationKey.confirmPassword: "confirmPassword",
+  LocalizationKey.passwordConfirmation: "confirmPassword",
   LocalizationKey.forgetPasswordTitle: "Forgot your password?",
   LocalizationKey.forgetPasswordDescription:
       "Please enter your registered email to receive a link to reset password.",
   LocalizationKey.sendTheLink: "Send the link",
   LocalizationKey.backToLogin: "Back to login",
+  LocalizationKey.emailValidation: "Please enter an email with a valid format!",
+  LocalizationKey.passwordValidation:
+      "Please enter an password with a valid format!",
+  LocalizationKey.passwordConfirmationValidation:
+      "Password and password confirmation are not identical!",
+  LocalizationKey.mobileValidation: "Please enter mobile with a valid format!",
+  LocalizationKey.required: "This field is Required!",
+  LocalizationKey.checkYourMail: "Please check your email!",
 };

@@ -4,5 +4,6 @@ class NavArgsKeys {
   static const clipArgs = "clipArgs";
   static const idKey = "id";
   static const titleKey = "title";
-  static var appBarTitle = "appBarTitle";
+  static String appBarTitle = "appBarTitle";
+  static String indexOfSelectedTab = "indexOfSelectedTab";
 }

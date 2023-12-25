@@ -1,17 +1,25 @@
+import 'package:coptix/presentation/features/auth/common/cubit/auth_cubit.dart';
 import 'package:coptix/shared/extensions/context_ext.dart';
 import 'package:coptix/shared/theme/colors.dart';
 import 'package:coptix/shared/utils/constants.dart';
 import 'package:coptix/shared/utils/navigation/navigation_args.dart';
 import 'package:coptix/shared/widgets/coptix_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../shared/theme/dimens.dart';
+import '../../../../../shared/theme/dimens.dart';
 
 class AuthContainer extends StatelessWidget {
   final Widget screenContent;
   final String? appBarTitle;
+
+  final Function(AuthState)? handleSuccessState;
+
   const AuthContainer(
-      {super.key, required this.screenContent, this.appBarTitle});
+      {super.key,
+      required this.screenContent,
+      this.appBarTitle,
+      this.handleSuccessState});
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +34,46 @@ class AuthContainer extends StatelessWidget {
 
     return Scaffold(
       appBar: coptixAppBar,
-      body: SafeArea(
-        child:
-            screenContentContainerWithGradientLayer(isAppBarVisible, context),
-      ),
+      body: SafeArea(child: BlocBuilder<AuthCubit, AuthState>(
+        builder: (context, state) {
+          return handleFixedStates(state, isAppBarVisible, context);
+        },
+      )),
     );
   }
+
+  Widget handleFixedStates(
+      AuthState state, bool isAppBarVisible, BuildContext context) {
+    if (state is AuthLoadingState) {
+      return const Center(
+        child: CircularProgressIndicator(
+          color: secondaryColor,
+        ),
+      );
+    } else {
+      if (state is AuthErrorState) {
+        context.showToast(message: state.message);
+      } else if (isSuccessState(state)) {
+        //must add this before navigation to avoid crash "setState() or markNeedsBuild() called during build".
+        Future.microtask(() {
+          if (handleSuccessState != null) {
+            handleSuccessState!(state);
+          } else {
+            //Todo: there is an issue here
+            //after success the user is directed  to a new instance of the
+            //HomeLandingScreen (opened on index 0: HomeScreen) and there is a back button in the app bar , so user must press back 2 times after login
+            //if you called  context.backToHome(); in the login button click without calling the api , it works well but if called the api , it will not work well.
+            //I tried to call  Navigator.pop(context); after  context.backToHome(); but it went to black screen.
+            //I tried to replace  Future.microtask(() {..}) with Future.delayed(Duration.zero, () {..}) or WidgetsBinding.instance.addPostFrameCallback((_) {..}) but not worked
+            context.backToHome();
+          }
+        });
+      }
+      return screenContentContainerWithGradientLayer(isAppBarVisible, context);
+    }
+  }
+
+  bool isSuccessState(AuthState state) => state is! AuthInitialState;
 
   Stack screenContentContainerWithGradientLayer(
       bool isAppBarVisible, BuildContext context) {
