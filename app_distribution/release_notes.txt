@@ -1,9 +1,13 @@
 What's Done: \n
-  - Add Categories Chips in home screen.\n
-  - Add Special Collection in home screen.\n
-  - Enhance the Fitting of the background image of the app (dark crosses image).\n
-  - For Image Loading : Replace the old colored placeholder with new gray one.\n
-  - For Image Loading : If loading failed display tje gray placeholder.\n
-  - Adjust the aspect ratio of the item cards.\n
-  - Adjust the black gradiant layer in the banner .\n
-  - Make the first season selected by default in the series details screen.
+  - Support Tablet and iPAD.\n
+  - Login , Sign Up , Forget Password.\n
+  - Change the app Icon.\n
+  - Fix the bug of calling details api for episode details.\n
+  - make the gradient background of special collection support rtl , ltr.\n\n
+  - Fix some Ui comments like spaces in the Home screen.\n\n
+
+Known Issues: \n
+ - After login or signup user is redirected to a duplicate copy of the home screen (with back button in app bar) instead of the previous Home screen , so user has to press back after login or signup.\n\n
+
+Notes: \n
+  - To login you can use this test account (email:email1@gmail.com, pass:123456).\n

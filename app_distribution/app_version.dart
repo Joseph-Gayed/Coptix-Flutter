@@ -1,4 +1,4 @@
 class AppVersion {
-  static const String versionName = '0.3.0';
-  static const int versionCode = 3;
+  static const String versionName = '0.4.0';
+  static const int versionCode = 4;
 }
