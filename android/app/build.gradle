@@ -12,16 +12,6 @@ if (localPropertiesFile.exists()) {
     }
 }
 
-def versionConfig = new File("../app_distribution/app_version.dart")
-def versionConfigLines = versionConfig.readLines()
-def versionNameLine = versionConfigLines.find { it.contains('versionName') }
-def versionCodeLine = versionConfigLines.find { it.contains('versionCode') }
-
-def splitter = " = "
-def appVersionName = versionNameLine.split(splitter)[1].replaceAll(";", "")
-def appVersionCode = versionCodeLine.split(splitter)[1].replaceAll(";", "")
-
-
 android {
     namespace "com.ovp.coptix.coptix"
     compileSdkVersion flutter.compileSdkVersion
@@ -44,8 +34,8 @@ android {
         applicationId "com.ovp.coptix"
         minSdkVersion 26
         targetSdkVersion flutter.targetSdkVersion
-        versionCode appVersionCode.toInteger()
-        versionName appVersionName.replaceAll("'", "")
+        versionCode 4
+        versionName "0.4.0"
     }
 
     buildTypes {
