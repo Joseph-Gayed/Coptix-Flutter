@@ -13,18 +13,21 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
+void configureOrientation(
+    {bool supportLandScape = false, bool supportPortrait = true}) {
+  // Set preferred orientations for the entire app
+  SystemChrome.setPreferredOrientations([
+    if (supportPortrait) DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+    if (supportLandScape) DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight,
+  ]);
+}
+
 void main() {
   initDi();
   runApp(DevicePreview(
       enabled: enableDevicePreview, builder: (context) => const MyApp()));
-}
-
-void configureOrientation() {
-  // Set preferred orientations for the entire app
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
 }
 
 class MyApp extends StatefulWidget {

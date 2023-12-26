@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import '../../../../../shared/widgets/coptix_container.dart';
+import '../../../main.dart';
 import '../../../presentation/model/ui_clip.dart';
 import '../../../shared/utils/navigation/navigation_args.dart';
 import '../../../shared/widgets/coptix_app_bar.dart';
@@ -26,10 +26,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   @override
   Widget build(BuildContext context) {
     // Force landscape orientation
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeLeft,
-      DeviceOrientation.landscapeRight,
-    ]);
+    configureOrientation(supportLandScape: true);
 
     return Scaffold(
         appBar: const CoptixAppBar(showingBackButton: true),
@@ -43,10 +40,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   @override
   void dispose() {
     // Reset preferred orientations when the screen is disposed
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    configureOrientation();
     super.dispose();
   }
 }
