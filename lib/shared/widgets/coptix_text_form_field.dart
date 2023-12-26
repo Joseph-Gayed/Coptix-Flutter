@@ -64,7 +64,8 @@ class _CoptixTextFormFieldState extends State<CoptixTextFormField> {
         decoration: InputDecoration(
             labelText: widget.labelText,
             helperText: validationText,
-            helperStyle: lightTextStyle.copyWith(color: Colors.red),
+            helperStyle: lightTextStyle.copyWith(
+                color: Colors.red, fontWeight: FontWeight.bold),
             floatingLabelStyle: _isFocused
                 ? inputTextStyle.copyWith(color: secondaryColor)
                 : inputTextStyle,

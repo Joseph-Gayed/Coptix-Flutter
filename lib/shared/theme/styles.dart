@@ -74,6 +74,10 @@ TextStyle inputTextStyle = lightTextStyle.copyWith(
 
 InputDecorationTheme inputDecorationTheme = InputDecorationTheme(
   border: const OutlineInputBorder(),
+
+  enabledBorder: OutlineInputBorder(
+    borderSide: BorderSide(width: AuthDimens.borderWidth, color: inputBgColor),
+  ),
   floatingLabelStyle: inputTextStyle,
   labelStyle: inputTextStyle.copyWith(fontWeight: FontWeight.normal),
   filled: true,
