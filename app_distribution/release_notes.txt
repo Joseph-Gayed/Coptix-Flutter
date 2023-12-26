@@ -1,13 +1,6 @@
 What's Done: \n
-  - Support Tablet and iPAD.\n
-  - Login , Sign Up , Forget Password.\n
-  - Change the app Icon.\n
-  - Fix the bug of calling details api for episode details.\n
-  - make the gradient background of special collection support rtl , ltr.\n\n
-  - Fix some Ui comments like spaces in the Home screen.\n\n
-
+  - Fix Ui bug of Build 0.4.0 (app is not showing texts).\n\n
 Known Issues: \n
  - After login or signup user is redirected to a duplicate copy of the home screen (with back button in app bar) instead of the previous Home screen , so user has to press back after login or signup.\n\n
-
 Notes: \n
   - To login you can use this test account (email:email1@gmail.com, pass:123456).\n
