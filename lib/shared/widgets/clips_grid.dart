@@ -4,7 +4,6 @@ import 'package:coptix/shared/theme/styles.dart';
 import 'package:coptix/shared/utils/localization/app_localizations_delegate.dart';
 import 'package:coptix/shared/utils/localization/localized_content.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../presentation/features/home_landing/home/widgets/default_collection/item_default_image_card.dart';
 import '../theme/dimens.dart';
@@ -56,6 +55,6 @@ class ClipsGrid extends StatelessWidget {
   double calculateGridAspectRatio() {
     var cardWidth = HomeDimens.displayTypeWidths[clips[0].displayType] ?? 1;
     var cardHeight = HomeDimens.displayTypeHeights[clips[0].displayType] ?? 1;
-    return cardWidth > cardHeight ? 12.w / 7.h : 7.w / 12.h;
+    return cardWidth > cardHeight ? 12 / 7 : 7 / 12;
   }
 }

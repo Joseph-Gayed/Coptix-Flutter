@@ -108,40 +108,20 @@ class AuthContainer extends StatelessWidget {
         //input form
         Center(
           child: context.isMobileScreen()
-              ? screenContentMobile()
+              ? Container(
+                  margin: EdgeInsets.symmetric(
+                      horizontal: Dimens.screenMarginH,
+                      vertical: Dimens.screenMarginV),
+                  child: screenContentMobile())
               : screenContentTablet(),
         ),
       ],
     );
   }
 
-  Widget screenContentContainerWithOutGradientLayer(
-      bool isAppBarVisible, BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(getBackgroundImagePath(context)),
-          fit: BoxFit.cover,
-        ),
-      ),
-
-      //input form
-      child: Center(
-        child: context.isMobileScreen()
-            ? screenContentMobile()
-            : screenContentTablet(),
-      ),
-    );
-  }
-
   Widget screenContentMobile() {
     return SingleChildScrollView(
-      child: Container(
-          padding: EdgeInsets.symmetric(
-              horizontal: Dimens.screenMarginH,
-              vertical: Dimens.doubleScreenMarginV),
-          alignment: Alignment.center,
-          child: screenContent),
+      child: Container(alignment: Alignment.center, child: screenContent),
     );
   }
 

@@ -1,4 +1,5 @@
 import 'package:coptix/shared/fake_data.dart';
+import 'package:coptix/shared/theme/dimens.dart';
 import 'package:coptix/shared/widgets/clips_grid.dart';
 import 'package:coptix/shared/widgets/coptix_container.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,9 @@ class _NewAdditionsScreenState extends State<NewAdditionsScreen> {
     // Your Landing Screen implementation goes here
     return Scaffold(
       body: CoptixContainer(
+        padding: EdgeInsets.symmetric(
+            horizontal: Dimens.halfScreenMarginH,
+            vertical: Dimens.halfScreenMarginV),
         child: ClipsGrid(clips: clips),
       ),
     );

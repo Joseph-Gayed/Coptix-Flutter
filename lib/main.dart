@@ -10,7 +10,6 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 void configureOrientation(
@@ -81,29 +80,21 @@ class _MyAppState extends State<MyApp> {
     WidgetsFlutterBinding.ensureInitialized();
     configureOrientation();
 
-    return ScreenUtilInit(
-      designSize: getDesignSize(context),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, child) {
-        return MaterialApp(
-          title: 'Coptix',
-          theme: appTheme,
-          navigatorKey: rootNavigatorKey,
-          debugShowCheckedModeBanner: false,
-          initialRoute: AppRouter.startup,
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-          ],
-          locale: _locale,
-          supportedLocales: AppLocalizations.locales(),
-          routes: AppRouter().getAppRoutes(context),
-        );
-      },
-      // child: ,
+    return MaterialApp(
+      title: 'Coptix',
+      theme: appTheme,
+      navigatorKey: rootNavigatorKey,
+      debugShowCheckedModeBanner: false,
+      initialRoute: AppRouter.startup,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      locale: _locale,
+      supportedLocales: AppLocalizations.locales(),
+      routes: AppRouter().getAppRoutes(context),
     );
   }
 
