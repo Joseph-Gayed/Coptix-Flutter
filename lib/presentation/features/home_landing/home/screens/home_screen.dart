@@ -11,10 +11,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../shared/widgets/collections_widget_builder.dart';
+import '../../../categories/screens/category_collections_screen.dart';
 import '../../../error_screen/not_found_screen.dart';
 import '../cubit/home_cubit.dart';
 import '../cubit/home_state.dart';
-import '../../../categories/screens/category_screen.dart';
+import 'collection_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -97,12 +98,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
     if (collections.isNotEmpty) {
       if (collections.first.displayType == CollectionDisplayType.banner) {
-        items.addAll(buildCollectionsWidgets(collections.sublist(0, 1)));
+        items.addAll(buildCollectionsWidgets(
+            collections.sublist(0, 1), onViewMoreClicked));
         items.add(buildCategoriesWidgets(categories));
-        items.addAll(buildCollectionsWidgets(collections.sublist(1)));
+        items.addAll(
+            buildCollectionsWidgets(collections.sublist(1), onViewMoreClicked));
       } else {
         items.add(buildCategoriesWidgets(categories));
-        items.addAll(buildCollectionsWidgets(collections));
+        items.addAll(
+          buildCollectionsWidgets(collections, onViewMoreClicked),
+        );
       }
     }
     return items;
@@ -117,6 +122,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void openCategory(UiCategory uiCategory) {
-    CategoryScreen.openScreen(context, uiCategory);
+    CategoryCollectionsScreen.openScreen(context, uiCategory);
+  }
+
+  void onViewMoreClicked(UiCollection uiCollection) {
+    CollectionScreen.openScreen(context, uiCollection);
   }
 }

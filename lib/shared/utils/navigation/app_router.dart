@@ -1,7 +1,8 @@
 import 'package:coptix/presentation/features/auth/forget_password/forget_password_screen.dart';
 import 'package:coptix/presentation/features/auth/login/login_screen.dart';
-import 'package:coptix/presentation/features/categories/cubit/category_details_cubit.dart';
-import 'package:coptix/presentation/features/categories/screens/category_screen.dart';
+import 'package:coptix/presentation/features/categories/cubit/category_collections_cubit.dart';
+import 'package:coptix/presentation/features/categories/cubit/category_content_cubit.dart';
+import 'package:coptix/presentation/features/categories/screens/category_collections_screen.dart';
 import 'package:coptix/shared/extensions/context_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/di/injection_container.dart';
 import '../../../presentation/features/auth/common/cubit/auth_cubit.dart';
 import '../../../presentation/features/auth/signup/signup_screen.dart';
+import '../../../presentation/features/categories/screens/category_contents_screen.dart';
 import '../../../presentation/features/clip_details/cubit/video_details_cubit.dart';
 import '../../../presentation/features/clip_details/video_details_screen.dart';
 import '../../../presentation/features/error_screen/not_found_screen.dart';
@@ -42,7 +44,9 @@ class AppRouter {
   static const String movie = "/movie";
   static const String play = "/play";
   static const String videoPlayer = "/video_player";
-  static const String category = "/category";
+  static const String categoryCollections = "/categoryCollections";
+  static const String categoryContents = "/categoryContents";
+
   static const String login = "/login";
   static const String signup = "/signup";
   static const String forgetPassword = "/forgetPassword";
@@ -62,7 +66,8 @@ class AppRouter {
       episode: (context) => _getVideoDetailsScreen(context),
       play: (context) => _getVideoDetailsScreen(context),
       videoPlayer: (context) => _getVideoPlayerScreen(context),
-      category: (context) => _getCategoryScreen(context),
+      categoryCollections: (context) => _getCategoryCollectionsScreen(context),
+      categoryContents: (context) => _getCategoryContentsScreen(context),
       login: (context) => getAuthScreen(context, const LoginScreen()),
       signup: (context) => getAuthScreen(context, const SignupScreen()),
       forgetPassword: (context) =>
@@ -124,15 +129,27 @@ class AppRouter {
     return VideoPlayerScreen(arguments: arguments);
   }
 
-  Widget _getCategoryScreen(BuildContext context) {
+  Widget _getCategoryCollectionsScreen(BuildContext context) {
     Map<String, dynamic>? arguments = context.getNavArgs();
     if (arguments == null) {
       return const NotFoundScreen();
     }
 
-    return BlocProvider<CategoryDetailsCubit>(
+    return BlocProvider<CategoryCollectionsCubit>(
       create: (context) => getIt(),
-      child: CategoryScreen(arguments: arguments),
+      child: CategoryCollectionsScreen(arguments: arguments),
+    );
+  }
+
+  Widget _getCategoryContentsScreen(BuildContext context) {
+    Map<String, dynamic>? arguments = context.getNavArgs();
+    if (arguments == null) {
+      return const NotFoundScreen();
+    }
+
+    return BlocProvider<CategoryContentCubit>(
+      create: (context) => getIt(),
+      child: CategoryContentsScreen(arguments: arguments),
     );
   }
 

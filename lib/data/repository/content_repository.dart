@@ -6,6 +6,8 @@ import 'package:dartz/dartz.dart';
 
 import '../../core/network/error_handling/failure.dart';
 import '../../domain/model/auth_request_params.dart';
+import '../../domain/model/category_content_request_params.dart';
+import '../../domain/model/domain_category_content.dart';
 import '../../domain/model/domain_collection.dart';
 import '../../domain/model/domain_user.dart';
 import '../../domain/repository/content_repository.dart';
@@ -61,9 +63,15 @@ class ContentRepositoryImpl extends ContentRepository {
 
   //TODO: Caching
   @override
-  Future<Either<Failure, List<DomainCollection>>> getCategoryDetails(
+  Future<Either<Failure, List<DomainCollection>>> getCategoryCollections(
       String categoryId) {
-    return remoteDataSource.getCategoryDetails(categoryId);
+    return remoteDataSource.getCategoryCollections(categoryId);
+  }
+
+  @override
+  Future<Either<Failure, DomainCategoryContent>> getCategoryContent(
+      CategoryContentRequest request) {
+    return remoteDataSource.getCategoryContent(request);
   }
 
   //TODO: Caching

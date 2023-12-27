@@ -1,12 +1,13 @@
 import '../../../../../shared/utils/object_print.dart';
 import '../../domain/model/domain_collection.dart';
 
-class CategoryDetailsApiResponse {
+class CategoryCollectionsApiResponse {
   final List<DomainCollection>? children;
 
-  CategoryDetailsApiResponse({required this.children});
+  CategoryCollectionsApiResponse({required this.children});
 
-  factory CategoryDetailsApiResponse.fromJson(Map<String, dynamic> jsonAsMap) {
+  factory CategoryCollectionsApiResponse.fromJson(
+      Map<String, dynamic> jsonAsMap) {
     List<DomainCollection> collections = [];
 
     if (jsonAsMap.containsKey("children")) {
@@ -16,7 +17,7 @@ class CategoryDetailsApiResponse {
       }).toList();
     }
 
-    return CategoryDetailsApiResponse(children: collections);
+    return CategoryCollectionsApiResponse(children: collections);
   }
 
   Map<String, dynamic> toJson() => {"children": children};

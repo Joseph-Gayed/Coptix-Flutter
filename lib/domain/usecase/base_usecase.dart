@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+
 import '../../core/network/error_handling/failure.dart';
 
 abstract class UseCaseWithInput<In, Out> {

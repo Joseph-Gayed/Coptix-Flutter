@@ -1,6 +1,8 @@
+import 'package:coptix/core/app_logger.dart';
 import 'package:coptix/core/network/api_names.dart';
 import 'package:coptix/core/network/base_api_response.dart';
 import 'package:coptix/core/network/error_handling/status_codes.dart';
+import 'package:coptix/core/network/pagination.dart';
 import 'package:coptix/domain/model/auth_request_params.dart';
 import 'package:coptix/domain/model/details_request_params.dart';
 import 'package:coptix/domain/model/domain_category.dart';
@@ -14,9 +16,11 @@ import 'package:dio/dio.dart';
 import '../../core/network/error_handling/error_handler.dart';
 import '../../core/network/error_handling/failure.dart';
 import '../../core/network/network_info.dart';
+import '../../domain/model/category_content_request_params.dart';
+import '../../domain/model/domain_category_content.dart';
 import '../../domain/model/domain_collection.dart';
-import '../model/category_details_api_response.dart';
-import '../model/cateories_api_response.dart';
+import '../model/categories_api_response.dart';
+import '../model/category_collections_api_response.dart';
 import '../model/collections_api_response.dart';
 import 'remote_data_source.dart';
 
@@ -111,6 +115,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
         Failure failure = getResponseFailure(response, apiResponse);
         return Left(failure);
       } catch (e) {
+        AppLogger().e("getHomeCategories: $e");
         return Left(ErrorHandler.handle(e).failure);
       }
     } else {
@@ -119,7 +124,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   @override
-  Future<Either<Failure, List<DomainCollection>>> getCategoryDetails(
+  Future<Either<Failure, List<DomainCollection>>> getCategoryCollections(
       String categoryId) async {
     if (await networkInfo.isConnected) {
       try {
@@ -131,15 +136,53 @@ class RemoteDataSourceImpl implements RemoteDataSource {
         if (response.statusCode == StatusCode.success) {
           // Return Success contains the collections
           Map<String, dynamic> body = apiResponse.body as Map<String, dynamic>;
-          CategoryDetailsApiResponse categoryDetailsApiResponseApiResponse =
-              CategoryDetailsApiResponse.fromJson(body);
+          CategoryCollectionsApiResponse categoryDetailsApiResponseApiResponse =
+              CategoryCollectionsApiResponse.fromJson(body);
           return right(categoryDetailsApiResponseApiResponse.children ?? []);
         }
         // Return Error
         Failure failure = getResponseFailure(response, apiResponse);
         return Left(failure);
       } catch (e) {
+        AppLogger().e("getCategoryCollections: $e");
+
         // Return Error
+        return Left(ErrorHandler.handle(e).failure);
+      }
+    } else {
+      return Left(StatusCode.noInternetConnection.getFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, DomainCategoryContent>> getCategoryContent(
+      CategoryContentRequest request) async {
+    String url =
+        "${ApiNames.categories}/${request.id}/${ApiNames.categoriesContent}?page= ${request.page}";
+
+    if (await networkInfo.isConnected) {
+      try {
+        final Response response = await dio.get(url);
+
+        // Parse the response using the BaseApiResponse and HomeResponse classes
+        BaseApiResponse apiResponse = BaseApiResponse.fromJson(response.data);
+        if (response.statusCode == StatusCode.success) {
+          List body = apiResponse.body as List;
+          Pagination? pagination = apiResponse.pagination;
+          List<DomainClip> content = [];
+          content =
+              body.map((clipJson) => DomainClip.fromJson(clipJson)).toList();
+
+          return right(
+              DomainCategoryContent(content: content, pagination: pagination));
+        }
+
+        // Return Error
+        Failure failure = getResponseFailure(response, apiResponse);
+        return Left(failure);
+      } catch (e) {
+        AppLogger().e("getCategoryContent: $e");
+
         return Left(ErrorHandler.handle(e).failure);
       }
     } else {
@@ -155,17 +198,23 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
         // Parse the response using the BaseApiResponse and HomeResponse classes
         BaseApiResponse apiResponse = BaseApiResponse.fromJson(response.data);
+
         if (response.statusCode == StatusCode.success) {
           // Return Success contains the collections
           Map<String, dynamic> body = apiResponse.body as Map<String, dynamic>;
+
           HomeCollectionsApiResponse homeApiResponse =
               HomeCollectionsApiResponse.fromJson(body);
+
           return right(homeApiResponse.collections ?? []);
         }
+
         // Return Error
         Failure failure = getResponseFailure(response, apiResponse);
         return Left(failure);
       } catch (e) {
+        AppLogger().e("getHomeCollections: $e");
+
         // Return Error
         return Left(ErrorHandler.handle(e).failure);
       }

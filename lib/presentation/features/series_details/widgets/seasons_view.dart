@@ -1,6 +1,6 @@
+import 'package:coptix/presentation/features/series_details/widgets/seasons_chips.dart';
 import 'package:coptix/presentation/model/ui_clip.dart';
 import 'package:coptix/presentation/model/ui_season.dart';
-import 'package:coptix/presentation/features/series_details/widgets/seasons_chips.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../shared/theme/dimens.dart';

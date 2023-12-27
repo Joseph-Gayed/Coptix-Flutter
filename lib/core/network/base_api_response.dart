@@ -2,12 +2,14 @@
 
 import 'dart:convert';
 
+import 'package:coptix/core/network/pagination.dart';
+
 import '../../shared/utils/object_print.dart';
 
 class BaseApiResponse {
   final String message;
   final dynamic body;
-  final Map<String, dynamic>? pagination;
+  final Pagination? pagination;
 
   BaseApiResponse({
     required this.message,
@@ -20,8 +22,12 @@ class BaseApiResponse {
 
     String jsonMessage =
         jsonAsMap.containsKey("message") ? json['message'] : "";
-    Map<String, dynamic>? jsonPagination =
-        jsonAsMap.containsKey("pagination") ? json['pagination'] : {};
+
+    Pagination? jsonPagination;
+    if (jsonAsMap.containsKey("pagination") && json['pagination'] != null) {
+      jsonPagination = Pagination.fromJson(json['pagination']);
+    }
+
     dynamic jsonBody = jsonAsMap.containsKey("body") ? json['body'] : null;
 
     return BaseApiResponse(

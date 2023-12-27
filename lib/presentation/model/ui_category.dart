@@ -4,13 +4,13 @@ class UiCategory {
   String id;
   String name;
   UiCategory? parent;
-  List<UiCategory> children;
+  List<UiCategory>? children;
 
   UiCategory({
     required this.id,
     required this.name,
-    required this.parent,
-    required this.children,
+    this.parent,
+    this.children,
   });
 
   factory UiCategory.fromDomain(DomainCategory domain) => UiCategory(

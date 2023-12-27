@@ -1,4 +1,4 @@
-import 'package:coptix/presentation/features/categories/cubit/category_details_cubit.dart';
+import 'package:coptix/presentation/features/categories/cubit/category_collections_cubit.dart';
 import 'package:coptix/presentation/model/ui_category.dart';
 import 'package:coptix/presentation/model/ui_collection.dart';
 import 'package:coptix/shared/theme/dimens.dart';
@@ -14,34 +14,36 @@ import '../../../../shared/widgets/collections_widget_builder.dart';
 import '../../../../shared/widgets/coptix_app_bar.dart';
 import '../../../../shared/widgets/coptix_container.dart';
 import '../../error_screen/not_found_screen.dart';
+import 'category_contents_screen.dart';
 
-class CategoryScreen extends StatefulWidget {
+class CategoryCollectionsScreen extends StatefulWidget {
   final Map<String, dynamic> arguments;
-  const CategoryScreen({super.key, required this.arguments});
+  const CategoryCollectionsScreen({super.key, required this.arguments});
 
   @override
-  State<CategoryScreen> createState() => _CategoryScreenState();
+  State<CategoryCollectionsScreen> createState() =>
+      _CategoryCollectionsScreenState();
 
   static void openScreen(BuildContext context, UiCategory uiCategory) {
     Navigator.pushNamed(
       context,
-      AppRouter.category,
+      AppRouter.categoryCollections,
       arguments: {NavArgsKeys.categoryArgs: uiCategory},
     );
   }
 }
 
-class _CategoryScreenState extends State<CategoryScreen> {
+class _CategoryCollectionsScreenState extends State<CategoryCollectionsScreen> {
   late UiCategory uiCategory;
 
-  late CategoryDetailsCubit cubit;
+  late CategoryCollectionsCubit cubit;
 
   @override
   void initState() {
     super.initState();
     uiCategory = widget.arguments[NavArgsKeys.categoryArgs];
-    cubit = BlocProvider.of<CategoryDetailsCubit>(context);
-    cubit.getCategoryDetails(uiCategory.id);
+    cubit = BlocProvider.of<CategoryCollectionsCubit>(context);
+    cubit.getCategoryCollections(uiCategory.id);
   }
 
   @override
@@ -54,7 +56,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
         body: CoptixContainer(
           padding: EdgeInsets.symmetric(
               horizontal: Dimens.screenMarginH, vertical: Dimens.screenMarginV),
-          child: BlocBuilder<CategoryDetailsCubit, CategoryDetailsState>(
+          child:
+              BlocBuilder<CategoryCollectionsCubit, CategoryCollectionsState>(
             builder: (context, state) {
               return handleState(state);
             },
@@ -62,26 +65,27 @@ class _CategoryScreenState extends State<CategoryScreen> {
         ));
   }
 
-  Widget handleState(CategoryDetailsState state) {
-    if (state is CategoryDetailsLoadingState) {
+  Widget handleState(CategoryCollectionsState state) {
+    if (state is CategoryCollectionsLoadingState) {
       return const Center(
         child: CircularProgressIndicator(
           color: secondaryColor,
         ),
       );
-    } else if (state is CategoryDetailsErrorState) {
+    } else if (state is CategoryCollectionsErrorState) {
       return NotFoundScreen(
         inputMessage: state.message,
         showAppBar: false,
       );
-    } else if (state is CategoryDetailsSuccessState) {
+    } else if (state is CategoryCollectionsSuccessState) {
       return handleSuccessState(state.collections);
     }
     return Container();
   }
 
   Widget handleSuccessState(List<UiCollection> collections) {
-    List<Widget> collectionWidgets = buildCollectionsWidgets(collections);
+    List<Widget> collectionWidgets =
+        buildCollectionsWidgets(collections, onViewMoreClicked);
 
     if (collectionWidgets.isNotEmpty) {
       return CustomScrollView(
@@ -102,5 +106,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
         showAppBar: false,
       );
     }
+  }
+
+  void onViewMoreClicked(UiCollection uiCollection) {
+    CategoryContentsScreen.openScreen(
+        context, UiCategory(id: uiCollection.id, name: uiCollection.name));
   }
 }

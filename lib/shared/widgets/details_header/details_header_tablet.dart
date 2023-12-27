@@ -4,12 +4,12 @@ import 'package:coptix/shared/utils/localization/localized_content.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 
+import '../../../presentation/features/home_landing/home/widgets/play_now_or_later.dart';
 import '../../../presentation/model/ui_clip.dart';
 import '../../theme/colors.dart';
 import '../../theme/dimens.dart';
 import '../../utils/constants.dart';
 import '../safe_network_image.dart';
-import '../../../presentation/features/home_landing/home/widgets/play_now_or_later.dart';
 
 class DetailsHeaderTablet extends StatelessWidget {
   final UiClip uiClip;

@@ -12,6 +12,7 @@ class ApiNames {
   static String baseUrl = isMocking ? mockBaseUrl : liveBaseUrl;
 
   static const String categories = "categories";
+  static const String categoriesContent = "show_contents";
   static const String home = "home";
   static const String clipDetails = "clips";
   static const String seriesDetails = "series";

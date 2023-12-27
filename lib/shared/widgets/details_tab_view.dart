@@ -1,7 +1,7 @@
+import 'package:coptix/presentation/features/series_details/widgets/seasons_view.dart';
 import 'package:coptix/shared/theme/colors.dart';
 import 'package:coptix/shared/theme/dimens.dart';
 import 'package:coptix/shared/theme/styles.dart';
-import 'package:coptix/presentation/features/series_details/widgets/seasons_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../presentation/model/ui_clip.dart';

@@ -1,7 +1,6 @@
 import 'package:coptix/main.dart';
 import 'package:flutter/material.dart';
 
-import '../../presentation/features/home_landing/home/screens/collection_screen.dart';
 import '../../presentation/features/home_landing/home/widgets/default_collection/item_default_collection.dart';
 import '../../presentation/features/home_landing/home/widgets/featured_collection/item_featured_collection.dart';
 import '../../presentation/features/home_landing/home/widgets/special_collection/item_special_collection.dart';
@@ -10,13 +9,16 @@ import '../../presentation/model/ui_collection.dart';
 import '../enums/collection_display_type.dart';
 import '../utils/navigation/shared_navigation.dart';
 
-List<Widget> buildCollectionsWidgets(List<UiCollection> collections) {
+List<Widget> buildCollectionsWidgets(
+    List<UiCollection> collections, Function(UiCollection) onViewMoreClicked) {
   return collections
-      .map((uiCollection) => getCollectionWidget(uiCollection))
+      .map((uiCollection) =>
+          getCollectionWidget(uiCollection, onViewMoreClicked))
       .toList();
 }
 
-Widget getCollectionWidget(UiCollection uiCollection) {
+Widget getCollectionWidget(
+    UiCollection uiCollection, Function(UiCollection) onViewMoreClicked) {
   if (uiCollection.displayType == CollectionDisplayType.banner) {
     return ItemFeaturedCollection(
       uiCollection: uiCollection,
@@ -31,12 +33,8 @@ Widget getCollectionWidget(UiCollection uiCollection) {
   }
   return ItemDefaultCollection(
       uiCollection: uiCollection,
-      onViewMoreClicked: openCollection,
+      onViewMoreClicked: onViewMoreClicked,
       onCardClicked: openDetails);
-}
-
-void openCollection(UiCollection uiCollection) {
-  CollectionScreen.openScreen(rootNavigatorKey.currentContext!, uiCollection);
 }
 
 void openDetails(UiClip uiClip) {

@@ -40,6 +40,8 @@ class DomainClip {
         ? (jsonAsMap['content_type']?['key'] ?? "")
         : "";
 
+    displayType = contentType;
+
     name = jsonAsMap.containsKey("name") ? jsonAsMap['name'] : "";
     description =
         jsonAsMap.containsKey("description") ? jsonAsMap['description'] : "";
