@@ -1,6 +1,7 @@
 import 'package:coptix/presentation/features/auth/forget_password/forget_password_screen.dart';
 import 'package:coptix/presentation/features/auth/login/login_screen.dart';
-import 'package:coptix/presentation/features/home_landing/home/screens/category_screen.dart';
+import 'package:coptix/presentation/features/categories/cubit/category_details_cubit.dart';
+import 'package:coptix/presentation/features/categories/screens/category_screen.dart';
 import 'package:coptix/shared/extensions/context_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -128,7 +129,11 @@ class AppRouter {
     if (arguments == null) {
       return const NotFoundScreen();
     }
-    return CategoryScreen(arguments: arguments);
+
+    return BlocProvider<CategoryDetailsCubit>(
+      create: (context) => getIt(),
+      child: CategoryScreen(arguments: arguments),
+    );
   }
 
   Widget getAuthScreen(BuildContext context, Widget screen) {

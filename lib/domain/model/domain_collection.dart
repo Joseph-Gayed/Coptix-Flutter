@@ -1,6 +1,5 @@
 import 'dart:core';
 
-
 import '../../../../../shared/utils/object_print.dart';
 import 'domain_clip.dart';
 
@@ -10,9 +9,15 @@ class DomainCollection {
   String? displayType;
   List<DomainClip>? clips;
   List<DomainClip>? series;
+  List<DomainClip>? contents;
 
   DomainCollection(
-      {this.id, this.name, this.displayType, this.clips, this.series});
+      {this.id,
+      this.name,
+      this.displayType,
+      this.clips,
+      this.series,
+      this.contents});
 
   DomainCollection.fromJson(dynamic json) {
     Map<String, dynamic> jsonAsMap = json as Map<String, dynamic>;
@@ -36,6 +41,13 @@ class DomainCollection {
     } else {
       series = [];
     }
+
+    if (jsonAsMap.containsKey("contents")) {
+      List list = jsonAsMap["contents"] as List;
+      contents = list.map((clipJson) => DomainClip.fromJson(clipJson)).toList();
+    } else {
+      contents = [];
+    }
   }
 
   Map<String, dynamic> toJson() => {
@@ -44,6 +56,7 @@ class DomainCollection {
         "display_type": displayType,
         "clips": clips,
         "series": series,
+        "contents": contents,
       };
 
   @override

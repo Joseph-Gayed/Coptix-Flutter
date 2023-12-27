@@ -61,6 +61,13 @@ class ContentRepositoryImpl extends ContentRepository {
 
   //TODO: Caching
   @override
+  Future<Either<Failure, List<DomainCollection>>> getCategoryDetails(
+      String categoryId) {
+    return remoteDataSource.getCategoryDetails(categoryId);
+  }
+
+  //TODO: Caching
+  @override
   Future<Either<Failure, List<DomainCollection>>> getHomeCollections() {
     return remoteDataSource.getHomeCollections();
   }

@@ -10,16 +10,11 @@ import 'package:coptix/shared/widgets/coptix_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../shared/utils/navigation/shared_navigation.dart';
-import '../../../../model/ui_clip.dart';
+import '../../../../../shared/widgets/collections_widget_builder.dart';
 import '../../../error_screen/not_found_screen.dart';
 import '../cubit/home_cubit.dart';
 import '../cubit/home_state.dart';
-import '../widgets/default_collection/item_default_collection.dart';
-import '../widgets/featured_collection/item_featured_collection.dart';
-import '../widgets/special_collection/item_special_collection.dart';
-import 'category_screen.dart';
-import 'collection_screen.dart';
+import '../../../categories/screens/category_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -121,42 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  List<Widget> buildCollectionsWidgets(List<UiCollection> collections) {
-    return collections
-        .map((uiCollection) => getCollectionWidget(uiCollection))
-        .toList();
-  }
-
-  Widget getCollectionWidget(UiCollection uiCollection) {
-    if (uiCollection.displayType == CollectionDisplayType.banner) {
-      return ItemFeaturedCollection(
-        uiCollection: uiCollection,
-        onPlayNowClicked: openDetails,
-        onAddToFavoritesClicked: addToFavorites,
-      );
-    } else if (uiCollection.displayType == CollectionDisplayType.special) {
-      return ItemSpecialCollection(
-        uiCollection: uiCollection,
-        onCardClicked: openDetails,
-      );
-    }
-    return ItemDefaultCollection(
-        uiCollection: uiCollection,
-        onViewMoreClicked: openCollection,
-        onCardClicked: openDetails);
-  }
-
   void openCategory(UiCategory uiCategory) {
     CategoryScreen.openScreen(context, uiCategory);
   }
-
-  void openCollection(UiCollection uiCollection) {
-    CollectionScreen.openScreen(context, uiCollection);
-  }
-
-  void openDetails(UiClip uiClip) {
-    openDetailsScreen(context, uiClip);
-  }
-
-  void addToFavorites(UiClip uiClip) {}
 }

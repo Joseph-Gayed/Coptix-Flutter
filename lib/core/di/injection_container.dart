@@ -3,9 +3,11 @@ import 'package:coptix/data/local/local_data_source.dart';
 import 'package:coptix/data/remote/remote_data_source.dart';
 import 'package:coptix/domain/usecase/foreget_password_usecase.dart';
 import 'package:coptix/domain/usecase/get_categories_usecase.dart';
+import 'package:coptix/domain/usecase/get_category_details_usecase.dart';
 import 'package:coptix/domain/usecase/get_collections_usecase.dart';
 import 'package:coptix/domain/usecase/home_usecase.dart';
 import 'package:coptix/domain/usecase/login_usecase.dart';
+import 'package:coptix/presentation/features/categories/cubit/category_details_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
@@ -44,17 +46,20 @@ void initDi() {
   getIt.registerFactory<GetCollectionsUseCase>(
       () => GetCollectionsUseCase(getIt()));
   getIt.registerFactory<HomeUseCase>(() => HomeUseCase(getIt(), getIt()));
-
   getIt.registerFactory<LoginUseCase>(() => LoginUseCase(getIt()));
   getIt.registerFactory<SignupUseCase>(() => SignupUseCase(getIt()));
   getIt.registerFactory<ForgetPasswordUseCase>(
       () => ForgetPasswordUseCase(getIt()));
+  getIt.registerFactory<GetCategoryDetailsUseCase>(
+      () => GetCategoryDetailsUseCase(getIt()));
 
   // Bloc Cubit
   getIt.registerFactory<HomeCubit>(() => HomeCubit(getIt()));
   getIt.registerFactory<VideoDetailsCubit>(() => VideoDetailsCubit(getIt()));
   getIt.registerFactory<SeriesDetailsCubit>(() => SeriesDetailsCubit(getIt()));
   getIt.registerFactory<AuthCubit>(() => AuthCubit(getIt(), getIt(), getIt()));
+  getIt.registerFactory<CategoryDetailsCubit>(
+      () => CategoryDetailsCubit(getIt()));
 
   //Provider<LocalizationManager>
   /*getIt.registerSingleton<LocalizationManager>(LocalizationManager.instance);*/

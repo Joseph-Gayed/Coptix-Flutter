@@ -16,6 +16,9 @@ abstract class ContentRepository {
   Future<Either<Failure, bool>> forgetPassword(AuthRequest request);
 
   Future<Either<Failure, List<DomainCategory>>> getHomeCategories();
+
+  Future<Either<Failure, List<DomainCollection>>> getCategoryDetails(
+      String categoryId);
   Future<Either<Failure, List<DomainCollection>>> getHomeCollections();
   Future<Either<Failure, DomainClip>> getClipDetails(
       DetailsRequestParams request);

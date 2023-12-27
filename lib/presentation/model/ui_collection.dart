@@ -27,6 +27,7 @@ List<UiClip> clipsFromDomain(
     DomainCollection domain, CollectionDisplayType displayType) {
   List<DomainClip> domainClipsAndSeries = (domain.clips ?? []);
   domainClipsAndSeries.addAll(domain.series ?? []);
+  domainClipsAndSeries.addAll(domain.contents ?? []);
 
   return domainClipsAndSeries.map((DomainClip domainClip) {
     return UiClip.fromDomain(domainClip, displayType);

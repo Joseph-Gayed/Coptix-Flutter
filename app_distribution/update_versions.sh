@@ -16,7 +16,7 @@ versionCode=5
 /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $versionCode" $infoPlistPath &&
 echo "---> iOS Version is updated to $versionName ($versionCode)."
 
-# 3.Update Android version name and number in app/build.gradle using awk
+# 3.Update Android version name and number in app/build.gradle
 sed -i "" -e "/^ *versionCode/c\\
         versionCode $versionCode
 " -e "/^ *versionName/c\\

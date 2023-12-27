@@ -15,6 +15,7 @@ import '../../core/network/error_handling/error_handler.dart';
 import '../../core/network/error_handling/failure.dart';
 import '../../core/network/network_info.dart';
 import '../../domain/model/domain_collection.dart';
+import '../model/category_details_api_response.dart';
 import '../model/cateories_api_response.dart';
 import '../model/collections_api_response.dart';
 import 'remote_data_source.dart';
@@ -79,7 +80,6 @@ class RemoteDataSourceImpl implements RemoteDataSource {
             data: authRequestToJson(request));
         BaseApiResponse apiResponse = BaseApiResponse.fromJson(response.data);
         if (response.statusCode == StatusCode.success) {
-          // Map<String, dynamic> body = apiResponse.body as Map<String, dynamic>;
           return right(true);
         }
 
@@ -111,6 +111,35 @@ class RemoteDataSourceImpl implements RemoteDataSource {
         Failure failure = getResponseFailure(response, apiResponse);
         return Left(failure);
       } catch (e) {
+        return Left(ErrorHandler.handle(e).failure);
+      }
+    } else {
+      return Left(StatusCode.noInternetConnection.getFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<DomainCollection>>> getCategoryDetails(
+      String categoryId) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final Response response =
+            await dio.get("${ApiNames.categories}/$categoryId");
+
+        // Parse the response using the BaseApiResponse and HomeResponse classes
+        BaseApiResponse apiResponse = BaseApiResponse.fromJson(response.data);
+        if (response.statusCode == StatusCode.success) {
+          // Return Success contains the collections
+          Map<String, dynamic> body = apiResponse.body as Map<String, dynamic>;
+          CategoryDetailsApiResponse categoryDetailsApiResponseApiResponse =
+              CategoryDetailsApiResponse.fromJson(body);
+          return right(categoryDetailsApiResponseApiResponse.children ?? []);
+        }
+        // Return Error
+        Failure failure = getResponseFailure(response, apiResponse);
+        return Left(failure);
+      } catch (e) {
+        // Return Error
         return Left(ErrorHandler.handle(e).failure);
       }
     } else {
