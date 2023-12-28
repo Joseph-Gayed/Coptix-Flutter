@@ -23,7 +23,8 @@ class ItemDefaultCollection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(bottom: HomeDimens.collectionsVerticalMargin),
+        margin: EdgeInsets.symmetric(
+            vertical: 0.5 * HomeDimens.collectionsVerticalMargin),
         child: widgetContent(context));
   }
 
@@ -59,7 +60,8 @@ class ItemDefaultCollection extends StatelessWidget {
                   // Navigate to SectionList screen
                 },
                 child: Container(
-                  padding: EdgeInsets.all(Dimens.halfScreenMarginH),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: Dimens.screenMarginH),
                   child: Image.asset(
                     MyApp.isRtl(context)
                         ? '${imagesPath}ic_arrow_left.png'

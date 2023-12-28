@@ -13,7 +13,8 @@ class GetCategoryContentUseCase
 
   @override
   Future<Either<Failure, DomainCategoryContent>> execute(
-      CategoryContentRequest input) {
+      CategoryContentRequest input) async {
+    if (input.page > 1) await Future.delayed(const Duration(seconds: 3));
     return repository.getCategoryContent(input);
   }
 }

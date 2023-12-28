@@ -17,7 +17,10 @@ class CategoryContentSuccessState extends CategoryContentState {
 }
 
 //Pagination========
-class CategoryContentPaginationLoadingState extends CategoryContentState {}
+class CategoryContentPaginationLoadingState extends CategoryContentState {
+  final UiCategoryContent uiCategoryContent;
+  CategoryContentPaginationLoadingState(this.uiCategoryContent);
+}
 
 class CategoryContentPaginationSuccessState extends CategoryContentState {
   final UiCategoryContent uiCategoryContent;

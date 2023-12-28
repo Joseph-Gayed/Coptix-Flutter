@@ -4,5 +4,6 @@ class CategoryContentRequest {
   String id;
   int page;
 
-  CategoryContentRequest({required this.id, this.page = paginationFirstPage});
+  CategoryContentRequest(
+      {required this.id, this.page = paginationDefaultFirstPage});
 }

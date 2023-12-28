@@ -4,6 +4,7 @@ import 'package:coptix/domain/model/domain_category_content.dart';
 import 'package:coptix/domain/usecase/get_category_content_usecase.dart';
 import 'package:coptix/presentation/model/ui_category_content.dart';
 import 'package:coptix/presentation/model/ui_clip.dart';
+import 'package:coptix/shared/utils/constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/network/error_handling/failure.dart';
@@ -54,16 +55,19 @@ class CategoryContentCubit extends Cubit<CategoryContentState> {
 
       allContent.addAll(newUiCategoryContent.content);
 
-      emit(CategoryContentPaginationSuccessState(
-          newUiCategoryContent.copyWith(content: allContent)));
+      var paginationCategoryContent =
+          newUiCategoryContent.copyWith(content: allContent);
+      emit(CategoryContentPaginationSuccessState(paginationCategoryContent));
     };
   }
 
   UiCategoryContent? _getUiCategoryContentOfCurrentState() {
     if (state is CategoryContentSuccessState) {
       return (state as CategoryContentSuccessState).uiCategoryContent;
-    } else if (state is CategoryContentSuccessState) {
-      return (state as CategoryContentSuccessState).uiCategoryContent;
+    } else if (state is CategoryContentPaginationSuccessState) {
+      return (state as CategoryContentPaginationSuccessState).uiCategoryContent;
+    } else if (state is CategoryContentPaginationLoadingState) {
+      return (state as CategoryContentPaginationLoadingState).uiCategoryContent;
     }
     return null;
   }
@@ -77,6 +81,8 @@ class CategoryContentCubit extends Cubit<CategoryContentState> {
     } else {
       int nextPage = _getNextPage();
       if (nextPage > 0) {
+        emit(CategoryContentPaginationLoadingState(
+            _getUiCategoryContentOfCurrentState()!));
         useCase
             .execute(CategoryContentRequest(id: categoryId, page: nextPage))
             .then((response) => response.fold(
@@ -87,6 +93,7 @@ class CategoryContentCubit extends Cubit<CategoryContentState> {
 
   int _getNextPage() {
     Pagination lastPagination = _getLastPagination();
+
     return lastPagination.lastPage > lastPagination.currentPage + 1
         ? lastPagination.currentPage + 1
         : -1;
@@ -105,5 +112,9 @@ class CategoryContentCubit extends Cubit<CategoryContentState> {
     }
 
     return pagination;
+  }
+
+  canLoadMore() {
+    return _getNextPage() > paginationDefaultFirstPage;
   }
 }

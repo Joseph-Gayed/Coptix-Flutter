@@ -158,7 +158,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   Future<Either<Failure, DomainCategoryContent>> getCategoryContent(
       CategoryContentRequest request) async {
     String url =
-        "${ApiNames.categories}/${request.id}/${ApiNames.categoriesContent}?page= ${request.page}";
+        "${ApiNames.categories}/${request.id}/${ApiNames.categoriesContent}?page=${request.page}";
 
     if (await networkInfo.isConnected) {
       try {

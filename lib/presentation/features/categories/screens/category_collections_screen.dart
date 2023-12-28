@@ -54,8 +54,7 @@ class _CategoryCollectionsScreenState extends State<CategoryCollectionsScreen> {
           showingBackButton: true,
         ),
         body: CoptixContainer(
-          padding: EdgeInsets.symmetric(
-              horizontal: Dimens.screenMarginH, vertical: Dimens.screenMarginV),
+          padding: EdgeInsets.symmetric(horizontal: Dimens.screenMarginH),
           child:
               BlocBuilder<CategoryCollectionsCubit, CategoryCollectionsState>(
             builder: (context, state) {

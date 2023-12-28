@@ -1,3 +1,5 @@
+import 'package:coptix/shared/utils/object_print.dart';
+
 import '../../shared/utils/constants.dart';
 
 class Pagination {
@@ -12,15 +14,15 @@ class Pagination {
   });
 
   factory Pagination.fromJson(Map<String, dynamic> json) => Pagination(
-        currentPage: json["current_page"] ?? paginationFirstPage,
-        lastPage: json["last_page"] ?? paginationFirstPage,
-        total: json["total"] ?? paginationFirstPage,
+        currentPage: json["current_page"] ?? paginationDefaultFirstPage,
+        lastPage: json["last_page"] ?? paginationDefaultFirstPage,
+        total: json["total"] ?? paginationDefaultFirstPage,
       );
 
   factory Pagination.defaultPagination() => Pagination(
-        currentPage: paginationFirstPage,
-        lastPage: paginationFirstPage,
-        total: paginationFirstPage,
+        currentPage: paginationDefaultFirstPage,
+        lastPage: paginationDefaultFirstPage,
+        total: paginationDefaultFirstPage,
       );
 
   Map<String, dynamic> toJson() => {
@@ -28,4 +30,9 @@ class Pagination {
         "last_page": lastPage,
         "total": total,
       };
+
+  @override
+  String toString() {
+    return objectToPrintableString(this);
+  }
 }

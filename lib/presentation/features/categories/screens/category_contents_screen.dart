@@ -49,8 +49,7 @@ class _CategoryContentsScreenState extends State<CategoryContentsScreen> {
           showingBackButton: true,
         ),
         body: CoptixContainer(
-          padding: EdgeInsets.symmetric(
-              horizontal: Dimens.screenMarginH, vertical: Dimens.screenMarginV),
+          padding: EdgeInsets.symmetric(horizontal: Dimens.screenMarginH),
           child: BlocBuilder<CategoryContentCubit, CategoryContentState>(
             builder: (context, state) {
               return handleState(state);
@@ -67,27 +66,43 @@ class _CategoryContentsScreenState extends State<CategoryContentsScreen> {
             color: secondaryColor,
           ),
         );
-
       case const (CategoryContentErrorState):
         final errorState = state as CategoryContentErrorState;
         return NotFoundScreen(
           inputMessage: errorState.message,
           showAppBar: false,
         );
-
       case const (CategoryContentSuccessState):
-      case const (CategoryContentPaginationSuccessState):
         final successState = state as CategoryContentSuccessState;
-        return handleSuccessState(successState.uiCategoryContent.content);
+        return handleSuccessState(
+            content: successState.uiCategoryContent.content);
 
       case const (CategoryContentPaginationLoadingState):
+        final successState = state as CategoryContentPaginationLoadingState;
+        return handleSuccessState(
+            content: successState.uiCategoryContent.content,
+            showLoadMoreProgress: true);
+
+      case const (CategoryContentPaginationSuccessState):
+        final successState = state as CategoryContentPaginationSuccessState;
+        return handleSuccessState(
+            content: successState.uiCategoryContent.content);
+
       case const (CategoryContentPaginationErrorState):
       default:
         return Container();
     }
   }
 
-  Widget handleSuccessState(List<UiClip> content) {
-    return ClipsGrid(clips: content);
+  Widget handleSuccessState(
+      {required List<UiClip> content, bool showLoadMoreProgress = false}) {
+    return ClipsGrid(
+        clips: content,
+        onLoadMore: cubit.canLoadMore() ? loadMore : null,
+        showLoadMoreProgress: showLoadMoreProgress);
+  }
+
+  loadMore() {
+    cubit.getCategoryContent(uiCategory.id);
   }
 }
