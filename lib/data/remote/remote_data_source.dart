@@ -18,7 +18,7 @@ abstract class RemoteDataSource {
   Future<Either<Failure, List<DomainCategory>>> getHomeCategories();
   Future<Either<Failure, List<DomainCollection>>> getCategoryCollections(
       String categoryId);
-  Future<Either<Failure, DomainCategoryContent>> getCategoryContent(
+  Future<Either<Failure, DomainPaginatedClips>> getCategoryContent(
       CategoryContentRequest request);
   Future<Either<Failure, List<DomainCollection>>> getHomeCollections();
   Future<Either<Failure, DomainClip>> getClipOrSeriesDetails(

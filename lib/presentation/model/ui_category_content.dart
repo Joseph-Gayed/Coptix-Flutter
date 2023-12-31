@@ -13,7 +13,7 @@ class UiCategoryContent {
     required this.pagination,
   });
 
-  factory UiCategoryContent.fromDomain(DomainCategoryContent domain) {
+  factory UiCategoryContent.fromDomain(DomainPaginatedClips domain) {
     var content = domain.content
         .map((domainClip) => UiClip.fromDomain(
             domainClip, displayTypeFromJson(domainClip.displayType ?? "")))

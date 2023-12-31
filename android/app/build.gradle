@@ -14,7 +14,7 @@ if (localPropertiesFile.exists()) {
 
 android {
     namespace "com.ovp.coptix.coptix"
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
     compileOptions {

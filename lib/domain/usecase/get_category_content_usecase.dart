@@ -6,13 +6,13 @@ import 'package:coptix/domain/usecase/base_usecase.dart';
 import 'package:dartz/dartz.dart';
 
 class GetCategoryContentUseCase
-    extends UseCaseWithInput<CategoryContentRequest, DomainCategoryContent> {
+    extends UseCaseWithInput<CategoryContentRequest, DomainPaginatedClips> {
   final ContentRepository repository;
 
   GetCategoryContentUseCase(this.repository);
 
   @override
-  Future<Either<Failure, DomainCategoryContent>> execute(
+  Future<Either<Failure, DomainPaginatedClips>> execute(
       CategoryContentRequest input) async {
     if (input.page > 1) await Future.delayed(const Duration(seconds: 3));
     return repository.getCategoryContent(input);

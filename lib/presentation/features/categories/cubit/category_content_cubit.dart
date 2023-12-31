@@ -14,10 +14,10 @@ part 'category_content_state.dart';
 class CategoryContentCubit extends Cubit<CategoryContentState> {
   final GetCategoryContentUseCase useCase;
 
-  late Function(DomainCategoryContent) _successHandler;
+  late Function(DomainPaginatedClips) _successHandler;
   late Function(Failure) _errorHandler;
 
-  late Function(DomainCategoryContent) _paginationSuccessHandler;
+  late Function(DomainPaginatedClips) _paginationSuccessHandler;
   late Function(Failure) _paginationErrorHandler;
 
   CategoryContentCubit(this.useCase) : super(CategoryContentInitialState()) {

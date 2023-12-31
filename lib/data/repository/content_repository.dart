@@ -69,7 +69,7 @@ class ContentRepositoryImpl extends ContentRepository {
   }
 
   @override
-  Future<Either<Failure, DomainCategoryContent>> getCategoryContent(
+  Future<Either<Failure, DomainPaginatedClips>> getCategoryContent(
       CategoryContentRequest request) {
     return remoteDataSource.getCategoryContent(request);
   }
