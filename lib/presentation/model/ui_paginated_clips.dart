@@ -1,34 +1,34 @@
 import 'package:coptix/core/network/pagination.dart';
-import 'package:coptix/domain/model/domain_category_content.dart';
+import 'package:coptix/domain/model/domain_paginated_clips.dart';
 import 'package:coptix/presentation/model/ui_clip.dart';
 
 import '../../shared/enums/collection_display_type.dart';
 
-class UiCategoryContent {
+class UiPaginatedClips {
   List<UiClip> content;
   Pagination pagination;
 
-  UiCategoryContent({
+  UiPaginatedClips({
     required this.content,
     required this.pagination,
   });
 
-  factory UiCategoryContent.fromDomain(DomainPaginatedClips domain) {
+  factory UiPaginatedClips.fromDomain(DomainPaginatedClips domain) {
     var content = domain.content
         .map((domainClip) => UiClip.fromDomain(
             domainClip, displayTypeFromJson(domainClip.displayType ?? "")))
         .toList();
 
-    return UiCategoryContent(
+    return UiPaginatedClips(
         content: content,
         pagination: domain.pagination ?? Pagination.defaultPagination());
   }
 
-  UiCategoryContent copyWith({
+  UiPaginatedClips copyWith({
     List<UiClip>? content,
     Pagination? pagination,
   }) {
-    return UiCategoryContent(
+    return UiPaginatedClips(
       content: content ?? this.content,
       pagination: pagination ?? this.pagination,
     );

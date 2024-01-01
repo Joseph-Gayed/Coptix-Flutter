@@ -8,8 +8,10 @@ import 'package:coptix/domain/usecase/get_category_content_usecase.dart';
 import 'package:coptix/domain/usecase/get_collections_usecase.dart';
 import 'package:coptix/domain/usecase/home_usecase.dart';
 import 'package:coptix/domain/usecase/login_usecase.dart';
+import 'package:coptix/domain/usecase/search_usecase.dart';
 import 'package:coptix/presentation/features/categories/cubit/category_collections_cubit.dart';
 import 'package:coptix/presentation/features/categories/cubit/category_content_cubit.dart';
+import 'package:coptix/presentation/features/home_landing/search/cubit/search_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
@@ -56,6 +58,7 @@ void initDi() {
       () => GetCategoryCollectionsUseCase(getIt()));
   getIt.registerFactory<GetCategoryContentUseCase>(
       () => GetCategoryContentUseCase(getIt()));
+  getIt.registerFactory<SearchUseCase>(() => SearchUseCase(getIt()));
 
   // Bloc Cubit
   getIt.registerFactory<HomeCubit>(() => HomeCubit(getIt()));
@@ -66,6 +69,7 @@ void initDi() {
       () => CategoryCollectionsCubit(getIt()));
   getIt.registerFactory<CategoryContentCubit>(
       () => CategoryContentCubit(getIt()));
+  getIt.registerFactory<SearchCubit>(() => SearchCubit(getIt()));
 
   //Provider<LocalizationManager>
   /*getIt.registerSingleton<LocalizationManager>(LocalizationManager.instance);*/

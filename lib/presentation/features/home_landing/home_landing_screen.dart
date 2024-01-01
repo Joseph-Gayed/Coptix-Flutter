@@ -1,14 +1,11 @@
-import 'package:coptix/core/di/injection_container.dart';
+import 'package:coptix/presentation/features/home_landing/search/screens/search_screen.dart';
 import 'package:coptix/shared/utils/navigation/navigation_args.dart';
 import 'package:coptix/shared/widgets/coptix_app_bar.dart';
 import 'package:coptix/shared/widgets/coptix_container.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../shared/widgets/coptix_bottom_nav_bar.dart';
-import '../../features/home_landing/home/cubit/home_cubit.dart';
 import '../../features/home_landing/new_additions/new_additions_screen.dart';
-import '../../features/home_landing/search/search_screen.dart';
 import 'home/screens/home_screen.dart';
 import 'my_profile/profile_screen.dart';
 
@@ -29,12 +26,9 @@ class _HomeLandingScreenState extends State<HomeLandingScreen> {
     super.initState();
     _selectedIndex = widget.arguments?[NavArgsKeys.indexOfSelectedTab] ?? 0;
     _screens = <Widget>[
-      BlocProvider<HomeCubit>(
-        create: (context) => getIt(),
-        child: const HomeScreen(),
-      ),
+      HomeScreen.withCubit(),
       const NewAdditionsScreen(),
-      const SearchScreen(),
+      SearchScreen.withCubit(),
       const ProfileScreen(),
     ];
   }

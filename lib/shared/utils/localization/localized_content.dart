@@ -60,6 +60,7 @@ class LocalizationKey {
   static const String mobileValidation = "mobileValidation";
   static const String required = "required";
   static const String checkYourMail = "checkYourMail";
+  static const String searchHint = "searchHint";
 }
 
 const Map<String, Map<String, String>> localizedContent = {
@@ -127,6 +128,7 @@ const Map<String, String> englishContent = {
   LocalizationKey.mobileValidation: "Please enter mobile with a valid format!",
   LocalizationKey.required: "This field is Required!",
   LocalizationKey.checkYourMail: "Please check your email!",
+  LocalizationKey.searchHint: "What you are looking for?",
 };
 
 const Map<String, String> arabicContent = {
@@ -187,6 +189,7 @@ const Map<String, String> arabicContent = {
   LocalizationKey.mobileValidation: "يرجي ادخال رقم الهاتف بشكل صحيح!",
   LocalizationKey.required: "هذا الحقل مطلوب!",
   LocalizationKey.checkYourMail: "يرجي الذهاب لصندوق البريد الالكتروني للتفقد.",
+  LocalizationKey.searchHint: "أبحث عن قداس, برامج, ترانيم, عظات ...",
 };
 
 const Map<String, String> frenchContent = {
@@ -248,4 +251,5 @@ const Map<String, String> frenchContent = {
   LocalizationKey.mobileValidation: "Please enter mobile with a valid format!",
   LocalizationKey.required: "This field is Required!",
   LocalizationKey.checkYourMail: "Please check your email!",
+  LocalizationKey.searchHint: "What you are looking for?",
 };

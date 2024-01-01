@@ -4,3 +4,5 @@ const String passwordValidationRegex =
     r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$';
 const int passwordMinAllowedCharacter = 6;
 const int paginationDefaultFirstPage = 1;
+const int searchDebounceMinChars = 2;
+const int searchThrottleMinSeconds = 1;

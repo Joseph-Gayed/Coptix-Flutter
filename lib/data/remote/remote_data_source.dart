@@ -5,10 +5,11 @@ import '../../core/network/error_handling/failure.dart';
 import '../../domain/model/auth_request_params.dart';
 import '../../domain/model/details_request_params.dart';
 import '../../domain/model/domain_category.dart';
-import '../../domain/model/domain_category_content.dart';
+import '../../domain/model/domain_paginated_clips.dart';
 import '../../domain/model/domain_clip.dart';
 import '../../domain/model/domain_collection.dart';
 import '../../domain/model/domain_user.dart';
+import '../../domain/model/search_request_params.dart';
 
 abstract class RemoteDataSource {
   Future<Either<Failure, DomainUser>> login(AuthRequest request);
@@ -23,4 +24,6 @@ abstract class RemoteDataSource {
   Future<Either<Failure, List<DomainCollection>>> getHomeCollections();
   Future<Either<Failure, DomainClip>> getClipOrSeriesDetails(
       DetailsRequestParams request);
+
+  Future<Either<Failure, DomainPaginatedClips>> search(SearchRequest request);
 }

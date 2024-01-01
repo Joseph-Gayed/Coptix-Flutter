@@ -16,8 +16,9 @@ import '../../core/network/error_handling/error_handler.dart';
 import '../../core/network/error_handling/failure.dart';
 import '../../core/network/network_info.dart';
 import '../../domain/model/category_content_request_params.dart';
-import '../../domain/model/domain_category_content.dart';
+import '../../domain/model/domain_paginated_clips.dart';
 import '../../domain/model/domain_collection.dart';
+import '../../domain/model/search_request_params.dart';
 import '../model/categories_api_response.dart';
 import '../model/category_collections_api_response.dart';
 import '../model/collections_api_response.dart';
@@ -63,6 +64,23 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       () => dio.post(apiUrl, data: authRequestToJson(request)),
       (dynamic body, Pagination? pagination) {
         return DomainUser.fromJson(body as Map<String, dynamic>);
+      },
+    );
+  }
+
+  Future<Either<Failure, DomainPaginatedClips>> _getPaginatedClips(
+      String apiUrl) async {
+    return _executeRequest(
+      apiUrl,
+      () => dio.get(apiUrl),
+      (dynamic body, Pagination? pagination) {
+        if (body != null && body is List) {
+          List<DomainClip> content =
+              body.map((clipJson) => DomainClip.fromJson(clipJson)).toList();
+          return DomainPaginatedClips(content: content, pagination: pagination);
+        } else {
+          return DomainPaginatedClips(content: [], pagination: pagination);
+        }
       },
     );
   }
@@ -128,19 +146,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     String apiUrl =
         "${ApiNames.categories}/${request.id}/${ApiNames.categoriesContent}?page=${request.page}";
 
-    return _executeRequest(
-      apiUrl,
-      () => dio.get(apiUrl),
-      (dynamic body, Pagination? pagination) {
-        if (body is List) {
-          List<DomainClip> content =
-              body.map((clipJson) => DomainClip.fromJson(clipJson)).toList();
-          return DomainPaginatedClips(content: content, pagination: pagination);
-        } else {
-          return DomainPaginatedClips(content: [], pagination: pagination);
-        }
-      },
-    );
+    return _getPaginatedClips(apiUrl);
   }
 
   @override
@@ -174,5 +180,14 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       () => dio.get(apiUrl),
       (dynamic body, Pagination? pagination) => DomainClip.fromJson(body),
     );
+  }
+
+  @override
+  Future<Either<Failure, DomainPaginatedClips>> search(
+      SearchRequest request) async {
+    String apiUrl =
+        "${ApiNames.search}?key=${request.keyword}&page=${request.page}&per_page=10";
+
+    return _getPaginatedClips(apiUrl);
   }
 }

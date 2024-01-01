@@ -1,5 +1,6 @@
 import 'package:coptix/presentation/model/ui_category.dart';
 import 'package:coptix/presentation/model/ui_clip.dart';
+import 'package:coptix/shared/extensions/context_ext.dart';
 import 'package:coptix/shared/widgets/clips_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +9,7 @@ import '../../../../../shared/utils/navigation/app_router.dart';
 import '../../../../../shared/utils/navigation/navigation_args.dart';
 import '../../../../../shared/widgets/coptix_app_bar.dart';
 import '../../../../../shared/widgets/coptix_container.dart';
+import '../../../../shared/cubit/paginated_content_state.dart';
 import '../../../../shared/theme/colors.dart';
 import '../../../../shared/theme/dimens.dart';
 import '../../error_screen/not_found_screen.dart';
@@ -50,7 +52,7 @@ class _CategoryContentsScreenState extends State<CategoryContentsScreen> {
         ),
         body: CoptixContainer(
           padding: EdgeInsets.symmetric(horizontal: Dimens.screenMarginH),
-          child: BlocBuilder<CategoryContentCubit, CategoryContentState>(
+          child: BlocBuilder<CategoryContentCubit, PaginatedContentState>(
             builder: (context, state) {
               return handleState(state);
             },
@@ -58,37 +60,45 @@ class _CategoryContentsScreenState extends State<CategoryContentsScreen> {
         ));
   }
 
-  Widget handleState(CategoryContentState state) {
+  Widget handleState(PaginatedContentState state) {
     switch (state.runtimeType) {
-      case const (CategoryContentLoadingState):
+      case const (PaginatedContentLoadingState):
         return const Center(
           child: CircularProgressIndicator(
             color: secondaryColor,
           ),
         );
-      case const (CategoryContentErrorState):
-        final errorState = state as CategoryContentErrorState;
+
+      case const (PaginatedContentErrorState):
+        final errorState = state as PaginatedContentErrorState;
         return NotFoundScreen(
           inputMessage: errorState.message,
           showAppBar: false,
         );
-      case const (CategoryContentSuccessState):
-        final successState = state as CategoryContentSuccessState;
-        return handleSuccessState(
-            content: successState.uiCategoryContent.content);
 
-      case const (CategoryContentPaginationLoadingState):
-        final successState = state as CategoryContentPaginationLoadingState;
+      case const (PaginatedContentSuccessState):
+        final successState = state as PaginatedContentSuccessState;
         return handleSuccessState(
-            content: successState.uiCategoryContent.content,
+            content: successState.uiPaginatedContent.content);
+
+      case const (PaginatedContentPaginationLoadingState):
+        final successState = state as PaginatedContentPaginationLoadingState;
+        return handleSuccessState(
+            content: successState.uiPaginatedContent.content,
             showLoadMoreProgress: true);
 
-      case const (CategoryContentPaginationSuccessState):
-        final successState = state as CategoryContentPaginationSuccessState;
+      case const (PaginatedContentPaginationSuccessState):
+        final successState = state as PaginatedContentPaginationSuccessState;
         return handleSuccessState(
-            content: successState.uiCategoryContent.content);
+            content: successState.uiPaginatedContent.content);
 
-      case const (CategoryContentPaginationErrorState):
+      case const (PaginatedContentPaginationErrorState):
+        final paginationErrorState =
+            state as PaginatedContentPaginationErrorState;
+        context.showToast(message: paginationErrorState.message);
+
+        return handleSuccessState(
+            content: paginationErrorState.uiPaginatedContent.content);
       default:
         return Container();
     }

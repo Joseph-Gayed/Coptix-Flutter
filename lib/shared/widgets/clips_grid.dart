@@ -57,7 +57,7 @@ class ClipsGrid extends StatelessWidget {
                 mainAxisSpacing: Dimens.gridSpacing,
                 childAspectRatio: aspectRatio,
               ),
-              itemCount: clips.length /*+ (onLoadMore != null ? 1 : 0)*/,
+              itemCount: clips.length,
               itemBuilder: (context, index) {
                 if (index < clips.length) {
                   return AspectRatio(

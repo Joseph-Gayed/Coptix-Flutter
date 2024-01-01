@@ -10,6 +10,7 @@ import 'package:coptix/shared/widgets/coptix_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/di/injection_container.dart';
 import '../../../../../shared/widgets/collections_widget_builder.dart';
 import '../../../categories/screens/category_collections_screen.dart';
 import '../../../error_screen/not_found_screen.dart';
@@ -22,6 +23,13 @@ class HomeScreen extends StatefulWidget {
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
+
+  static Widget withCubit() {
+    return BlocProvider<HomeCubit>(
+      create: (context) => getIt(),
+      child: const HomeScreen(),
+    );
+  }
 }
 
 class _HomeScreenState extends State<HomeScreen> {

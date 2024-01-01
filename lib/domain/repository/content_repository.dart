@@ -1,6 +1,7 @@
 import 'package:coptix/domain/model/domain_category.dart';
 import 'package:coptix/domain/model/domain_clip.dart';
 import 'package:coptix/domain/model/domain_user.dart';
+import 'package:coptix/domain/model/search_request_params.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../core/network/error_handling/failure.dart';
@@ -8,7 +9,7 @@ import '../../domain/model/domain_collection.dart';
 import '../model/auth_request_params.dart';
 import '../model/category_content_request_params.dart';
 import '../model/details_request_params.dart';
-import '../model/domain_category_content.dart';
+import '../model/domain_paginated_clips.dart';
 
 abstract class ContentRepository {
   Future<DomainUser?> loadCachedUser();
@@ -28,4 +29,5 @@ abstract class ContentRepository {
       DetailsRequestParams request);
   Future<Either<Failure, DomainClip>> getSeriesDetails(
       DetailsRequestParams request);
+  Future<Either<Failure, DomainPaginatedClips>> search(SearchRequest request);
 }

@@ -1,13 +1,14 @@
 import 'package:coptix/domain/model/details_request_params.dart';
 import 'package:coptix/domain/model/domain_category.dart';
 import 'package:coptix/domain/model/domain_clip.dart';
+import 'package:coptix/domain/model/search_request_params.dart';
 import 'package:coptix/shared/extensions/either_ext.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../core/network/error_handling/failure.dart';
 import '../../domain/model/auth_request_params.dart';
 import '../../domain/model/category_content_request_params.dart';
-import '../../domain/model/domain_category_content.dart';
+import '../../domain/model/domain_paginated_clips.dart';
 import '../../domain/model/domain_collection.dart';
 import '../../domain/model/domain_user.dart';
 import '../../domain/repository/content_repository.dart';
@@ -92,5 +93,10 @@ class ContentRepositoryImpl extends ContentRepository {
   Future<Either<Failure, DomainClip>> getSeriesDetails(
       DetailsRequestParams request) {
     return remoteDataSource.getClipOrSeriesDetails(request);
+  }
+
+  @override
+  Future<Either<Failure, DomainPaginatedClips>> search(SearchRequest request) {
+    return remoteDataSource.search(request);
   }
 }
