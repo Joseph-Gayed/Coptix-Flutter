@@ -9,9 +9,6 @@ iosAppId="1:974856763223:ios:f362e62c1aac4174c37012"
 groupsNames="Dev,QC,Business"
 releaseNotes=$(<release_notes.txt)
 
-#Todo: change the version
-version_name='0.3.0'
-version_number=3
 
 # Path to your provisioning profile
 provisioningProfile="../ios/Coptix_Firebase_Ad_Hoc.mobileprovision"
@@ -34,10 +31,7 @@ echo "---> Cleared old IPA."
 
 
 # 2. Update version name and number in Info.plist
-/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $version_name" $infoPlistPath &&
-/usr/libexec/PlistBuddy -c "Set :CFBundleVersion $version_number" $infoPlistPath &&
-echo "---> Version is updated to $version_name($version_number)." &&
-
+./update_versions.sh &&
 
 # 3. Create new iPA
 flutter build ipa &&
@@ -50,8 +44,8 @@ echo "---> Created new IPA."
 
 
 # 4. Upload iPA to firebase
-firebase appdistribution:distribute "$ipaFilePath" --app  "$iosAppId" --release-notes "$releaseNotes" --groups "$groupsNames" &&
-echo "---> Uploaded IPA to firebase." || { echo "---> !Error!: Failed to upload IPA to firebase."; exit 1; }
+#firebase appdistribution:distribute "$ipaFilePath" --app  "$iosAppId" --release-notes "$releaseNotes" --groups "$groupsNames" &&
+#echo "---> Uploaded IPA to firebase." || { echo "---> !Error!: Failed to upload IPA to firebase."; exit 1; }
 
 # Check if any command failed and print final message accordingly
 if $success; then
