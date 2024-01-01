@@ -8,8 +8,8 @@ buildGradlePath="../android/app/build.gradle"
 #versionCode=$(sed -n "s/^.*versionCode = \([0-9]*\).*$/\1/p" app_version.dart)
 
 # 1.Define versionName and versionCode
-versionName="0.6.0"
-versionCode=6
+versionName="0.7.0"
+versionCode=7
 
 # 2.Update iOS version name and number in Info.plist
 /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $versionName" $infoPlistPath &&

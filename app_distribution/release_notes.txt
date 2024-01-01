@@ -1,6 +1,5 @@
 What's Done:
-  - open Category collections screen from home page to show list of sub categories and below the name of each sub category there is list of clips.
-  - open Category contents screen by clicking on the arrow (view more) the besides the subCategory name to open screen that shows grid of clips with pagination.
+  - Search Screen.
   
 Known Issues:
  - After login or signup user is redirected to a duplicate copy of the home screen (with back button in app bar) instead of the previous Home screen , so user has to press back after login or signup.
