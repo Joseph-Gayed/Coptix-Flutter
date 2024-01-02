@@ -36,30 +36,30 @@ class ItemDefaultCollection extends StatelessWidget {
         Container(
           margin:
               EdgeInsets.only(bottom: HomeDimens.collectionTitleVerticalMargin),
-          child: Row(
-            children: [
-              Container(
-                width: Dimens.verticalDividerWidth,
-                height: Dimens.verticalDividerHeight,
-                margin: EdgeInsets.symmetric(
-                    horizontal: HomeDimens.collectionTitleHorizontalMargin),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(Dimens.cornerRadius),
-                  color: secondaryColor,
+          child: GestureDetector(
+            onTap: () {
+              onViewMoreClicked(uiCollection);
+              // Navigate to SectionList screen
+            },
+            child: Row(
+              children: [
+                Container(
+                  width: Dimens.verticalDividerWidth,
+                  height: Dimens.verticalDividerHeight,
+                  margin: EdgeInsets.symmetric(
+                      horizontal: HomeDimens.collectionTitleHorizontalMargin),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Dimens.cornerRadius),
+                    color: secondaryColor,
+                  ),
                 ),
-              ),
-              Expanded(
-                child: Text(
-                  uiCollection.name,
-                  style: titleTextStyle,
+                Expanded(
+                  child: Text(
+                    uiCollection.name,
+                    style: titleTextStyle,
+                  ),
                 ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  onViewMoreClicked(uiCollection);
-                  // Navigate to SectionList screen
-                },
-                child: Container(
+                Container(
                   padding:
                       EdgeInsets.symmetric(horizontal: Dimens.screenMarginH),
                   child: Image.asset(
@@ -70,8 +70,8 @@ class ItemDefaultCollection extends StatelessWidget {
                     height: Dimens.arrowIconSize, // Adjust height as needed
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
 
