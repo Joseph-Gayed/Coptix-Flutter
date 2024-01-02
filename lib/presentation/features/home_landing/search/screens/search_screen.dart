@@ -1,5 +1,4 @@
 import 'package:coptix/presentation/features/home_landing/search/cubit/search_cubit.dart';
-import 'package:coptix/shared/extensions/context_ext.dart';
 import 'package:coptix/shared/theme/colors.dart';
 import 'package:coptix/shared/utils/localization/app_localizations_delegate.dart';
 import 'package:coptix/shared/widgets/coptix_container.dart';
@@ -10,9 +9,7 @@ import '../../../../../core/di/injection_container.dart';
 import '../../../../../shared/cubit/paginated_content_state.dart';
 import '../../../../../shared/theme/dimens.dart';
 import '../../../../../shared/utils/localization/localized_content.dart';
-import '../../../../../shared/widgets/clips_grid.dart';
-import '../../../../model/ui_clip.dart';
-import '../../../error_screen/not_found_screen.dart';
+import '../../../../../shared/widgets/details_header/paginated_clips_grid.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -38,6 +35,12 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     // Your Landing Screen implementation goes here
     return CoptixContainer(
@@ -49,10 +52,11 @@ class _SearchScreenState extends State<SearchScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               searchBar(),
-              SizedBox(height: Dimens.screenMarginV),
+              // SizedBox(height: Dimens.halfScreenMarginV),
               const Divider(color: primaryColor),
-              SizedBox(height: Dimens.screenMarginV),
-              Expanded(child: handleState(state)),
+              Expanded(
+                  child: PaginatedClipsGrid(
+                      paginatedContentState: state, onLoadMore: onLoadMore)),
             ],
           );
         },
@@ -82,62 +86,9 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  Widget handleState(PaginatedContentState state) {
-    switch (state.runtimeType) {
-      case const (PaginatedContentLoadingState):
-        return const Center(
-          child: CircularProgressIndicator(
-            color: secondaryColor,
-          ),
-        );
-
-      case const (PaginatedContentErrorState):
-        final errorState = state as PaginatedContentErrorState;
-        return NotFoundScreen(
-          inputMessage: errorState.message,
-          showAppBar: false,
-        );
-
-      case const (PaginatedContentSuccessState):
-        final successState = state as PaginatedContentSuccessState;
-        return handleSuccessState(
-            content: successState.uiPaginatedContent.content);
-
-      case const (PaginatedContentPaginationLoadingState):
-        final successState = state as PaginatedContentPaginationLoadingState;
-        return handleSuccessState(
-            content: successState.uiPaginatedContent.content,
-            showLoadMoreProgress: true);
-
-      case const (PaginatedContentPaginationSuccessState):
-        final successState = state as PaginatedContentPaginationSuccessState;
-        return handleSuccessState(
-            content: successState.uiPaginatedContent.content);
-
-      case const (PaginatedContentPaginationErrorState):
-        final paginationErrorState =
-            state as PaginatedContentPaginationErrorState;
-        context.showToast(message: paginationErrorState.message);
-
-        return handleSuccessState(
-            content: paginationErrorState.uiPaginatedContent.content);
-      default:
-        return NotFoundScreen(
-          inputMessage: LocalizationKey.noContent.tr(),
-          showAppBar: false,
-        );
-    }
-  }
-
-  Widget handleSuccessState(
-      {required List<UiClip> content, bool showLoadMoreProgress = false}) {
-    return ClipsGrid(
-        clips: content,
-        onLoadMore: cubit.canLoadMore() ? loadMore : null,
-        showLoadMoreProgress: showLoadMoreProgress);
-  }
-
-  loadMore() {
-    cubit.search(searchKeyword, isFirstPage: false);
+  onLoadMore() {
+    return cubit.canLoadMore()
+        ? cubit.search(searchKeyword, isFirstPage: false)
+        : null;
   }
 }

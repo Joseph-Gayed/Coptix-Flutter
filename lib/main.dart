@@ -80,7 +80,7 @@ class _MyAppState extends State<MyApp> {
     WidgetsFlutterBinding.ensureInitialized();
     configureOrientation();
 
-    return MaterialApp(
+    var materialApp = MaterialApp(
       title: 'Coptix',
       theme: appTheme,
       navigatorKey: rootNavigatorKey,
@@ -96,6 +96,10 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: AppLocalizations.locales(),
       routes: AppRouter().getAppRoutes(context),
     );
+
+    // List<SingleChildWidget> providers = [];
+    // return MultiBlocProvider(providers: providers, child: materialApp);
+    return materialApp;
   }
 
   Size getDesignSize(BuildContext context) {
