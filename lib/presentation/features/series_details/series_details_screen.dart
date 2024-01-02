@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../shared/widgets/coptix_container.dart';
+import '../../../core/di/injection_container.dart';
 import '../../../presentation/model/ui_clip.dart';
 import '../../../shared/theme/colors.dart';
 import '../../../shared/utils/navigation/navigation_args.dart';
@@ -21,6 +22,15 @@ class SeriesDetailsScreen extends StatefulWidget {
 
   @override
   State<SeriesDetailsScreen> createState() => _SeriesDetailsScreenState();
+
+  static Widget withCubit({required Map<String, dynamic> arguments}) {
+    return BlocProvider<SeriesDetailsCubit>(
+      create: (context) => getIt(),
+      child: SeriesDetailsScreen(
+        arguments: arguments,
+      ),
+    );
+  }
 }
 
 class _SeriesDetailsScreenState extends State<SeriesDetailsScreen> {

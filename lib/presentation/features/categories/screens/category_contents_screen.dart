@@ -9,6 +9,7 @@ import '../../../../../shared/utils/navigation/app_router.dart';
 import '../../../../../shared/utils/navigation/navigation_args.dart';
 import '../../../../../shared/widgets/coptix_app_bar.dart';
 import '../../../../../shared/widgets/coptix_container.dart';
+import '../../../../core/di/injection_container.dart';
 import '../../../../shared/cubit/paginated_content_state.dart';
 import '../../../../shared/theme/colors.dart';
 import '../../../../shared/theme/dimens.dart';
@@ -28,6 +29,12 @@ class CategoryContentsScreen extends StatefulWidget {
       AppRouter.categoryContents,
       arguments: {NavArgsKeys.categoryArgs: uiCategory},
     );
+  }
+
+  static Widget withCubit({required Map<String, dynamic> arguments}) {
+    return BlocProvider<CategoryContentCubit>(
+        create: (context) => getIt(),
+        child: CategoryContentsScreen(arguments: arguments));
   }
 }
 

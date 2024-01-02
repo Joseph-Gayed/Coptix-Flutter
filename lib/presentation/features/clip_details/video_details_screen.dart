@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../shared/widgets/coptix_container.dart';
+import '../../../core/di/injection_container.dart';
 import '../../../shared/utils/localization/app_localizations_delegate.dart';
 import '../../../shared/utils/localization/localized_content.dart';
 import '../../../shared/utils/navigation/navigation_args.dart';
@@ -21,6 +22,12 @@ class VideoDetailsScreen extends StatefulWidget {
 
   @override
   State<VideoDetailsScreen> createState() => _VideoDetailsScreenState();
+  static Widget withCubit({required Map<String, dynamic> arguments}) {
+    return BlocProvider<VideoDetailsCubit>(
+      create: (context) => getIt(),
+      child: VideoDetailsScreen(arguments: arguments),
+    );
+  }
 }
 
 class _VideoDetailsScreenState extends State<VideoDetailsScreen> {

@@ -138,8 +138,6 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   loadMore() {
-    if (cubit.canLoadMore()) {
-      cubit.search(searchKeyword, isFirstPage: false);
-    }
+    cubit.search(searchKeyword, isFirstPage: false);
   }
 }

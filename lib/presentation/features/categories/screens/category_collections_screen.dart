@@ -6,6 +6,7 @@ import 'package:coptix/shared/utils/localization/app_localizations_delegate.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/di/injection_container.dart';
 import '../../../../shared/theme/colors.dart';
 import '../../../../shared/utils/localization/localized_content.dart';
 import '../../../../shared/utils/navigation/app_router.dart';
@@ -29,6 +30,13 @@ class CategoryCollectionsScreen extends StatefulWidget {
       context,
       AppRouter.categoryCollections,
       arguments: {NavArgsKeys.categoryArgs: uiCategory},
+    );
+  }
+
+  static withCubit({required Map<String, dynamic> arguments}) {
+    return BlocProvider<CategoryCollectionsCubit>(
+      create: (context) => getIt(),
+      child: CategoryCollectionsScreen(arguments: arguments),
     );
   }
 }

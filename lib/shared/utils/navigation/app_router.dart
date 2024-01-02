@@ -1,7 +1,5 @@
 import 'package:coptix/presentation/features/auth/forget_password/forget_password_screen.dart';
 import 'package:coptix/presentation/features/auth/login/login_screen.dart';
-import 'package:coptix/presentation/features/categories/cubit/category_collections_cubit.dart';
-import 'package:coptix/presentation/features/categories/cubit/category_content_cubit.dart';
 import 'package:coptix/presentation/features/categories/screens/category_collections_screen.dart';
 import 'package:coptix/shared/extensions/context_ext.dart';
 import 'package:flutter/material.dart';
@@ -11,14 +9,12 @@ import '../../../core/di/injection_container.dart';
 import '../../../presentation/features/auth/common/cubit/auth_cubit.dart';
 import '../../../presentation/features/auth/signup/signup_screen.dart';
 import '../../../presentation/features/categories/screens/category_contents_screen.dart';
-import '../../../presentation/features/clip_details/cubit/video_details_cubit.dart';
 import '../../../presentation/features/clip_details/video_details_screen.dart';
 import '../../../presentation/features/error_screen/not_found_screen.dart';
 import '../../../presentation/features/home_landing/home/screens/collection_screen.dart';
 import '../../../presentation/features/home_landing/home_landing_screen.dart';
 import '../../../presentation/features/home_landing/my_profile/change_app_language/change_app_language_screen.dart';
 import '../../../presentation/features/season_details/season_details_screen.dart';
-import '../../../presentation/features/series_details/cubit/series_details_cubit.dart';
 import '../../../presentation/features/series_details/series_details_screen.dart';
 import '../../../presentation/features/splash/splash_screen.dart';
 import '../../../presentation/features/video_player/video_player_screen.dart';
@@ -102,12 +98,7 @@ class AppRouter {
     if (arguments == null) {
       return const NotFoundScreen();
     }
-    return BlocProvider<SeriesDetailsCubit>(
-      create: (context) => getIt(),
-      child: SeriesDetailsScreen(
-        arguments: arguments,
-      ),
-    );
+    return SeriesDetailsScreen.withCubit(arguments: arguments);
   }
 
   Widget _getVideoDetailsScreen(BuildContext context) {
@@ -115,10 +106,7 @@ class AppRouter {
     if (arguments == null) {
       return const NotFoundScreen();
     }
-    return BlocProvider<VideoDetailsCubit>(
-      create: (context) => getIt(),
-      child: VideoDetailsScreen(arguments: arguments),
-    );
+    return VideoDetailsScreen.withCubit(arguments: arguments);
   }
 
   Widget _getVideoPlayerScreen(BuildContext context) {
@@ -135,10 +123,7 @@ class AppRouter {
       return const NotFoundScreen();
     }
 
-    return BlocProvider<CategoryCollectionsCubit>(
-      create: (context) => getIt(),
-      child: CategoryCollectionsScreen(arguments: arguments),
-    );
+    return CategoryCollectionsScreen.withCubit(arguments: arguments);
   }
 
   Widget _getCategoryContentsScreen(BuildContext context) {
@@ -146,11 +131,7 @@ class AppRouter {
     if (arguments == null) {
       return const NotFoundScreen();
     }
-
-    return BlocProvider<CategoryContentCubit>(
-      create: (context) => getIt(),
-      child: CategoryContentsScreen(arguments: arguments),
-    );
+    return CategoryContentsScreen.withCubit(arguments: arguments);
   }
 
   Widget getAuthScreen(BuildContext context, Widget screen) {
