@@ -25,7 +25,8 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   late SearchCubit cubit;
-  String searchKeyword = "";
+  // String searchKeyword = "";
+  bool showClearButton = false;
   final TextEditingController _searchController = TextEditingController();
 
   @override
@@ -74,21 +75,42 @@ class _SearchScreenState extends State<SearchScreen> {
           Icons.search,
           color: lightColor,
         ),
+        suffixIcon: showClearButton
+            ? Transform.rotate(
+                angle: 45 * 3.14159 / 180, // 45 degrees in radians
+                child: IconButton(
+                  icon: const Icon(
+                    Icons.add_circle_outline,
+                    color: lightColor,
+                  ),
+                  onPressed: () {
+                    _searchController.clear();
+                    changeStateOfClearButton("");
+                  },
+                ),
+              )
+            : null,
       ),
       onChanged: (value) {
-        searchKeyword = value;
-        cubit.search(searchKeyword);
+        changeStateOfClearButton(value);
+        cubit.search(_searchController.text);
       },
       onEditingComplete: () {
-        searchKeyword = _searchController.text;
-        cubit.search(searchKeyword);
+        changeStateOfClearButton(_searchController.text);
+        cubit.search(_searchController.text);
       },
     );
   }
 
+  void changeStateOfClearButton(String keyWord) {
+    setState(() {
+      showClearButton = keyWord.isNotEmpty;
+    });
+  }
+
   onLoadMore() {
     return cubit.canLoadMore()
-        ? cubit.search(searchKeyword, isFirstPage: false)
+        ? cubit.search(_searchController.text, isFirstPage: false)
         : null;
   }
 }
