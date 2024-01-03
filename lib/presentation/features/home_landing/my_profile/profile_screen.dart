@@ -1,10 +1,16 @@
 import 'package:coptix/domain/model/domain_user.dart';
 import 'package:coptix/domain/usecase/load_cached_user_usecase.dart';
-import 'package:coptix/shared/widgets/coptix_app_bar.dart';
+import 'package:coptix/presentation/features/home_landing/my_profile/widgets/item_menu_option.dart';
+import 'package:coptix/presentation/model/ui_profile_option.dart';
+import 'package:coptix/shared/extensions/context_ext.dart';
+import 'package:coptix/shared/extensions/widget_ext.dart';
+import 'package:coptix/shared/theme/colors.dart';
+import 'package:coptix/shared/theme/dimens.dart';
 import 'package:coptix/shared/widgets/coptix_container.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/di/injection_container.dart';
+import '../../../../shared/theme/styles.dart';
 import '../../../../shared/utils/localization/app_localizations_delegate.dart';
 import '../../../../shared/utils/localization/localized_content.dart';
 import '../../../../shared/utils/navigation/app_router.dart';
@@ -33,30 +39,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return CoptixContainer(
         child: SafeArea(
       child: Scaffold(
-        appBar: CoptixAppBar(
-          title: LocalizationKey.profile.tr(),
-        ),
-        body: screenContent(context),
+        body: CoptixContainer(
+            child: context.isMobileScreen()
+                ? screenContentMobile(context)
+                : screenContentMobile(context).wrapForTablet()),
       ),
     ));
   }
 
-  Column screenContent(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        userWidget(),
-        GestureDetector(
-          onTap: () {
-            Navigator.pushNamed(context, AppRouter.changeAppLanguage);
-          },
-          child: Text(LocalizationKey.language.tr(),
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 24)),
-        ),
-      ],
-    );
+  Widget screenContentMobile(BuildContext context) {
+    List<MenuItem> list = activeUser != null
+        ? getLoggedInUserOptions().values.toList()
+        : getGuestUserOptions().values.toList();
+
+    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      buildUserWidget(),
+      Expanded(
+        child: ListView.builder(
+            scrollDirection: Axis.vertical,
+            itemCount: list.length,
+            itemBuilder: (context, index) {
+              return ItemProfileMenu(
+                menuItem: list[index],
+              );
+            }),
+      ),
+    ]);
   }
 
   void loadCachedUser() {
@@ -67,17 +75,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
     });
   }
 
-  Widget userWidget() {
+  Widget buildUserWidget() {
+    return Container(
+      margin: EdgeInsets.only(
+        left: Dimens.screenMarginH,
+        right: Dimens.screenMarginH,
+        top: Dimens.doubleScreenMarginV,
+        bottom: Dimens.screenMarginV,
+      ),
+      padding: EdgeInsets.symmetric(
+          horizontal: Dimens.screenMarginH, vertical: Dimens.halfScreenMarginV),
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: lightBorderColor, // Change the color as needed
+          width: 1.0, // Adjust the width as needed
+        ),
+        borderRadius: BorderRadius.circular(Dimens.cornerRadius),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [welcomeText(), loginOrUserNameWidget()],
+      ),
+    );
+  }
+
+  Text welcomeText() =>
+      Text(LocalizationKey.welcome.tr(), style: lightTextStyle);
+
+  Widget loginOrUserNameWidget() {
     if (activeUser != null) {
-      return GestureDetector(
-        onTap: () {
-          Navigator.pushNamed(context, AppRouter.login,
-              arguments: {NavArgsKeys.appBarTitle: LocalizationKey.login.tr()});
-        },
-        child: Text(
-            "${activeUser!.name}\n ${activeUser!.email}\n ${activeUser!.phone}\n\n ${LocalizationKey.login.tr()}",
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 24)),
+      return Text(
+        activeUser!.name ?? "",
+        style: titleTextStyle,
       );
     } else {
       return GestureDetector(
@@ -85,8 +114,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
           Navigator.pushNamed(context, AppRouter.login,
               arguments: {NavArgsKeys.appBarTitle: LocalizationKey.login.tr()});
         },
-        child: Text(LocalizationKey.login.tr(),
-            textAlign: TextAlign.center, style: const TextStyle(fontSize: 24)),
+        child: Text(
+          LocalizationKey.login.tr(),
+          style:
+              underlineSecondaryTextStyle.copyWith(fontWeight: FontWeight.bold),
+        ),
       );
     }
   }

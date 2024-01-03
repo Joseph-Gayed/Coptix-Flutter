@@ -8,5 +8,6 @@ const Color primaryButtonBackgroundColor = Color.fromARGB(255, 43, 43, 45);
 const Color darkColor = Color(0xff000000);
 
 const Color lightColor = Color(0xffffffff);
+const Color lightBorderColor = Color.fromARGB(255, 92, 92, 92);
 Color gradientPrimaryColor = primaryColor.withAlpha(190);
 const Color errorBgColor = Color.fromARGB(255, 171, 3, 3);

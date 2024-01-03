@@ -3,11 +3,12 @@ class LocalizationKey {
   static const String en = "en";
   static const String ar = "ar";
   static const String fr = "fr";
+  static const String welcomeToCoptix = "welcomeToCoptix";
   static const String welcome = "welcome";
   static const String home = "home";
   static const String newAdditions = "newAdditions";
   static const String search = "search";
-  static const String profile = "profile";
+  static const String myAccount = "myAccount";
   static const String save = "save";
   static const String language = "language";
   static const String playNow = "playNow";
@@ -61,6 +62,16 @@ class LocalizationKey {
   static const String required = "required";
   static const String checkYourMail = "checkYourMail";
   static const String searchHint = "searchHint";
+  static const String myList = "myList";
+  static const String profile = "profile";
+  static const String accountSettings = "accountSettings";
+  static const String appSettings = "appSettings";
+  static const String help = "help";
+  static const String contactUs = "contactUs";
+  static const String logout = "logout";
+
+  static const String accountDetails = "accountDetails";
+  static const String changePassword = "changePassword";
 }
 
 const Map<String, Map<String, String>> localizedContent = {
@@ -70,11 +81,12 @@ const Map<String, Map<String, String>> localizedContent = {
 };
 
 const Map<String, String> englishContent = {
-  LocalizationKey.welcome: 'Welcome to Coptix App',
+  LocalizationKey.welcomeToCoptix: 'Welcome to Coptix App',
+  LocalizationKey.welcome: 'Welcome',
   LocalizationKey.home: "Home",
   LocalizationKey.newAdditions: "New Additions",
   LocalizationKey.search: "Search",
-  LocalizationKey.profile: "Profile",
+  LocalizationKey.myAccount: "Profile",
   LocalizationKey.save: "Save",
   LocalizationKey.language: "Language",
   LocalizationKey.playNow: "Play Now",
@@ -129,14 +141,24 @@ const Map<String, String> englishContent = {
   LocalizationKey.required: "This field is Required!",
   LocalizationKey.checkYourMail: "Please check your email!",
   LocalizationKey.searchHint: "What you are looking for?",
+  LocalizationKey.myList: "My List",
+  LocalizationKey.profile: "Profile",
+  LocalizationKey.accountSettings: "Account Settings",
+  LocalizationKey.appSettings: "App Settings",
+  LocalizationKey.help: "Help",
+  LocalizationKey.contactUs: "Contact Us",
+  LocalizationKey.logout: "Logout",
+  LocalizationKey.accountDetails: "Account Details",
+  LocalizationKey.changePassword: "Change Password",
 };
 
 const Map<String, String> arabicContent = {
-  LocalizationKey.welcome: "أهلاً بك في تطبيق كوبتكس",
+  LocalizationKey.welcomeToCoptix: "أهلاً بك في تطبيق كوبتكس",
+  LocalizationKey.welcome: "أهلاً بك",
   LocalizationKey.home: "الرئيسية",
   LocalizationKey.newAdditions: "احدث الإضافات",
   LocalizationKey.search: "بحث",
-  LocalizationKey.profile: "حسابي",
+  LocalizationKey.myAccount: "حسابي",
   LocalizationKey.save: "حفظ",
   LocalizationKey.language: "اللغة",
   LocalizationKey.playNow: "تشغيل الان",
@@ -190,14 +212,24 @@ const Map<String, String> arabicContent = {
   LocalizationKey.required: "هذا الحقل مطلوب!",
   LocalizationKey.checkYourMail: "يرجي الذهاب لصندوق البريد الالكتروني للتفقد.",
   LocalizationKey.searchHint: "أبحث عن قداس, برامج, ترانيم, عظات ...",
+  LocalizationKey.myList: "قائمتي",
+  LocalizationKey.profile: "الملف الشخصي",
+  LocalizationKey.accountSettings: "إعدادات الحساب",
+  LocalizationKey.appSettings: "إعدادات التطبيق",
+  LocalizationKey.help: "مساعدة",
+  LocalizationKey.contactUs: "اتصل بنا",
+  LocalizationKey.logout: "تسجيل خروج",
+  LocalizationKey.accountDetails: "التفاصيل الشخصية",
+  LocalizationKey.changePassword: "تغيير كلمة المرور",
 };
 
 const Map<String, String> frenchContent = {
-  LocalizationKey.welcome: "Bienvenue dans l'application Coptix",
+  LocalizationKey.welcomeToCoptix: "Bienvenue dans l'application Coptix",
+  LocalizationKey.welcome: "Bienvenue",
   LocalizationKey.home: "Accueil",
   LocalizationKey.newAdditions: "Nouveautés",
   LocalizationKey.search: "Recherche",
-  LocalizationKey.profile: "Profil",
+  LocalizationKey.myAccount: "Profil",
   LocalizationKey.save: "Enregistrer",
   LocalizationKey.language: "la langue",
   LocalizationKey.playNow: "Joue",
@@ -252,4 +284,13 @@ const Map<String, String> frenchContent = {
   LocalizationKey.required: "This field is Required!",
   LocalizationKey.checkYourMail: "Please check your email!",
   LocalizationKey.searchHint: "What you are looking for?",
+  LocalizationKey.myList: "My List",
+  LocalizationKey.profile: "Profile",
+  LocalizationKey.accountSettings: "Account Settings",
+  LocalizationKey.appSettings: "App Settings",
+  LocalizationKey.help: "Help",
+  LocalizationKey.contactUs: "Contact Us",
+  LocalizationKey.logout: "Logout",
+  LocalizationKey.accountDetails: "Account Details",
+  LocalizationKey.changePassword: "Change Password",
 };

@@ -1,5 +1,6 @@
 import 'package:coptix/presentation/features/auth/common/cubit/auth_cubit.dart';
 import 'package:coptix/shared/extensions/context_ext.dart';
+import 'package:coptix/shared/extensions/widget_ext.dart';
 import 'package:coptix/shared/theme/colors.dart';
 import 'package:coptix/shared/utils/constants.dart';
 import 'package:coptix/shared/utils/navigation/navigation_args.dart';
@@ -113,7 +114,7 @@ class AuthContainer extends StatelessWidget {
                       horizontal: Dimens.screenMarginH,
                       vertical: Dimens.screenMarginV),
                   child: screenContentMobile())
-              : screenContentTablet(),
+              : screenContentMobile().wrapForTablet(),
         ),
       ],
     );
@@ -122,22 +123,6 @@ class AuthContainer extends StatelessWidget {
   Widget screenContentMobile() {
     return SingleChildScrollView(
       child: Container(alignment: Alignment.center, child: screenContent),
-    );
-  }
-
-  Widget screenContentTablet() {
-    return Row(
-      children: [
-        const Expanded(
-          flex: 2,
-          child: SizedBox(),
-        ),
-        Expanded(flex: 3, child: screenContentMobile()),
-        const Expanded(
-          flex: 2,
-          child: SizedBox(),
-        ),
-      ],
     );
   }
 

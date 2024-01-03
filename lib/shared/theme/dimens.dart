@@ -14,7 +14,7 @@ class FontSizes {
   static double h4 = (fontsDesignScreenFactor * 34);
   static double h5 = (fontsDesignScreenFactor * 24);
   static double h6 = (fontsDesignScreenFactor * 20);
-  static double subtitle1 = (fontsDesignScreenFactor * 16);
+  static double subtitle1 = (fontsDesignScreenFactor * 18);
   static double subtitle2 = (fontsDesignScreenFactor * 14);
   static double body1 = (fontsDesignScreenFactor * 18);
   static double body2 = (fontsDesignScreenFactor * 14);
@@ -33,6 +33,7 @@ class Dimens {
   static double appBarHeight = (dimensDesignScreenFactor * 75);
   static double appBarIconHeight = appBarHeight - 15;
   static double bottomNavBarIconSize = (dimensDesignScreenFactor * 25);
+  static double defaultIconSize = (dimensDesignScreenFactor * 21);
   static double verticalDividerHeight = (dimensDesignScreenFactor * 31);
   static double verticalDividerWidth = (dimensDesignScreenFactor * 5);
   static double cornerRadius = (dimensDesignScreenFactor * 7);

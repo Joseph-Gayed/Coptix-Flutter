@@ -23,9 +23,11 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   late bool shouldShowAppBar;
 
-  final TextEditingController emailController = TextEditingController();
+  final TextEditingController emailController =
+      TextEditingController(text: "email1@gmail.com");
 
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController passwordController =
+      TextEditingController(text: "123456");
 
   late AuthCubit authCubit;
   late Map<String, TextEditingController> textControllers;

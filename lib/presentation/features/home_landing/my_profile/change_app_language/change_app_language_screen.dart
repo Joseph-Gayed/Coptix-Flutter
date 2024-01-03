@@ -69,10 +69,10 @@ class _ChangeAppLanguageScreenState extends State<ChangeAppLanguageScreen> {
         Container(
           margin: EdgeInsets.only(bottom: Dimens.doubleScreenMarginH),
           child: ElevatedButton(
+            style: secondaryButtonStyle,
             onPressed: saveAndBack,
             child: Text(
               LocalizationKey.save.tr(),
-              style: buttonTextStyle,
             ),
           ),
         ),

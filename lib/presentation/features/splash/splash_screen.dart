@@ -68,7 +68,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Container(
           padding: EdgeInsets.only(bottom: SplashDimens.greetingMargin),
           child: Text(
-            LocalizationKey.welcome.tr(),
+            LocalizationKey.welcomeToCoptix.tr(),
             style: titleTextStyle,
           ),
         ),

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../presentation/model/ui_clip.dart';
 import '../../../../../../shared/theme/dimens.dart';
+import '../../../../../shared/widgets/common_methods.dart';
 
 class PlayNowOrLater extends StatelessWidget {
   final UiClip uiClip;
@@ -40,10 +41,7 @@ class PlayNowOrLater extends StatelessWidget {
               onPressed: () {
                 onPlayNowClicked(uiClip);
               },
-              icon: Icon(
-                Icons.play_arrow,
-                size: Dimens.buttonIconSize,
-              ),
+              icon: getAssetIcon("ic_play.png"),
               label: Text(
                 LocalizationKey.playNow.tr(),
                 textAlign: TextAlign.center,
@@ -62,7 +60,7 @@ class PlayNowOrLater extends StatelessWidget {
             onPressed: () {
               onAddToFavoritesClicked(uiClip);
             },
-            icon: const Icon(Icons.bookmark),
+            icon: getAssetIcon("ic_bookmark.png"),
             label: Text(
               AppLocalizations.of(context)
                   .translate(LocalizationKey.addToMyList),

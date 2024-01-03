@@ -47,6 +47,13 @@ class AppRouter {
   static const String signup = "/signup";
   static const String forgetPassword = "/forgetPassword";
   static const String notFound = "/notFound";
+  static const String bookmarks = "/bookmarks";
+  static const String accountDetails = "/accountDetails";
+  static const String changePassword = "/changePassword";
+  static const String appSettings = "/appSettings";
+  static const String help = "/help";
+  static const String contactUs = "/contactUs";
+  static const String logout = "/logout";
 
   Map<String, WidgetBuilder> getAppRoutes(BuildContext context) {
     return {
