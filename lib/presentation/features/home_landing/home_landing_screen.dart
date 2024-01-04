@@ -15,22 +15,32 @@ class HomeLandingScreen extends StatefulWidget {
 
   @override
   State<HomeLandingScreen> createState() => _HomeLandingScreenState();
+
+  static const int indexOfHomeTab = 0;
+  static const int indexOfBrowseTab = 1;
+  static const int indexOfSearchTab = 2;
+  static const int indexOfProfileTab = 3;
 }
 
 class _HomeLandingScreenState extends State<HomeLandingScreen> {
-  int _selectedIndex = 0;
+  int _selectedIndex = HomeLandingScreen.indexOfHomeTab;
   late List<Widget> _screens;
 
   @override
   void initState() {
     super.initState();
     _selectedIndex = widget.arguments?[NavArgsKeys.indexOfSelectedTab] ?? 0;
-    _screens = <Widget>[
-      HomeScreen.withCubit(),
-      const NewAdditionsScreen(),
-      SearchScreen.withCubit(),
-      const ProfileScreen(),
-    ];
+    _screens = <Widget>[];
+    prepareTabs();
+  }
+
+  void prepareTabs() {
+    _screens.insert(HomeLandingScreen.indexOfHomeTab, HomeScreen.withCubit());
+    _screens.insert(
+        HomeLandingScreen.indexOfBrowseTab, const NewAdditionsScreen());
+    _screens.insert(
+        HomeLandingScreen.indexOfSearchTab, SearchScreen.withCubit());
+    _screens.insert(HomeLandingScreen.indexOfProfileTab, const ProfileScreen());
   }
 
   @override
@@ -50,9 +60,9 @@ class _HomeLandingScreenState extends State<HomeLandingScreen> {
   }
 
   Future<bool> _onWillPop() async {
-    if (_selectedIndex != 0) {
+    if (_selectedIndex != HomeLandingScreen.indexOfHomeTab) {
       Future.delayed(const Duration(milliseconds: 200), () {
-        onIemSelected(0);
+        onIemSelected(HomeLandingScreen.indexOfHomeTab);
       });
       return false;
     }

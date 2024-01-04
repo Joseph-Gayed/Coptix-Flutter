@@ -1,5 +1,7 @@
 import 'package:coptix/shared/theme/dimens.dart';
 import 'package:coptix/shared/theme/styles.dart';
+import 'package:coptix/shared/utils/navigation/app_router.dart';
+import 'package:coptix/shared/utils/navigation/navigation_args.dart';
 import 'package:coptix/shared/widgets/coptix_container.dart';
 import 'package:coptix/shared/widgets/radio_list.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +11,7 @@ import '../../../../../shared/utils/localization/app_localizations_delegate.dart
 import '../../../../../shared/utils/localization/localized_content.dart';
 import '../../../../../shared/utils/shared_preferences.dart';
 import '../../../../../shared/widgets/coptix_app_bar.dart';
+import '../../home_landing_screen.dart';
 
 class ChangeAppLanguageScreen extends StatefulWidget {
   const ChangeAppLanguageScreen({super.key});
@@ -89,6 +92,10 @@ class _ChangeAppLanguageScreenState extends State<ChangeAppLanguageScreen> {
   void saveAndBack() {
     SharedPreferencesUtils.saveLanguage(_selectedLanguage);
     MyApp.setAppLanguage(context, _selectedLanguage);
-    Navigator.pop(context);
+
+    Navigator.pushNamedAndRemoveUntil(
+        context, AppRouter.homeLanding, (route) => false, arguments: {
+      NavArgsKeys.indexOfSelectedTab: HomeLandingScreen.indexOfProfileTab
+    });
   }
 }
