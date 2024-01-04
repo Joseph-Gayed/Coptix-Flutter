@@ -1,4 +1,5 @@
 import 'package:coptix/shared/theme/colors.dart';
+import 'package:coptix/shared/theme/dimens.dart';
 import 'package:coptix/shared/widgets/coptix_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -86,11 +87,14 @@ class _VideoDetailsScreenState extends State<VideoDetailsScreen> {
               onAddToFavoritesClicked: addToFavorites),
         ),
         SliverFillRemaining(
-          child: DetailsTabsView(detailsTabs: [
-            DetailsTabItem(
-                tabName: appLocalizations.translate(LocalizationKey.related),
-                uiClips: state.uiClip.relatedClips),
-          ]),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: Dimens.screenMarginH),
+            child: DetailsTabsView(detailsTabs: [
+              DetailsTabItem(
+                  tabName: appLocalizations.translate(LocalizationKey.related),
+                  uiClips: state.uiClip.relatedClips),
+            ]),
+          ),
         )
       ],
     );

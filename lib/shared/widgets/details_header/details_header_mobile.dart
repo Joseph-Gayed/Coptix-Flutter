@@ -75,45 +75,50 @@ class DetailsHeaderMobile extends StatelessWidget {
         SizedBox(
           height: Dimens.halfScreenMarginH, // <-- SEE HERE
         ),
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: Dimens.screenMarginH),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            if (uiClip.currentSeason != null)
+              //current season
+              Text(
+                "${LocalizationKey.season}: ${uiClip.currentSeason!.name}",
+                style: body2TextStyle.copyWith(fontWeight: FontWeight.bold),
+              ),
+            SizedBox(
+              height: Dimens.halfScreenMarginH, // <-- SEE HERE
+            ),
 
-        if (uiClip.currentSeason != null)
-          //current season
-          Text(
-            "${LocalizationKey.season}: ${uiClip.currentSeason!.name}",
-            style: body2TextStyle.copyWith(fontWeight: FontWeight.bold),
-          ),
-        SizedBox(
-          height: Dimens.halfScreenMarginH, // <-- SEE HERE
-        ),
+            //Clip/Series Name
+            Text(
+              uiClip.name,
+              maxLines: 2,
+              style: headTextStyle,
+            ),
+            SizedBox(
+              height: Dimens.halfScreenMarginH, // <-- SEE HERE
+            ),
 
-        //Clip/Series Name
-        Text(
-          uiClip.name,
-          maxLines: 2,
-          style: headTextStyle,
-        ),
-        SizedBox(
-          height: Dimens.halfScreenMarginH, // <-- SEE HERE
-        ),
+            //Clip/Series description
+            Text(
+              uiClip.description,
+              maxLines: 2,
+              style: body1TextStyle,
+            ),
+            SizedBox(
+              height: Dimens.halfScreenMarginH, // <-- SEE HERE
+            ),
 
-        //Clip/Series description
-        Text(
-          uiClip.description,
-          maxLines: 2,
-          style: body1TextStyle,
-        ),
-        SizedBox(
-          height: Dimens.halfScreenMarginH, // <-- SEE HERE
-        ),
-
-        //Action Buttons
-        PlayNowOrLater(
-            uiClip: uiClip,
-            onPlayNowClicked: onPlayNowClicked,
-            onAddToFavoritesClicked: onAddToFavoritesClicked),
-        SizedBox(
-          height: Dimens.halfScreenMarginH, // <-- SEE HERE
-        ),
+            //Action Buttons
+            PlayNowOrLater(
+                uiClip: uiClip,
+                onPlayNowClicked: onPlayNowClicked,
+                onAddToFavoritesClicked: onAddToFavoritesClicked),
+            SizedBox(
+              height: Dimens.halfScreenMarginH, // <-- SEE HERE
+            ),
+          ]),
+        )
       ],
     );
   }
