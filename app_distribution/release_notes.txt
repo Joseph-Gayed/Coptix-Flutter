@@ -1,5 +1,5 @@
 What's Done:
-  - Search Screen.
+  - Profile Screen.
   
 Known Issues:
  - After login or signup user is redirected to a duplicate copy of the home screen (with back button in app bar) instead of the previous Home screen , so user has to press back after login or signup.

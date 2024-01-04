@@ -3,13 +3,9 @@
 infoPlistPath="../ios/Runner/Info.plist"
 buildGradlePath="../android/app/build.gradle"
 
-# 1.Extract versionName and versionCode from dart file using sed
-#versionName=$(sed -n "s/^.*versionName = '\([^']*\)'.*$/\1/p" app_version.dart)
-#versionCode=$(sed -n "s/^.*versionCode = \([0-9]*\).*$/\1/p" app_version.dart)
-
 # 1.Define versionName and versionCode
-versionName="0.7.0"
-versionCode=7
+versionName="0.8.0"
+versionCode=8
 
 # 2.Update iOS version name and number in Info.plist
 /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $versionName" $infoPlistPath &&
