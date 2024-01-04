@@ -1,7 +1,6 @@
+import 'package:coptix/shared/extensions/context_ext.dart';
 import 'package:coptix/shared/theme/dimens.dart';
 import 'package:coptix/shared/theme/styles.dart';
-import 'package:coptix/shared/utils/navigation/app_router.dart';
-import 'package:coptix/shared/utils/navigation/navigation_args.dart';
 import 'package:coptix/shared/widgets/coptix_container.dart';
 import 'package:coptix/shared/widgets/radio_list.dart';
 import 'package:flutter/material.dart';
@@ -92,10 +91,7 @@ class _ChangeAppLanguageScreenState extends State<ChangeAppLanguageScreen> {
   void saveAndBack() {
     SharedPreferencesUtils.saveLanguage(_selectedLanguage);
     MyApp.setAppLanguage(context, _selectedLanguage);
-
-    Navigator.pushNamedAndRemoveUntil(
-        context, AppRouter.homeLanding, (route) => false, arguments: {
-      NavArgsKeys.indexOfSelectedTab: HomeLandingScreen.indexOfProfileTab
-    });
+    context.restartHomeOnTabIndex(
+        tabIndex: HomeLandingScreen.indexOfProfileTab);
   }
 }

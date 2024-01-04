@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../shared/theme/dimens.dart';
+import '../../home_landing/home_landing_screen.dart';
 
 class AuthContainer extends StatelessWidget {
   final Widget screenContent;
@@ -60,13 +61,8 @@ class AuthContainer extends StatelessWidget {
           if (handleSuccessState != null) {
             handleSuccessState!(state);
           } else {
-            //Todo: there is an issue here
-            //after success the user is directed  to a new instance of the
-            //HomeLandingScreen (opened on index 0: HomeScreen) and there is a back button in the app bar , so user must press back 2 times after login
-            //if you called  context.backToHome(); in the login button click without calling the api , it works well but if called the api , it will not work well.
-            //I tried to call  Navigator.pop(context); after  context.backToHome(); but it went to black screen.
-            //I tried to replace  Future.microtask(() {..}) with Future.delayed(Duration.zero, () {..}) or WidgetsBinding.instance.addPostFrameCallback((_) {..}) but not worked
-            context.backToHome();
+            context.restartHomeOnTabIndex(
+                tabIndex: HomeLandingScreen.indexOfProfileTab);
           }
         });
       }

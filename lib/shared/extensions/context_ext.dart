@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:coptix/shared/extensions/media_query_ext.dart';
 import 'package:coptix/shared/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../../presentation/features/home_landing/home_landing_screen.dart';
 import '../theme/dimens.dart';
 import '../utils/navigation/app_router.dart';
 import '../utils/navigation/navigation_args.dart';
@@ -39,13 +43,20 @@ extension ContextExt on BuildContext {
         fontSize: FontSizes.subtitle1);
   }
 
-  void backToHome() {
-    Navigator.popUntil(this, ModalRoute.withName(AppRouter.homeLanding));
+  void restartHomeOnTabIndex(
+      {int tabIndex = HomeLandingScreen.indexOfHomeTab}) {
     Navigator.pushNamedAndRemoveUntil(
-      this,
-      AppRouter.homeLanding,
-      ModalRoute.withName(AppRouter.homeLanding),
-      arguments: {NavArgsKeys.indexOfSelectedTab: 0},
-    );
+        this, AppRouter.homeLanding, (route) => false,
+        arguments: {NavArgsKeys.indexOfSelectedTab: tabIndex});
+  }
+
+  Future<void> exitApp() async {
+    SystemNavigator.pop(); // Close the current app
+
+    // You might want to add a delay before restarting to ensure the app is closed properly
+    Future.delayed(const Duration(seconds: 1), () {
+      exit(
+          0); // Restart the app (This will completely close and restart the app)
+    });
   }
 }

@@ -1,4 +1,5 @@
 import 'package:coptix/presentation/features/home_landing/search/screens/search_screen.dart';
+import 'package:coptix/shared/extensions/context_ext.dart';
 import 'package:coptix/shared/utils/navigation/navigation_args.dart';
 import 'package:coptix/shared/widgets/coptix_app_bar.dart';
 import 'package:coptix/shared/widgets/coptix_container.dart';
@@ -66,6 +67,7 @@ class _HomeLandingScreenState extends State<HomeLandingScreen> {
       });
       return false;
     }
+    await context.exitApp();
     return true;
   }
 
