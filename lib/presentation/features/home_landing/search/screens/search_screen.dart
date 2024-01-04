@@ -66,39 +66,46 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Widget searchBar() {
-    return TextField(
-      controller: _searchController,
-      maxLines: 1,
-      decoration: InputDecoration(
-        hintText: LocalizationKey.searchHint.tr(),
-        prefixIcon: const Icon(
-          Icons.search,
-          color: lightColor,
+    return Row(
+      children: [
+        const BackButton(),
+        Expanded(
+          child: TextField(
+            controller: _searchController,
+            maxLines: 1,
+            decoration: InputDecoration(
+              hintText: LocalizationKey.searchHint.tr(),
+              prefixIcon: const Icon(
+                Icons.search,
+                color: lightColor,
+              ),
+              suffixIcon: showClearButton
+                  ? Transform.rotate(
+                      angle: 45 * 3.14159 / 180, // 45 degrees in radians
+                      child: IconButton(
+                        icon: const Icon(
+                          Icons.add_circle_outline,
+                          color: lightColor,
+                        ),
+                        onPressed: () {
+                          _searchController.clear();
+                          changeStateOfClearButton("");
+                        },
+                      ),
+                    )
+                  : null,
+            ),
+            onChanged: (value) {
+              changeStateOfClearButton(value);
+              cubit.search(_searchController.text);
+            },
+            onEditingComplete: () {
+              changeStateOfClearButton(_searchController.text);
+              cubit.search(_searchController.text);
+            },
+          ),
         ),
-        suffixIcon: showClearButton
-            ? Transform.rotate(
-                angle: 45 * 3.14159 / 180, // 45 degrees in radians
-                child: IconButton(
-                  icon: const Icon(
-                    Icons.add_circle_outline,
-                    color: lightColor,
-                  ),
-                  onPressed: () {
-                    _searchController.clear();
-                    changeStateOfClearButton("");
-                  },
-                ),
-              )
-            : null,
-      ),
-      onChanged: (value) {
-        changeStateOfClearButton(value);
-        cubit.search(_searchController.text);
-      },
-      onEditingComplete: () {
-        changeStateOfClearButton(_searchController.text);
-        cubit.search(_searchController.text);
-      },
+      ],
     );
   }
 

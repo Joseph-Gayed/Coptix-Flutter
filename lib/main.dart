@@ -5,6 +5,7 @@ import 'package:coptix/shared/utils/app_configurations.dart';
 import 'package:coptix/shared/utils/localization/app_localizations_delegate.dart';
 import 'package:coptix/shared/utils/localization/localized_content.dart';
 import 'package:coptix/shared/utils/navigation/app_router.dart';
+import 'package:coptix/shared/utils/navigation/keyboard_navigation_observer.dart';
 import 'package:coptix/shared/utils/shared_preferences.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
@@ -93,6 +94,7 @@ class _MyAppState extends State<MyApp> {
         GlobalWidgetsLocalizations.delegate,
       ],
       locale: _locale,
+      navigatorObservers: [KeyboardDismissRouteObserver()],
       supportedLocales: AppLocalizations.locales(),
       routes: AppRouter().getAppRoutes(context),
     );

@@ -59,4 +59,8 @@ extension ContextExt on BuildContext {
           0); // Restart the app (This will completely close and restart the app)
     });
   }
+
+  void dismissKeyboard() {
+    FocusScope.of(this).unfocus();
+  }
 }

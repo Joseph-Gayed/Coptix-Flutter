@@ -41,12 +41,13 @@ class PaginatedClipsGrid extends StatelessWidget {
         final successState =
             paginatedContentState as PaginatedContentSuccessState;
         return handleSuccessState(
-            content: successState.uiPaginatedContent.content);
+            context: context, content: successState.uiPaginatedContent.content);
 
       case const (PaginatedContentPaginationLoadingState):
         final successState =
             paginatedContentState as PaginatedContentPaginationLoadingState;
         return handleSuccessState(
+            context: context,
             content: successState.uiPaginatedContent.content,
             showLoadMoreProgress: true);
 
@@ -54,7 +55,7 @@ class PaginatedClipsGrid extends StatelessWidget {
         final successState =
             paginatedContentState as PaginatedContentPaginationSuccessState;
         return handleSuccessState(
-            content: successState.uiPaginatedContent.content);
+            context: context, content: successState.uiPaginatedContent.content);
 
       case const (PaginatedContentPaginationErrorState):
         final paginationErrorState =
@@ -62,6 +63,7 @@ class PaginatedClipsGrid extends StatelessWidget {
         context.showToast(message: paginationErrorState.message);
 
         return handleSuccessState(
+            context: context,
             content: paginationErrorState.uiPaginatedContent.content);
       default:
         return NotFoundScreen(
@@ -72,7 +74,9 @@ class PaginatedClipsGrid extends StatelessWidget {
   }
 
   Widget handleSuccessState(
-      {required List<UiClip> content, bool showLoadMoreProgress = false}) {
+      {required BuildContext context,
+      required List<UiClip> content,
+      bool showLoadMoreProgress = false}) {
     return ClipsGrid(
         clips: content,
         onLoadMore: onLoadMore,
