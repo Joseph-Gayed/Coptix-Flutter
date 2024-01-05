@@ -32,7 +32,7 @@ class CoptixBottomNavBar extends StatelessWidget {
         BottomNavigationBarItem(
           icon: getBottomBarIcon("ic_additions_inactive.png"),
           activeIcon: getBottomBarIcon("ic_additions_active.png"),
-          label: LocalizationKey.newAdditions.tr(),
+          label: LocalizationKey.explore.tr(),
         ),
         BottomNavigationBarItem(
           icon: getBottomBarIcon("ic_search_inactive.png"),

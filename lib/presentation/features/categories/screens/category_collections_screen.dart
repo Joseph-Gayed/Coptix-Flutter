@@ -14,12 +14,14 @@ import '../../../../shared/utils/navigation/navigation_args.dart';
 import '../../../../shared/widgets/collections_widget_builder.dart';
 import '../../../../shared/widgets/coptix_app_bar.dart';
 import '../../../../shared/widgets/coptix_container.dart';
-import '../../error_screen/not_found_screen.dart';
+import '../../error_screen/error_or_empty_screen.dart';
 import 'category_contents_screen.dart';
 
 class CategoryCollectionsScreen extends StatefulWidget {
   final Map<String, dynamic> arguments;
-  const CategoryCollectionsScreen({super.key, required this.arguments});
+  final bool showAppBar;
+  const CategoryCollectionsScreen(
+      {super.key, required this.arguments, this.showAppBar = true});
 
   @override
   State<CategoryCollectionsScreen> createState() =>
@@ -33,10 +35,12 @@ class CategoryCollectionsScreen extends StatefulWidget {
     );
   }
 
-  static withCubit({required Map<String, dynamic> arguments}) {
+  static withCubit(
+      {required Map<String, dynamic> arguments, bool showAppBar = true}) {
     return BlocProvider<CategoryCollectionsCubit>(
       create: (context) => getIt(),
-      child: CategoryCollectionsScreen(arguments: arguments),
+      child: CategoryCollectionsScreen(
+          arguments: arguments, showAppBar: showAppBar),
     );
   }
 }
@@ -45,22 +49,29 @@ class _CategoryCollectionsScreenState extends State<CategoryCollectionsScreen> {
   late UiCategory uiCategory;
 
   late CategoryCollectionsCubit cubit;
+  List<UiCollection>? collections;
 
   @override
   void initState() {
     super.initState();
     uiCategory = widget.arguments[NavArgsKeys.categoryArgs];
     cubit = BlocProvider.of<CategoryCollectionsCubit>(context);
-    cubit.getCategoryCollections(uiCategory.id);
   }
 
   @override
   Widget build(BuildContext context) {
+    if (collections == null || collections!.isEmpty) {
+      uiCategory = widget.arguments[NavArgsKeys.categoryArgs];
+      cubit.getCategoryCollections(uiCategory.id);
+    }
+
     return Scaffold(
-        appBar: CoptixAppBar(
-          title: uiCategory.name,
-          showingBackButton: true,
-        ),
+        appBar: widget.showAppBar
+            ? CoptixAppBar(
+                title: uiCategory.name,
+                showingBackButton: true,
+              )
+            : null,
         body: CoptixContainer(
           padding: EdgeInsets.symmetric(horizontal: Dimens.screenMarginH),
           child:
@@ -80,7 +91,7 @@ class _CategoryCollectionsScreenState extends State<CategoryCollectionsScreen> {
         ),
       );
     } else if (state is CategoryCollectionsErrorState) {
-      return NotFoundScreen(
+      return ErrorOrEmptyScreen(
         inputMessage: state.message,
         showAppBar: false,
       );
@@ -108,8 +119,8 @@ class _CategoryCollectionsScreenState extends State<CategoryCollectionsScreen> {
         ],
       );
     } else {
-      return NotFoundScreen(
-        inputMessage: LocalizationKey.noContent.tr(),
+      return ErrorOrEmptyScreen(
+        inputMessage: LocalizationKey.emptyContentMessage.tr(),
         showAppBar: false,
       );
     }

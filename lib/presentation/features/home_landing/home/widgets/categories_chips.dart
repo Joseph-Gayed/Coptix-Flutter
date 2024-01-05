@@ -7,8 +7,17 @@ import 'package:flutter/material.dart';
 class CategoriesSingleSelectionChips extends StatelessWidget {
   final List<UiCategory> categories;
   final Function(UiCategory) onCategorySelected;
-  const CategoriesSingleSelectionChips(
-      {super.key, required this.categories, required this.onCategorySelected});
+  final UiCategory? selectedCategory;
+  final Color selectedColor;
+  final Color notSelectedColor;
+  const CategoriesSingleSelectionChips({
+    super.key,
+    required this.categories,
+    required this.onCategorySelected,
+    this.selectedColor = secondaryColor,
+    this.notSelectedColor = secondaryColor,
+    this.selectedCategory,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +25,10 @@ class CategoriesSingleSelectionChips extends StatelessWidget {
       chips: categories.map((category) => chipFromCategory(category)).toList(),
       onClick: (selectedChip) =>
           {onCategorySelected(categoryFromChip(selectedChip))},
-      selectedColor: secondaryColor,
-      notSelectedColor: secondaryColor,
+      selectedColor: selectedColor,
+      notSelectedColor: notSelectedColor,
+      selectedChip:
+          selectedCategory != null ? chipFromCategory(selectedCategory!) : null,
     );
   }
 

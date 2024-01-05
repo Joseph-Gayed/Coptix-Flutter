@@ -22,6 +22,7 @@ import '../../domain/repository/content_repository.dart';
 import '../../domain/usecase/logout_usecase.dart';
 import '../../domain/usecase/signup_usecase.dart';
 import '../../presentation/features/auth/common/cubit/auth_cubit.dart';
+import '../../presentation/features/categories/cubit/categories_cubit.dart';
 import '../../presentation/features/clip_details/cubit/video_details_cubit.dart';
 import '../../presentation/features/home_landing/home/cubit/home_cubit.dart';
 import '../../presentation/features/series_details/cubit/series_details_cubit.dart';
@@ -67,6 +68,7 @@ void initDi() {
   getIt.registerFactory<VideoDetailsCubit>(() => VideoDetailsCubit(getIt()));
   getIt.registerFactory<SeriesDetailsCubit>(() => SeriesDetailsCubit(getIt()));
   getIt.registerFactory<AuthCubit>(() => AuthCubit(getIt(), getIt(), getIt()));
+  getIt.registerFactory<CategoriesCubit>(() => CategoriesCubit(getIt()));
   getIt.registerFactory<CategoryCollectionsCubit>(
       () => CategoryCollectionsCubit(getIt()));
   getIt.registerFactory<CategoryContentCubit>(

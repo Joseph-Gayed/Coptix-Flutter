@@ -1,3 +1,4 @@
+import 'package:coptix/presentation/features/home_landing/explore/explore_screen.dart';
 import 'package:coptix/presentation/features/home_landing/search/screens/search_screen.dart';
 import 'package:coptix/shared/extensions/context_ext.dart';
 import 'package:coptix/shared/utils/navigation/navigation_args.dart';
@@ -6,7 +7,6 @@ import 'package:coptix/shared/widgets/coptix_container.dart';
 import 'package:flutter/material.dart';
 
 import '../../../shared/widgets/coptix_bottom_nav_bar.dart';
-import '../../features/home_landing/new_additions/new_additions_screen.dart';
 import 'home/screens/home_screen.dart';
 import 'my_profile/profile_screen.dart';
 
@@ -18,7 +18,7 @@ class HomeLandingScreen extends StatefulWidget {
   State<HomeLandingScreen> createState() => _HomeLandingScreenState();
 
   static const int indexOfHomeTab = 0;
-  static const int indexOfBrowseTab = 1;
+  static const int indexOfExploreTab = 1;
   static const int indexOfSearchTab = 2;
   static const int indexOfProfileTab = 3;
 }
@@ -38,7 +38,7 @@ class _HomeLandingScreenState extends State<HomeLandingScreen> {
   void prepareTabs() {
     _screens.insert(HomeLandingScreen.indexOfHomeTab, HomeScreen.withCubit());
     _screens.insert(
-        HomeLandingScreen.indexOfBrowseTab, const NewAdditionsScreen());
+        HomeLandingScreen.indexOfExploreTab, ExploreScreen.withCubit());
     _screens.insert(
         HomeLandingScreen.indexOfSearchTab, SearchScreen.withCubit());
     _screens.insert(HomeLandingScreen.indexOfProfileTab, const ProfileScreen());
