@@ -13,7 +13,7 @@ import '../../../shared/utils/navigation/shared_navigation.dart';
 import '../../../shared/widgets/details_header/details_header.dart';
 import '../../../shared/widgets/details_tab_view.dart';
 import '../../model/ui_clip.dart';
-import '../error_screen/not_found_screen.dart';
+import '../error_screen/error_or_empty_screen.dart';
 import 'cubit/video_details_cubit.dart';
 
 class VideoDetailsScreen extends StatefulWidget {
@@ -67,7 +67,7 @@ class _VideoDetailsScreenState extends State<VideoDetailsScreen> {
     } else if (state is VideoDetailsSuccessState) {
       return screenContent(state);
     } else if (state is VideoDetailsErrorState) {
-      return NotFoundScreen(
+      return ErrorOrEmptyScreen(
         inputMessage: (state).message,
         showAppBar: false,
       );

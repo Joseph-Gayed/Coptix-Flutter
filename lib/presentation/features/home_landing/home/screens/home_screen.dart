@@ -13,7 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/di/injection_container.dart';
 import '../../../../../shared/widgets/collections_widget_builder.dart';
 import '../../../categories/screens/category_collections_screen.dart';
-import '../../../error_screen/not_found_screen.dart';
+import '../../../error_screen/error_or_empty_screen.dart';
 import '../cubit/home_cubit.dart';
 import '../cubit/home_state.dart';
 import 'collection_screen.dart';
@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       );
     } else if (homeState is HomeErrorState) {
-      return NotFoundScreen(
+      return ErrorOrEmptyScreen(
         inputMessage: (homeState).message,
         showAppBar: false,
       );
@@ -93,8 +93,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       );
     } else {
-      return NotFoundScreen(
-        inputMessage: LocalizationKey.noContent.tr(),
+      return ErrorOrEmptyScreen(
+        inputMessage: LocalizationKey.emptyContentMessage.tr(),
         showAppBar: false,
       );
     }

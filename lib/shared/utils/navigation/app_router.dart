@@ -10,7 +10,7 @@ import '../../../presentation/features/auth/common/cubit/auth_cubit.dart';
 import '../../../presentation/features/auth/signup/signup_screen.dart';
 import '../../../presentation/features/categories/screens/category_contents_screen.dart';
 import '../../../presentation/features/clip_details/video_details_screen.dart';
-import '../../../presentation/features/error_screen/not_found_screen.dart';
+import '../../../presentation/features/error_screen/error_or_empty_screen.dart';
 import '../../../presentation/features/home_landing/home/screens/collection_screen.dart';
 import '../../../presentation/features/home_landing/home_landing_screen.dart';
 import '../../../presentation/features/home_landing/my_profile/change_app_language/change_app_language_screen.dart';
@@ -75,7 +75,7 @@ class AppRouter {
       signup: (context) => getAuthScreen(context, const SignupScreen()),
       forgetPassword: (context) =>
           getAuthScreen(context, const ForgetPasswordScreen()),
-      notFound: (context) => getAuthScreen(context, const NotFoundScreen()),
+      notFound: (context) => getAuthScreen(context, const ErrorOrEmptyScreen()),
     };
   }
 
@@ -87,7 +87,7 @@ class AppRouter {
   Widget _getCollectionDetailsScreen(BuildContext context) {
     Map<String, dynamic>? arguments = context.getNavArgs();
     if (arguments == null) {
-      return const NotFoundScreen();
+      return const ErrorOrEmptyScreen();
     }
     return CollectionScreen(arguments: arguments);
   }
@@ -95,7 +95,7 @@ class AppRouter {
   Widget _getSeasonDetailsScreen(BuildContext context) {
     Map<String, dynamic>? arguments = context.getNavArgs();
     if (arguments == null) {
-      return const NotFoundScreen();
+      return const ErrorOrEmptyScreen();
     }
     return SeasonDetailsScreen(arguments: arguments);
   }
@@ -103,7 +103,7 @@ class AppRouter {
   Widget _getSeriesDetailsScreen(BuildContext context) {
     Map<String, dynamic>? arguments = context.getNavArgs();
     if (arguments == null) {
-      return const NotFoundScreen();
+      return const ErrorOrEmptyScreen();
     }
     return SeriesDetailsScreen.withCubit(arguments: arguments);
   }
@@ -111,7 +111,7 @@ class AppRouter {
   Widget _getVideoDetailsScreen(BuildContext context) {
     Map<String, dynamic>? arguments = context.getNavArgs();
     if (arguments == null) {
-      return const NotFoundScreen();
+      return const ErrorOrEmptyScreen();
     }
     return VideoDetailsScreen.withCubit(arguments: arguments);
   }
@@ -119,7 +119,7 @@ class AppRouter {
   Widget _getVideoPlayerScreen(BuildContext context) {
     Map<String, dynamic>? arguments = context.getNavArgs();
     if (arguments == null) {
-      return const NotFoundScreen();
+      return const ErrorOrEmptyScreen();
     }
     return VideoPlayerScreen(arguments: arguments);
   }
@@ -127,7 +127,7 @@ class AppRouter {
   Widget _getCategoryCollectionsScreen(BuildContext context) {
     Map<String, dynamic>? arguments = context.getNavArgs();
     if (arguments == null) {
-      return const NotFoundScreen();
+      return const ErrorOrEmptyScreen();
     }
 
     return CategoryCollectionsScreen.withCubit(arguments: arguments);
@@ -136,7 +136,7 @@ class AppRouter {
   Widget _getCategoryContentsScreen(BuildContext context) {
     Map<String, dynamic>? arguments = context.getNavArgs();
     if (arguments == null) {
-      return const NotFoundScreen();
+      return const ErrorOrEmptyScreen();
     }
     return CategoryContentsScreen.withCubit(arguments: arguments);
   }

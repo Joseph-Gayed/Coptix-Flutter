@@ -8,7 +8,8 @@ Image getBottomBarIcon(String iconName) {
       width: Dimens.bottomNavBarIconSize, height: Dimens.bottomNavBarIconSize);
 }
 
-Image getAssetIcon(String iconName) {
+Image getAssetIcon(String iconName, {double? size}) {
   return Image.asset("$imagesPath$iconName",
-      width: Dimens.defaultIconSize, height: Dimens.defaultIconSize);
+      width: size ?? Dimens.defaultIconSize,
+      height: size ?? Dimens.defaultIconSize);
 }

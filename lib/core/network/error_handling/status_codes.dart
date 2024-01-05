@@ -32,7 +32,7 @@ extension StatusCodeExtension on int {
       case StatusCode.noContent:
         return Failure(
             code: StatusCode.noContent,
-            message: LocalizationKey.noContent.tr());
+            message: LocalizationKey.emptyContentMessage.tr());
 
       case StatusCode.badRequest:
         return Failure(

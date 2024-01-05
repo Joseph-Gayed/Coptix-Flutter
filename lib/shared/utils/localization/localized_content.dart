@@ -6,7 +6,7 @@ class LocalizationKey {
   static const String welcomeToCoptix = "welcomeToCoptix";
   static const String welcome = "welcome";
   static const String home = "home";
-  static const String newAdditions = "newAdditions";
+  static const String explore = "explore";
   static const String search = "search";
   static const String myAccount = "myAccount";
   static const String save = "save";
@@ -62,6 +62,7 @@ class LocalizationKey {
   static const String required = "required";
   static const String checkYourMail = "checkYourMail";
   static const String searchHint = "searchHint";
+  static const String noSearch = "noSearch";
   static const String myList = "myList";
   static const String profile = "profile";
   static const String accountSettings = "accountSettings";
@@ -84,7 +85,7 @@ const Map<String, String> englishContent = {
   LocalizationKey.welcomeToCoptix: 'Welcome to Coptix App',
   LocalizationKey.welcome: 'Welcome',
   LocalizationKey.home: "Home",
-  LocalizationKey.newAdditions: "New Additions",
+  LocalizationKey.explore: "Explore",
   LocalizationKey.search: "Search",
   LocalizationKey.myAccount: "Profile",
   LocalizationKey.save: "Save",
@@ -151,13 +152,14 @@ const Map<String, String> englishContent = {
   LocalizationKey.logoutConfirmation: "Are you sure you want to logout?",
   LocalizationKey.accountDetails: "Account Details",
   LocalizationKey.changePassword: "Change Password",
+  LocalizationKey.noSearch: "No Search",
 };
 
 const Map<String, String> arabicContent = {
   LocalizationKey.welcomeToCoptix: "أهلاً بك في تطبيق كوبتكس",
   LocalizationKey.welcome: "أهلاً بك",
   LocalizationKey.home: "الرئيسية",
-  LocalizationKey.newAdditions: "احدث الإضافات",
+  LocalizationKey.explore: "تصفح",
   LocalizationKey.search: "بحث",
   LocalizationKey.myAccount: "حسابي",
   LocalizationKey.save: "حفظ",
@@ -223,13 +225,14 @@ const Map<String, String> arabicContent = {
   LocalizationKey.logoutConfirmation: "أنت على وشك الخروج\n هل أنت متأكد؟",
   LocalizationKey.accountDetails: "التفاصيل الشخصية",
   LocalizationKey.changePassword: "تغيير كلمة المرور",
+  LocalizationKey.noSearch: "لا يوجد عمليات بحث",
 };
 
 const Map<String, String> frenchContent = {
   LocalizationKey.welcomeToCoptix: "Bienvenue dans l'application Coptix",
   LocalizationKey.welcome: "Bienvenue",
   LocalizationKey.home: "Accueil",
-  LocalizationKey.newAdditions: "Nouveautés",
+  LocalizationKey.explore: "Explore",
   LocalizationKey.search: "Recherche",
   LocalizationKey.myAccount: "Profil",
   LocalizationKey.save: "Enregistrer",
@@ -296,4 +299,5 @@ const Map<String, String> frenchContent = {
   LocalizationKey.logoutConfirmation: "Are you sure you want to logout?",
   LocalizationKey.accountDetails: "Account Details",
   LocalizationKey.changePassword: "Change Password",
+  LocalizationKey.noSearch: "No Search",
 };

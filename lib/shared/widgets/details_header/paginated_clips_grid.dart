@@ -4,7 +4,7 @@ import 'package:coptix/shared/utils/localization/app_localizations_delegate.dart
 import 'package:coptix/shared/utils/localization/localized_content.dart';
 import 'package:flutter/material.dart';
 
-import '../../../presentation/features/error_screen/not_found_screen.dart';
+import '../../../presentation/features/error_screen/error_or_empty_screen.dart';
 import '../../../presentation/model/ui_clip.dart';
 import '../../theme/colors.dart';
 import '../clips_grid.dart';
@@ -32,7 +32,7 @@ class PaginatedClipsGrid extends StatelessWidget {
 
       case const (PaginatedContentErrorState):
         final errorState = paginatedContentState as PaginatedContentErrorState;
-        return NotFoundScreen(
+        return ErrorOrEmptyScreen(
           inputMessage: errorState.message,
           showAppBar: false,
         );
@@ -66,8 +66,10 @@ class PaginatedClipsGrid extends StatelessWidget {
             context: context,
             content: paginationErrorState.uiPaginatedContent.content);
       default:
-        return NotFoundScreen(
-          inputMessage: LocalizationKey.noContent.tr(),
+        return ErrorOrEmptyScreen(
+          inputSubTitle: LocalizationKey.noSearch.tr(),
+          inputMessage: LocalizationKey.emptyContentMessage.tr(),
+          icon: "icon_search_secondary.png",
           showAppBar: false,
         );
     }

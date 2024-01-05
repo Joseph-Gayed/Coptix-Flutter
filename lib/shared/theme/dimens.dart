@@ -47,11 +47,10 @@ class Dimens {
   static double chipHeight = (dimensDesignScreenFactor * 40);
   static double buttonHorizontalPadding = (dimensDesignScreenFactor * 6);
   static double buttonVerticalPadding = (dimensDesignScreenFactor * 10);
-
   static double buttonIconSize = (dimensDesignScreenFactor * 19);
-
   static double itemsHorizontalMargin = (dimensDesignScreenFactor * 10);
   static double itemsHalfHorizontalMargin = itemsHorizontalMargin / 2;
+  static double errorIconSize = dimensDesignScreenFactor * 85;
 }
 
 class SplashDimens {

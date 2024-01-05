@@ -12,7 +12,7 @@ import '../../../shared/utils/navigation/navigation_args.dart';
 import '../../../shared/utils/navigation/shared_navigation.dart';
 import '../../../shared/widgets/coptix_app_bar.dart';
 import '../../../shared/widgets/details_header/details_header.dart';
-import '../error_screen/not_found_screen.dart';
+import '../error_screen/error_or_empty_screen.dart';
 import 'cubit/series_details_cubit.dart';
 
 class SeriesDetailsScreen extends StatefulWidget {
@@ -69,7 +69,7 @@ class _SeriesDetailsScreenState extends State<SeriesDetailsScreen> {
         ),
       );
     } else if (state is SeriesDetailsErrorState) {
-      return NotFoundScreen(
+      return ErrorOrEmptyScreen(
         inputMessage: (state).message,
         showAppBar: false,
       );
