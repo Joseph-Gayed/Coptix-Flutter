@@ -1,5 +1,14 @@
 What's Done:
-  - Profile Screen.
-  
-Known Issues:
- - After login or signup user is redirected to a duplicate copy of the home screen (with back button in app bar) instead of the previous Home screen , so user has to press back after login or signup.
+  - Explore Screen "Tsafa7" (categories chips and below it the categories collections).
+
+  - Logout[Confirmation Dialog , clearing the cached user data , (Logout API not done yet) ].
+
+  - Fix Known Issue (After login or signup user is redirected to a duplicate copy of the home screen).
+
+  - Fix Switch Language Issue(Change language doesn't impact UI on spot , User must press on any tab to refresh).
+
+  - Added back button in search screen to back to home.
+
+  - Enhance the initial view in search screen added icon and subtitle and changed the english message .
+
+  - Remove the mock button from splash.

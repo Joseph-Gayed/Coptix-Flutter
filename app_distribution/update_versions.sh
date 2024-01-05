@@ -4,8 +4,8 @@ infoPlistPath="../ios/Runner/Info.plist"
 buildGradlePath="../android/app/build.gradle"
 
 # 1.Define versionName and versionCode
-versionName="0.8.0"
-versionCode=8
+versionName="0.9.0"
+versionCode=9
 
 # 2.Update iOS version name and number in Info.plist
 /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $versionName" $infoPlistPath &&
