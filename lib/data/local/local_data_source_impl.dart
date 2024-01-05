@@ -10,7 +10,7 @@ class LocalDataSourceImpl extends LocalDataSource {
   Future<DomainUser?> loadUser() async {
     try {
       String cachedUserJson = await SharedPreferencesUtils.getUser();
-      
+
       if (cachedUserJson.isNotEmpty) {
         Map<String, dynamic> body =
             jsonDecode(cachedUserJson) as Map<String, dynamic>;
@@ -19,7 +19,6 @@ class LocalDataSourceImpl extends LocalDataSource {
       // Return Error
       return null;
     } catch (e) {
-      
       return null;
     }
   }
@@ -29,6 +28,16 @@ class LocalDataSourceImpl extends LocalDataSource {
     try {
       String cachedUserJson = jsonEncode(user.toJson());
       bool isSuccess = await SharedPreferencesUtils.saveUser(cachedUserJson);
+      return isSuccess;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  @override
+  Future<bool> logout() async {
+    try {
+      bool isSuccess = await SharedPreferencesUtils.deleteUser();
       return isSuccess;
     } catch (e) {
       return false;

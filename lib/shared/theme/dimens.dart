@@ -110,4 +110,5 @@ class VideoDetailsDimens {
 
 class AuthDimens {
   static double borderWidth = (dimensDesignScreenFactor * 2);
+  static double logoutIconSize = (dimensDesignScreenFactor * 43);
 }

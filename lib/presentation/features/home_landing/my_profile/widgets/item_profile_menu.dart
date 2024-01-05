@@ -50,7 +50,12 @@ class ItemProfileMenu extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         try {
-          Navigator.pushNamed(context, menuItem.navigationRoute!);
+          if (menuItem.onClick != null) {
+            menuItem.onClick!();
+          }
+          if (menuItem.navigationRoute != null) {
+            Navigator.pushNamed(context, menuItem.navigationRoute!);
+          }
         } catch (e) {}
       },
       child: Container(

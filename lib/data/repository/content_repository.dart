@@ -36,6 +36,20 @@ class ContentRepositoryImpl extends ContentRepository {
   }
 
   @override
+  Future<Either<Failure, bool>> logout() async {
+    //TODO: to use the logout api , you must add the token in the headers.
+
+/*    Future<Either<Failure, bool>> logoutRemoteResponseFuture =
+        remoteDataSource.logout();
+    bool isSuccessRemote = (await logoutRemoteResponseFuture).isRight();
+    if (isSuccessRemote) {
+      await localDataSource.logout();
+    }*/
+
+    return right(await localDataSource.logout());
+  }
+
+  @override
   Future<Either<Failure, DomainUser>> signup(AuthRequest request) async {
     var signupResponseFuture = remoteDataSource.signup(request);
     await cacheUserIfSuccess(signupResponseFuture);

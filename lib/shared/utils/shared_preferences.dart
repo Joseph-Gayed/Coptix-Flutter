@@ -24,4 +24,9 @@ class SharedPreferencesUtils {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     return await prefs.setString(_kUserKey, userJson);
   }
+
+  static Future<bool> deleteUser() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return await prefs.remove(_kUserKey);
+  }
 }

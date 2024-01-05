@@ -92,6 +92,17 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   @override
+  Future<Either<Failure, bool>> logout() async {
+    String apiUrl = ApiNames.logout;
+
+    return _executeRequest(
+      apiUrl,
+      () => dio.post(apiUrl),
+      (dynamic body, Pagination? pagination) => body as bool,
+    );
+  }
+
+  @override
   Future<Either<Failure, DomainUser>> signup(AuthRequest request) async {
     String apiUrl = ApiNames.signup;
     return _performAuthentication(apiUrl, request);

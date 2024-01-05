@@ -1,6 +1,6 @@
 import 'package:coptix/domain/model/domain_user.dart';
 import 'package:coptix/domain/usecase/load_cached_user_usecase.dart';
-import 'package:coptix/presentation/features/home_landing/my_profile/widgets/item_menu_option.dart';
+import 'package:coptix/presentation/features/home_landing/my_profile/widgets/item_profile_menu.dart';
 import 'package:coptix/presentation/model/ui_profile_option.dart';
 import 'package:coptix/shared/extensions/context_ext.dart';
 import 'package:coptix/shared/extensions/widget_ext.dart';
@@ -49,8 +49,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Widget screenContentMobile(BuildContext context) {
     List<MenuItem> list = activeUser != null
-        ? getLoggedInUserOptions().values.toList()
-        : getGuestUserOptions().values.toList();
+        ? getLoggedInUserOptions(context).values.toList()
+        : getGuestUserOptions(context).values.toList();
 
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       buildUserWidget(),
@@ -88,7 +88,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       decoration: BoxDecoration(
         border: Border.all(
           color: lightBorderColor, // Change the color as needed
-          width: 1.0, // Adjust the width as needed
+          width: AuthDimens.borderWidth, // Adjust the width as needed
         ),
         borderRadius: BorderRadius.circular(Dimens.cornerRadius),
       ),

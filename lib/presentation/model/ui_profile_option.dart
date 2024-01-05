@@ -1,6 +1,9 @@
 import 'package:coptix/shared/utils/localization/app_localizations_delegate.dart';
 import 'package:coptix/shared/utils/localization/localized_content.dart';
 import 'package:coptix/shared/utils/navigation/app_router.dart';
+import 'package:flutter/material.dart';
+
+import '../features/auth/logout/logout_dialog.dart';
 
 abstract class MenuItem {
   abstract bool isDivider;
@@ -20,11 +23,14 @@ class MenuTextItem extends MenuItem {
   final String? navigationRoute;
   final bool isHeader;
 
+  Function? onClick;
+
   MenuTextItem(
       {required this.title,
       this.icon,
       this.navigationRoute,
-      this.isHeader = false});
+      this.isHeader = false,
+      this.onClick});
 
   MenuTextItem copyWith({
     String? title,
@@ -60,7 +66,7 @@ enum ProfileOptionKey {
   divider6,
 }
 
-Map<ProfileOptionKey, MenuItem> getLoggedInUserOptions() {
+Map<ProfileOptionKey, MenuItem> getLoggedInUserOptions(BuildContext context) {
   return {
     ProfileOptionKey.profileHeader:
         MenuTextItem(title: LocalizationKey.profile.tr(), isHeader: true),
@@ -105,14 +111,21 @@ Map<ProfileOptionKey, MenuItem> getLoggedInUserOptions() {
     ProfileOptionKey.logout: MenuTextItem(
       title: LocalizationKey.logout.tr(),
       icon: "ic_logout.png",
-      navigationRoute: AppRouter.logout,
+      onClick: () {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return LogoutDialog();
+          },
+        );
+      },
     ),
   };
 }
 
-Map<ProfileOptionKey, MenuItem> getGuestUserOptions() {
+Map<ProfileOptionKey, MenuItem> getGuestUserOptions(BuildContext context) {
   Map<ProfileOptionKey, MenuItem> loggedInUserOptions =
-      getLoggedInUserOptions();
+      getLoggedInUserOptions(context);
   return {
     ProfileOptionKey.profileHeader:
         loggedInUserOptions[ProfileOptionKey.profileHeader]!,

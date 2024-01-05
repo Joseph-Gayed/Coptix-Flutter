@@ -69,7 +69,7 @@ class LocalizationKey {
   static const String help = "help";
   static const String contactUs = "contactUs";
   static const String logout = "logout";
-
+  static const String logoutConfirmation = "logoutConfirmation";
   static const String accountDetails = "accountDetails";
   static const String changePassword = "changePassword";
 }
@@ -105,7 +105,7 @@ const Map<String, String> englishContent = {
   LocalizationKey.forbidden: "forbidden",
   LocalizationKey.internalServerError: "internalServerError",
   LocalizationKey.notFound: "notFound",
-  LocalizationKey.cancel: "cancel",
+  LocalizationKey.cancel: "Cancel",
   LocalizationKey.connectTimeout: "connectTimeout",
   LocalizationKey.receiveTimeout: "receiveTimeout",
   LocalizationKey.sendTimeout: "sendTimeout",
@@ -148,6 +148,7 @@ const Map<String, String> englishContent = {
   LocalizationKey.help: "Help",
   LocalizationKey.contactUs: "Contact Us",
   LocalizationKey.logout: "Logout",
+  LocalizationKey.logoutConfirmation: "Are you sure you want to logout?",
   LocalizationKey.accountDetails: "Account Details",
   LocalizationKey.changePassword: "Change Password",
 };
@@ -219,6 +220,7 @@ const Map<String, String> arabicContent = {
   LocalizationKey.help: "مساعدة",
   LocalizationKey.contactUs: "اتصل بنا",
   LocalizationKey.logout: "تسجيل خروج",
+  LocalizationKey.logoutConfirmation: "أنت على وشك الخروج\n هل أنت متأكد؟",
   LocalizationKey.accountDetails: "التفاصيل الشخصية",
   LocalizationKey.changePassword: "تغيير كلمة المرور",
 };
@@ -248,7 +250,7 @@ const Map<String, String> frenchContent = {
   LocalizationKey.forbidden: "forbidden",
   LocalizationKey.internalServerError: "internalServerError",
   LocalizationKey.notFound: "notFound",
-  LocalizationKey.cancel: "cancel",
+  LocalizationKey.cancel: "Cancel",
   LocalizationKey.connectTimeout: "connectTimeout",
   LocalizationKey.receiveTimeout: "receiveTimeout",
   LocalizationKey.sendTimeout: "sendTimeout",
@@ -291,6 +293,7 @@ const Map<String, String> frenchContent = {
   LocalizationKey.help: "Help",
   LocalizationKey.contactUs: "Contact Us",
   LocalizationKey.logout: "Logout",
+  LocalizationKey.logoutConfirmation: "Are you sure you want to logout?",
   LocalizationKey.accountDetails: "Account Details",
   LocalizationKey.changePassword: "Change Password",
 };

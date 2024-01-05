@@ -19,6 +19,7 @@ import '../../data/local/local_data_source_impl.dart';
 import '../../data/remote/remote_data_source_impl.dart';
 import '../../data/repository/content_repository.dart';
 import '../../domain/repository/content_repository.dart';
+import '../../domain/usecase/logout_usecase.dart';
 import '../../domain/usecase/signup_usecase.dart';
 import '../../presentation/features/auth/common/cubit/auth_cubit.dart';
 import '../../presentation/features/clip_details/cubit/video_details_cubit.dart';
@@ -51,6 +52,7 @@ void initDi() {
       () => GetCollectionsUseCase(getIt()));
   getIt.registerFactory<HomeUseCase>(() => HomeUseCase(getIt(), getIt()));
   getIt.registerFactory<LoginUseCase>(() => LoginUseCase(getIt()));
+  getIt.registerFactory<LogoutUseCase>(() => LogoutUseCase(getIt()));
   getIt.registerFactory<SignupUseCase>(() => SignupUseCase(getIt()));
   getIt.registerFactory<ForgetPasswordUseCase>(
       () => ForgetPasswordUseCase(getIt()));

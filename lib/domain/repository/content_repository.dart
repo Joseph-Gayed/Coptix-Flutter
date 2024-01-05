@@ -15,6 +15,7 @@ abstract class ContentRepository {
   Future<DomainUser?> loadCachedUser();
 
   Future<Either<Failure, DomainUser>> login(AuthRequest request);
+  Future<Either<Failure, bool>> logout();
   Future<Either<Failure, DomainUser>> signup(AuthRequest request);
   Future<Either<Failure, bool>> forgetPassword(AuthRequest request);
 

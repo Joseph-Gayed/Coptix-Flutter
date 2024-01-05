@@ -19,6 +19,7 @@ class ApiNames {
   static const String search = "search";
 
   static const String login = "users/login";
+  static const String logout = "users/logout";
   static const String signup = "users/register";
   static const String forgetPassword = "users/passwords/forget";
 }
