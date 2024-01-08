@@ -1,8 +1,8 @@
 import '../model/domain_user.dart';
-import '../repository/content_repository.dart';
+import '../repository/repository.dart';
 
 class LoadCachedUserUseCase {
-  final ContentRepository repository;
+  final Repository repository;
 
   LoadCachedUserUseCase(this.repository);
 

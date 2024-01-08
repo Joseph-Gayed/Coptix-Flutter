@@ -7,12 +7,12 @@ import 'package:coptix/shared/enums/content_type.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../domain/repository/content_repository.dart';
+import '../../../../../domain/repository/repository.dart';
 
 part 'video_details_state.dart';
 
 class VideoDetailsCubit extends Cubit<VideoDetailsState> {
-  final ContentRepository repository;
+  final Repository repository;
   late Function(Failure) errorHandler;
   late Function(DomainClip) successHandler;
 

@@ -1,4 +1,5 @@
 import 'package:coptix/core/network/dio_factory.dart';
+import 'package:coptix/core/network/network_manager.dart';
 import 'package:coptix/data/local/local_data_source.dart';
 import 'package:coptix/data/remote/remote_data_source.dart';
 import 'package:coptix/domain/usecase/foreget_password_usecase.dart';
@@ -17,8 +18,8 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 import '../../data/local/local_data_source_impl.dart';
 import '../../data/remote/remote_data_source_impl.dart';
-import '../../data/repository/content_repository.dart';
-import '../../domain/repository/content_repository.dart';
+import '../../data/repository/repository.dart';
+import '../../domain/repository/repository.dart';
 import '../../domain/usecase/logout_usecase.dart';
 import '../../domain/usecase/signup_usecase.dart';
 import '../../presentation/features/auth/common/cubit/auth_cubit.dart';
@@ -34,17 +35,20 @@ void initDi() {
   getIt.registerLazySingleton<NetworkInfo>(
       () => NetworkInfoImpl(InternetConnectionChecker()));
 
+  //NetworkManager
+  getIt.registerLazySingleton<NetworkManager>(() => NetworkManager(getIt()));
+
   // Dio
   getIt.registerLazySingleton(() => DioFactory().dioInstance);
 
   //dataSource
   getIt.registerLazySingleton<RemoteDataSource>(
-      () => RemoteDataSourceImpl(dio: getIt(), networkInfo: getIt()));
+      () => RemoteDataSourceImpl(dio: getIt(), networkManager: getIt()));
   getIt.registerLazySingleton<LocalDataSource>(() => LocalDataSourceImpl());
 
   // Repository
-  getIt.registerLazySingleton<ContentRepository>(() => ContentRepositoryImpl(
-      remoteDataSource: getIt(), localDataSource: getIt()));
+  getIt.registerLazySingleton<Repository>(() =>
+      RepositoryImpl(remoteDataSource: getIt(), localDataSource: getIt()));
 
   // UseCases
   getIt.registerFactory<GetCategoriesUseCase>(

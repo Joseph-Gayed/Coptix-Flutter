@@ -11,15 +11,15 @@ import '../../domain/model/category_content_request_params.dart';
 import '../../domain/model/domain_paginated_clips.dart';
 import '../../domain/model/domain_collection.dart';
 import '../../domain/model/domain_user.dart';
-import '../../domain/repository/content_repository.dart';
+import '../../domain/repository/repository.dart';
 import '../local/local_data_source.dart';
 import '../remote/remote_data_source.dart';
 
-class ContentRepositoryImpl extends ContentRepository {
+class RepositoryImpl extends Repository {
   final RemoteDataSource remoteDataSource;
   final LocalDataSource localDataSource;
 
-  ContentRepositoryImpl(
+  RepositoryImpl(
       {required this.remoteDataSource, required this.localDataSource});
 
   @override
@@ -70,13 +70,11 @@ class ContentRepositoryImpl extends ContentRepository {
     return remoteDataSource.forgetPassword(request);
   }
 
-  //TODO: Caching
   @override
   Future<Either<Failure, List<DomainCategory>>> getHomeCategories() {
     return remoteDataSource.getHomeCategories();
   }
 
-  //TODO: Caching
   @override
   Future<Either<Failure, List<DomainCollection>>> getCategoryCollections(
       String categoryId) {
@@ -89,20 +87,17 @@ class ContentRepositoryImpl extends ContentRepository {
     return remoteDataSource.getCategoryContent(request);
   }
 
-  //TODO: Caching
   @override
   Future<Either<Failure, List<DomainCollection>>> getHomeCollections() {
     return remoteDataSource.getHomeCollections();
   }
 
-  //TODO: Caching
   @override
   Future<Either<Failure, DomainClip>> getClipDetails(
       DetailsRequestParams request) {
     return remoteDataSource.getClipOrSeriesDetails(request);
   }
 
-  //TODO: Caching
   @override
   Future<Either<Failure, DomainClip>> getSeriesDetails(
       DetailsRequestParams request) {

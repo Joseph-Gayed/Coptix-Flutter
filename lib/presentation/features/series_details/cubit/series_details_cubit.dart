@@ -8,12 +8,12 @@ import 'package:coptix/shared/enums/content_type.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../domain/repository/content_repository.dart';
+import '../../../../../domain/repository/repository.dart';
 
 part 'series_details_state.dart';
 
 class SeriesDetailsCubit extends Cubit<SeriesDetailsState> {
-  final ContentRepository repository;
+  final Repository repository;
   late Function(Failure) errorHandler;
   late Function(DomainClip) successHandler;
 

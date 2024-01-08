@@ -11,7 +11,7 @@ import '../model/category_content_request_params.dart';
 import '../model/details_request_params.dart';
 import '../model/domain_paginated_clips.dart';
 
-abstract class ContentRepository {
+abstract class Repository {
   Future<DomainUser?> loadCachedUser();
 
   Future<Either<Failure, DomainUser>> login(AuthRequest request);

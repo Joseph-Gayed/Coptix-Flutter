@@ -1,6 +1,6 @@
 import 'package:coptix/core/network/error_handling/failure.dart';
 import 'package:coptix/domain/model/domain_paginated_clips.dart';
-import 'package:coptix/domain/repository/content_repository.dart';
+import 'package:coptix/domain/repository/repository.dart';
 import 'package:coptix/domain/usecase/base_usecase.dart';
 import 'package:dartz/dartz.dart';
 
@@ -8,7 +8,7 @@ import '../model/search_request_params.dart';
 
 class SearchUseCase
     extends UseCaseWithInput<SearchRequest, DomainPaginatedClips> {
-  final ContentRepository repository;
+  final Repository repository;
 
   SearchUseCase(this.repository);
 

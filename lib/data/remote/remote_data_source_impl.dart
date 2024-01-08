@@ -1,6 +1,4 @@
 import 'package:coptix/core/network/api_names.dart';
-import 'package:coptix/core/network/base_api_response.dart';
-import 'package:coptix/core/network/error_handling/status_codes.dart';
 import 'package:coptix/core/network/pagination.dart';
 import 'package:coptix/domain/model/auth_request_params.dart';
 import 'package:coptix/domain/model/details_request_params.dart';
@@ -12,9 +10,8 @@ import 'package:coptix/shared/utils/localization/localized_content.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
-import '../../core/network/error_handling/error_handler.dart';
 import '../../core/network/error_handling/failure.dart';
-import '../../core/network/network_info.dart';
+import '../../core/network/network_manager.dart';
 import '../../domain/model/category_content_request_params.dart';
 import '../../domain/model/domain_paginated_clips.dart';
 import '../../domain/model/domain_collection.dart';
@@ -26,40 +23,15 @@ import 'remote_data_source.dart';
 
 class RemoteDataSourceImpl implements RemoteDataSource {
   final Dio dio;
-  final NetworkInfo networkInfo;
+  final NetworkManager networkManager;
 
-  RemoteDataSourceImpl({required this.dio, required this.networkInfo});
-
-  Future<Either<Failure, T>> _executeRequest<T>(
-    String apiUrl,
-    Future<Response> Function() requestFunction,
-    T Function(dynamic, Pagination? pagination) successHandler,
-  ) async {
-    if (await networkInfo.isConnected) {
-      try {
-        final Response response = await requestFunction();
-        BaseApiResponse apiResponse = BaseApiResponse.fromJson(response.data);
-
-        if (response.statusCode == StatusCode.success) {
-          return right(
-              successHandler(apiResponse.body, apiResponse.pagination));
-        }
-
-        Failure failure = getResponseFailure(response, apiResponse);
-        return Left(failure);
-      } catch (e) {
-        return Left(ErrorHandler.handle(e).failure);
-      }
-    } else {
-      return Left(StatusCode.noInternetConnection.getFailure());
-    }
-  }
+  RemoteDataSourceImpl({required this.dio, required this.networkManager});
 
   Future<Either<Failure, DomainUser>> _performAuthentication(
     String apiUrl,
     AuthRequest request,
   ) async {
-    return _executeRequest(
+    return networkManager.executeRequest(
       apiUrl,
       () => dio.post(apiUrl, data: authRequestToJson(request)),
       (dynamic body, Pagination? pagination) {
@@ -70,7 +42,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   Future<Either<Failure, DomainPaginatedClips>> _getPaginatedClips(
       String apiUrl) async {
-    return _executeRequest(
+    return networkManager.executeRequest(
       apiUrl,
       () => dio.get(apiUrl),
       (dynamic body, Pagination? pagination) {
@@ -95,7 +67,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   Future<Either<Failure, bool>> logout() async {
     String apiUrl = ApiNames.logout;
 
-    return _executeRequest(
+    return networkManager.executeRequest(
       apiUrl,
       () => dio.post(apiUrl),
       (dynamic body, Pagination? pagination) => body as bool,
@@ -112,7 +84,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   Future<Either<Failure, bool>> forgetPassword(AuthRequest request) async {
     String apiUrl = ApiNames.forgetPassword;
 
-    return _executeRequest(
+    return networkManager.executeRequest(
       apiUrl,
       () => dio.post(apiUrl, data: authRequestToJson(request)),
       (dynamic body, Pagination? pagination) => true,
@@ -123,15 +95,12 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   Future<Either<Failure, List<DomainCategory>>> getHomeCategories() async {
     String apiUrl = ApiNames.categories;
 
-    return _executeRequest(
-      apiUrl,
-      () => dio.get(apiUrl),
-      (dynamic body, Pagination? pagination) {
-        CategoriesApiResponse categoriesApiResponse =
-            CategoriesApiResponse.fromJson(body as Map<String, dynamic>);
-        return categoriesApiResponse.categories ?? [];
-      },
-    );
+    return networkManager.executeRequest(apiUrl, () => dio.get(apiUrl),
+        (dynamic body, Pagination? pagination) {
+      CategoriesApiResponse categoriesApiResponse =
+          CategoriesApiResponse.fromJson(body as Map<String, dynamic>);
+      return categoriesApiResponse.categories ?? [];
+    }, useCache: true);
   }
 
   @override
@@ -139,7 +108,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       String categoryId) async {
     String apiUrl = "${ApiNames.categories}/$categoryId";
 
-    return _executeRequest(
+    return networkManager.executeRequest(
       apiUrl,
       () => dio.get(apiUrl),
       (dynamic body, Pagination? pagination) {
@@ -164,15 +133,12 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   Future<Either<Failure, List<DomainCollection>>> getHomeCollections() async {
     String apiUrl = ApiNames.home;
 
-    return _executeRequest(
-      apiUrl,
-      () => dio.get(apiUrl),
-      (dynamic body, Pagination? pagination) {
-        HomeCollectionsApiResponse homeApiResponse =
-            HomeCollectionsApiResponse.fromJson(body as Map<String, dynamic>);
-        return homeApiResponse.collections ?? [];
-      },
-    );
+    return networkManager.executeRequest(apiUrl, () => dio.get(apiUrl),
+        (dynamic body, Pagination? pagination) {
+      HomeCollectionsApiResponse homeApiResponse =
+          HomeCollectionsApiResponse.fromJson(body as Map<String, dynamic>);
+      return homeApiResponse.collections ?? [];
+    }, useCache: true);
   }
 
   @override
@@ -186,11 +152,9 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     String apiUrl =
         "$detailsApiName/${request.contentType}/${request.contentId}";
 
-    return _executeRequest(
-      apiUrl,
-      () => dio.get(apiUrl),
-      (dynamic body, Pagination? pagination) => DomainClip.fromJson(body),
-    );
+    return networkManager.executeRequest(apiUrl, () => dio.get(apiUrl),
+        (dynamic body, Pagination? pagination) => DomainClip.fromJson(body),
+        useCache: true);
   }
 
   @override

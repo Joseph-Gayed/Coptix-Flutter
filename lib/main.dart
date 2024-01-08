@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'core/network/app_bath_provider.dart';
+
 GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 void configureOrientation(
     {bool supportLandScape = false, bool supportPortrait = true}) {
@@ -24,8 +26,10 @@ void configureOrientation(
   ]);
 }
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   initDi();
+  await AppPathProvider.initPath();
   runApp(DevicePreview(
       enabled: enableDevicePreview, builder: (context) => const MyApp()));
 }

@@ -6,3 +6,4 @@ const int passwordMinAllowedCharacter = 6;
 const int paginationDefaultFirstPage = 1;
 const int searchDebounceMinChars = 3;
 const int searchThrottleMinSeconds = 1;
+const int cacheExpirationHours = 24;
