@@ -27,6 +27,6 @@ Map<MediaContentType, String> detailsRouteOfContentType = {
   MediaContentType.showsEpisode: AppRouter.episode,
   MediaContentType.shows: AppRouter.show,
   MediaContentType.series: AppRouter.series,
-  MediaContentType.seriesSeason: AppRouter.season,
-  MediaContentType.showsSeason: AppRouter.season,
+  MediaContentType.seriesSeason: AppRouter.series,
+  MediaContentType.showsSeason: AppRouter.series,
 };

@@ -14,7 +14,6 @@ import '../../../presentation/features/error_screen/error_or_empty_screen.dart';
 import '../../../presentation/features/home_landing/home/screens/collection_screen.dart';
 import '../../../presentation/features/home_landing/home_landing_screen.dart';
 import '../../../presentation/features/home_landing/my_profile/change_app_language/change_app_language_screen.dart';
-import '../../../presentation/features/season_details/season_details_screen.dart';
 import '../../../presentation/features/series_details/series_details_screen.dart';
 import '../../../presentation/features/splash/splash_screen.dart';
 import '../../../presentation/features/video_player/video_player_screen.dart';
@@ -32,7 +31,6 @@ class AppRouter {
   static const String homeLanding = "/home_landing";
   static const String changeAppLanguage = "/change_app_language";
   static const String collection = "/collection";
-  static const String season = "/season";
   static const String series = "/series";
   static const String show = "/show";
   static const String episode = "/episode";
@@ -61,7 +59,6 @@ class AppRouter {
       homeLanding: (context) => _getHomeLandingScreen(context),
       changeAppLanguage: (context) => const ChangeAppLanguageScreen(),
       collection: (context) => _getCollectionDetailsScreen(context),
-      season: (context) => _getSeasonDetailsScreen(context),
       series: (context) => _getSeriesDetailsScreen(context),
       show: (context) => _getSeriesDetailsScreen(context),
       clip: (context) => _getVideoDetailsScreen(context),
@@ -90,14 +87,6 @@ class AppRouter {
       return const ErrorOrEmptyScreen();
     }
     return CollectionScreen(arguments: arguments);
-  }
-
-  Widget _getSeasonDetailsScreen(BuildContext context) {
-    Map<String, dynamic>? arguments = context.getNavArgs();
-    if (arguments == null) {
-      return const ErrorOrEmptyScreen();
-    }
-    return SeasonDetailsScreen(arguments: arguments);
   }
 
   Widget _getSeriesDetailsScreen(BuildContext context) {
